@@ -25,6 +25,14 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `counties`
 --
+DROP TABLE IF EXISTS `counties`;
+CREATE TABLE `counties` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
 --
 -- Dumping data for table `counties`
 --

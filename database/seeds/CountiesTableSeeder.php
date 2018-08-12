@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Filesystem\Filesystem;
 
 class CountiesTableSeeder extends Seeder
 {
@@ -12,6 +12,6 @@ class CountiesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(database_path('counties.sql'));
+        DB::unprepared(File::get(database_path('counties.sql')));
     }
 }
