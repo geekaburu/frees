@@ -37,6 +37,7 @@ class UsersTableSeeder extends Seeder
         // Seed Users table data
         for ($i=3; $i<=10; $i++){
             App\User::create([
+                'id'=>$i,
                 'role_id' => 2,
                 'location_id' => $i,
                 'name' => $faker->name,

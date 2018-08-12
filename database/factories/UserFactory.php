@@ -25,7 +25,7 @@ $factory->define(App\Panel::class, function (Faker $faker) {
 // Generate panel data
 $factory->define(App\PanelData::class, function (Faker $faker) {
     return [
-        'panel_id' => $faker->numberBetween($min = 1, $max = 300), 
+        'panel_id' => 1 + (10 * $faker->numberBetween($min = 1, $max = 30)), 
         'angle' => $faker->numberBetween($min = 0, $max = 180), 
         'intensity' => $faker->numberBetween($min = 20, $max = 80), 
         'voltage' => $faker->numberBetween($min = 200, $max = 300), 
