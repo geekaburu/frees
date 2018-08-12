@@ -12,7 +12,6 @@
         <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
     </head>
     <body>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio aperiam laboriosam rem magnam illo ipsum dolores ipsa ad sunt maiores minus rerum fugit perferendis recusandae odit delectus in, hic commodi!
         <div id="app"></div>
         <script src="{{mix('js/app.js')}}" ></script>
     </body>
