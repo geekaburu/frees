@@ -30,10 +30,7 @@ class AuthController extends Controller
         if (! $token = Auth::attempt($credentials)) {
             throw new UnauthorizedHttpException('error', 'Credentials Invalid');
         }
-
-
-        return Auth::user();
-
+        
         return response()->json([
             'user'=> [
                 'name' => Auth::user()->name,

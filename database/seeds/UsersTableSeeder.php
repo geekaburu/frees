@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run(Faker $faker)
     {
     	App\User::create([
+            'id' => 1,
             'role_id' => 1,
             'location_id' => 1,
             'name' => 'Green Invest',
@@ -23,6 +24,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         App\User::create([
+            'id' => 2,
             'role_id' => 2,
             'location_id' => 2,
             'name' => 'Alvin Kaburu',

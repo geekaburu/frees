@@ -11,7 +11,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Role::create(['name' => 'solar_company', 'display_name' => 'Solar Company']);
-        App\Role::create(['name' => 'customer', 'display_name' => 'Customer']);
+        App\Role::create(['id'=>1, 'name' => 'solar_company', 'display_name' => 'Solar Company']);
+        App\Role::create(['id'=>2,'name' => 'customer', 'display_name' => 'Customer']);
     }
 }
