@@ -1,29 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Jul 29, 2018 at 06:14 PM
--- Server version: 5.7.9
--- PHP Version: 7.2.0RC6
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `counties`
---
 DROP TABLE IF EXISTS `counties`;
 CREATE TABLE `counties` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -31,10 +5,6 @@ CREATE TABLE `counties` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `counties`
---
 
 INSERT INTO `counties` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Nairobi', '2018-01-07 12:40:32', '2018-01-07 12:40:32'),
@@ -84,7 +54,3 @@ INSERT INTO `counties` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (46, 'Kwale', '2018-02-06 21:11:21', '2018-02-06 21:11:21'),
 (47, 'Homa Bay', '2018-02-06 21:11:39', '2018-02-06 21:11:39'),
 (48, 'Bungoma', '2018-02-07 02:24:44', '2018-02-07 02:24:44');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
