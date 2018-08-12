@@ -43,7 +43,6 @@ export function renderRow (id, data) {
 		</div>
 	`
 }
-
 export function sumFooterColumns (type, row, data, start, end, display){
 	const columns = Array.prototype.slice.call(arguments)[5]
 	this.api().columns(columns, {filter:'applied'}).every( function () {
@@ -55,7 +54,6 @@ export function sumFooterColumns (type, row, data, start, end, display){
 		)		
 	})	
 }
-
 export function addSelectSearching (type, row, data, start, end, display){
 	const columns = Array.prototype.slice.call(arguments)[2]
 	this.api().columns(columns).every( function () {
@@ -95,14 +93,12 @@ export function createDatatable (table, parameters) {
         }
 	})
 }
-
 export function createFooter(table, columsLength) {
 	var elements = ''
 	for(var i = 0; i< columsLength; i++)
 		elements+='<th></th>'
 	table.append(`<tfoot><tr>${elements}</tr></tfoot>`)
 }
-
 export function destroyDatatable (table) {
 	// Destroy datatable
 	$(table).DataTable().destroy(true)

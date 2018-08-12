@@ -11,11 +11,11 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "staudenmeir/eloquent-has-many-deep": "^1.0",
-        "tymon/jwt-auth": "^1.0.0-rc.2"
+        "tymon/jwt-auth": "^1.0.0-rc.2",
+        "fzaninotto/faker": "~1.4",
     },
     "require-dev": {
         "filp/whoops": "~2.0",
-        "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "nunomaduro/collision": "~2.0",
         "phpunit/phpunit": "~7.0",
