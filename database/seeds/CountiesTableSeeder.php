@@ -12,6 +12,6 @@ class CountiesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(Storage::get('counties.sql'));
+        DB::unprepared(database_path('counties.sql'));
     }
 }
