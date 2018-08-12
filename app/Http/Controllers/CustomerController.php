@@ -245,7 +245,7 @@ class CustomerController extends Controller
         }
 
         // encript password
-        $password = $request->has('password') ? Hash::make($request->password) : $user->password;
+        $password = $request->password ? Hash::make($request->password) : $user->password;
 
         // update or create a new contact
         $user->update(array_merge($request->all(),[
