@@ -7,8 +7,8 @@
 -- Server version: 5.7.9
 -- PHP Version: 7.2.0RC6
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+/* SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO"; */
+time_zone := "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -24,19 +24,19 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `counties`
 --
-DROP TABLE IF EXISTS `counties`;
-CREATE TABLE `counties` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+DROP TABLE IF EXISTS counties;
+CREATE TABLE counties (
+  id int CHECK (id > 0) NOT NULL,
+  name varchar(191) NOT NULL,
+  created_at timestamp(0) NULL DEFAULT NULL,
+  updated_at timestamp(0) NULL DEFAULT NULL
+)   ;
 
 --
 -- Dumping data for table `counties`
 --
 
-INSERT INTO `counties` (`id`, `name`, `created_at`, `updated_at`) VALUES
+INSERT INTO counties (id, name, created_at, updated_at) VALUES
 (1, 'Nairobi', '2018-01-07 12:40:32', '2018-01-07 12:40:32'),
 (2, 'Mombasa', '2018-01-07 12:40:32', '2018-01-07 12:40:32'),
 (3, 'Nakuru', '2018-02-06 20:50:34', '2018-02-06 20:50:34'),
