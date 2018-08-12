@@ -31,6 +31,9 @@ class AuthController extends Controller
             throw new UnauthorizedHttpException('error', 'Credentials Invalid');
         }
 
+
+        return Auth::user();
+
         return response()->json([
             'user'=> [
                 'name' => Auth::user()->name,
