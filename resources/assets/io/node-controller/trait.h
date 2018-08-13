@@ -56,7 +56,6 @@ String postRequest(const char* host, String page, String key, String JSON){
     }
     client.stop();
     delay(1000);
-    return line;
     return midString(line, '{', '}');
 }
 
