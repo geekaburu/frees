@@ -55,44 +55,51 @@ void loop() {
     // -------------------------------------------------------
     if (WiFi.status() == WL_CONNECTED) {
 
+        buffer = "{\"angle\":82.00,\"intensity\":1693.00,\"voltage\":2.15}";
+        
         // -------------------------------------------------------
-        // Listen for incoming data
+        // Post data to the server
         // -------------------------------------------------------
-        while (NodeSerial.available() > 0) {
-            if (NodeSerial.read() == '\n') {
-                Serial.println("Sending data to server...");
-                delay(5000);
+        Serial.println(postRequest(apiHost, storageLink, "", buffer));
+        delay(1000);
 
-                // -------------------------------------------------------
-                // Action if WiFi is connected
-                // -------------------------------------------------------
-                response = postRequest(geolocationHost, geolocationPage, geolocationKey, "{\n\n}");
-                Serial.println(response);
-                delay(500);
+        // // -------------------------------------------------------
+        // // Listen for incoming data
+        // // -------------------------------------------------------
+        // while (NodeSerial.available() > 0) {
+        //     if (NodeSerial.read() == '\n') {
+        //         Serial.println("Sending data to server...");
 
-                // -------------------------------------------------------
-                // Get the logitude and latitude
-                // -------------------------------------------------------
-                JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
-                double latitude = root["location"]["lat"];
-                double longitude = root["location"]["lng"];
+        //         // -------------------------------------------------------
+        //         // Action if WiFi is connected
+        //         // -------------------------------------------------------
+        //         //response = postRequest(geolocationHost, geolocationPage, geolocationKey, "{\n\n}");
+        //         //Serial.println(response);
+        //         //delay(500);
 
-                buffer += " \"device\":\"888888\",";
-                buffer += " \"latitude\":" + String(latitude, 7) + ",";
-                buffer += " \"longitude\":" + String(longitude, 7) + "\n}";
-                Serial.println(buffer);
+        //         // -------------------------------------------------------
+        //         // Get the logitude and latitude
+        //         // -------------------------------------------------------
+        //         // JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
+        //         // double latitude = root["location"]["lat"];
+        //         // double longitude = root["location"]["lng"];
 
-                // -------------------------------------------------------
-                // Post data to the server
-                // -------------------------------------------------------
-                response = postRequest(apiHost, storageLink, "", buffer);
-                Serial.println(response);
-                delay(1000);
-                Serial.println("Received connection...");
-                buffer = "";
-            } else {
-                buffer += NodeSerial.readString();
-            }
-        }
+        //         // buffer += " \"device\":\"888888\",";
+        //         // buffer += " \"latitude\":" + String(latitude, 7) + ",";
+        //         // buffer += " \"longitude\":" + String(longitude, 7) + "\n}";
+        //         Serial.println({"angle":82.00,"intensity":1693.00,"voltage":2.15});
+
+        //         // -------------------------------------------------------
+        //         // Post data to the server
+        //         // -------------------------------------------------------
+        //         // response = postRequest(apiHost, storageLink, "", buffer);
+        //         // Serial.println(response);
+        //         // delay(1000);
+        //         // Serial.println("Received connection...");
+        //         // buffer = "";
+        //     } else {
+        //         buffer += NodeSerial.readString();
+        //     }
+        // }
     }
 }

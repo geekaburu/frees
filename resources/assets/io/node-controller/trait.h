@@ -28,7 +28,7 @@ String midString(String str, char start, char finish){
 // **********************************************************
 //  Secured Post Request
 // **********************************************************
-String postRequest(const char* host, String page , String key, String JSON){
+String postRequest(const char* host, String page, String key, String JSON){
     String line;
     WiFiClientSecure client;
 
@@ -56,6 +56,7 @@ String postRequest(const char* host, String page , String key, String JSON){
     }
     client.stop();
     delay(1000);
+    return line;
     return midString(line, '{', '}');
 }
 
