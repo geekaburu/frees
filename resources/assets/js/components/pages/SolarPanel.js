@@ -16,9 +16,13 @@ class SolarPanel extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-            loader:'',
             alert:{ display:false, type:'', title:'' ,body:'' },
-            location:'',
+            locationData:{
+            	'location': {
+			        'latitude': 0,
+			        'longitude': 0,
+			    }
+            },
             conditions:'',
             controls:'',
             chart: { datasets:[], labels:[], filter:'today' },
@@ -64,7 +68,7 @@ class SolarPanel extends Component {
 	    			]
 	    		}
 	    		this.setState({
-					location: data.location,
+					locationData: data.locationData,
 					conditions: data.conditions,
 					controls: data.controls,
 					chart: chartData(data.chart.data, ['energy']),
@@ -159,22 +163,10 @@ class SolarPanel extends Component {
     }
 
     render() {
-    	const data = [{
-            "name": "Alvin Kaburu",
-            "email": "geekaburu@amprest.co.ke",
-            "phone_number": "727467877",
-            "energy": 109.77,
-            "panels": 10,
-            "location": {
-                "latitude": -1.2953709,
-                "longitude": 36.8841522,
-                "town": "Langata",
-                "county": "Kericho"
-            }
-        }]
+    	const data = [this.state.locationData]
     	const map = (
 			<Map 
-				defaultCenter={ {lat: -1.2953709, lng: 36.8841522} } 
+				defaultCenter={ {lat: this.state.locationData.location.latitude, lng: this.state.locationData.location.longitude} } 
 				defaultZoom={ 17 }
 				mapTypeId='hybrid'
 				contentWidth='100%'
@@ -188,9 +180,9 @@ class SolarPanel extends Component {
     		<ConditionMeter 
     			containerHeight={300} 
     			barHeight={250}
-    			temperature={this.state.conditions.temperature}
-    			humidity={this.state.conditions.humidity}
-    			intensity={this.state.conditions.intensity}
+    			voltage={this.state.conditions.voltage}
+    			power={this.state.conditions.power}
+    			energy={this.state.conditions.energy}
     		/>    	
     	)
 
@@ -204,7 +196,7 @@ class SolarPanel extends Component {
 						<span className="mx-2"><input type="radio" value="manual" name="mode" checked={this.state.controls.mode == 'manual' ? true : false} /> Manual</span>					
 					</div>
 				</div>
-				<div className="col-12 col-md-8">
+				<div className="col-12 col-md-7">
 					<div className="w-100" style={{
 					    height: '250px'
 					}}>
@@ -290,7 +282,7 @@ class SolarPanel extends Component {
 				            yAxes: [{
 				            	scaleLabel: {
 						        	display: true,
-						        	labelString: 'Energy in Kwh',
+						        	labelString: 'Energy in kWh',
 						        	fontColor:'rgba(4, 33, 47, 1)',
 						      	}
 						    }],
@@ -322,15 +314,15 @@ class SolarPanel extends Component {
 							<Card header="Location" body={map} />
 						</div>
 						<div className="col-12 col-lg-3 p-0 mt-1">
-							<Card header="Environment" body={conditions}/>
+							<Card header="Current Conditions" body={conditions}/>
 						</div>
 						<div className="col-12 mt-1">
 							<div className="row">
 								<div className="col-12 col-lg-6 p-0 pr-lg-1 mt-1">
-									<Card header="Mode Control" body={mode} />
+									<Card header="Solar Panel Configurations Control" body={mode} />
 								</div>
 								<div className="col-12 col-lg-6 p-0 mt-1">
-									<Card header="Energy Collection" body={ chart }  />
+									<Card header="Energy Readings this Month" body={chart}  />
 								</div>
 							</div>
 						</div>

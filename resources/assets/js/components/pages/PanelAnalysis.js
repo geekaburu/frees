@@ -50,7 +50,7 @@ export default class PanelAnalysis extends Component {
 	      		panel: this.state.filter,	
 	    	})
 	    	.then((response) => {
-	    		var chart = chartData(response.data.chart.data, ['temperature', 'energy', 'intensity', 'humidity'])
+	    		var chart = chartData(response.data.chart.data, ['energy'])
 	    		chart.filter = this.state.chart.filter
 	    		this.setState({
 					loader:false,
@@ -145,8 +145,8 @@ export default class PanelAnalysis extends Component {
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={60}
-								  	value={parseInt(this.state.stats.temperature)}
+									maxValue={6}
+								  	value={parseInt(this.state.stats.voltage)}
 								  	width={200}
 								  	height={250}
 								  	needleColor="rgb(220, 53, 69)"
@@ -154,11 +154,11 @@ export default class PanelAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.temperature)}
+								  	currentValueText={String(this.state.stats.voltage)}
 								  	ringWidth={40}
 								/>
 							</div>
-							<div className="col-12">Temperature</div>
+							<div className="col-12">Voltage</div>
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
@@ -166,8 +166,8 @@ export default class PanelAnalysis extends Component {
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={100}
-								  	value={parseInt(this.state.stats.humidity)}
+									maxValue={1.5}
+								  	value={parseInt(this.state.stats.power)}
 								  	width={200}
 								  	height={250}
 								  	needleColor="rgb(23, 162, 184)"
@@ -175,11 +175,11 @@ export default class PanelAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.humidity)}
+								  	currentValueText={String(this.state.stats.power)}
 								  	ringWidth={40}
 								/>
 							</div>
-							<div className="col-12">Humidity</div>
+							<div className="col-12">Power</div>
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
@@ -229,7 +229,7 @@ export default class PanelAnalysis extends Component {
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={5}
+									maxValue={2}
 								  	value={parseInt(this.state.stats.credits)}
 								  	width={200}
 								  	height={250}

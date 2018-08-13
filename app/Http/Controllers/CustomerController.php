@@ -34,9 +34,9 @@ class CustomerController extends Controller
             ->orderBy('panel_data.created_at', 'asc')
             ->select(
                 DB::raw(count($user->panels()->get()).' as panels'), 
-                DB::raw('round(sum(energy), 2) as energy'), 
-                DB::raw('round(sum(energy)/'.$creditRate.', 2) as credits'),
-                DB::raw('round(sum(energy)/'.$creditRate.'*'.$carbonPrice.',2) as amount'),
+                DB::raw('sum(energy) as energy'), 
+                DB::raw('sum(energy)/'.$creditRate.' as credits'),
+                DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount'),
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year') 
             )->groupBy('year')->first();
 
@@ -63,6 +63,12 @@ class CustomerController extends Controller
     	$creditRate = $record->credit_rate;
     	$carbonPrice = $record->value;
 
+        // location Data
+        $locationData = $user;
+        $locationData->energy = $user->panelData()->whereYear('panel_data.created_at', date('Y'))->sum('energy');
+        $locationData->panels = $user->panels()->count();
+        $locationData->location = $user->location;
+
     	// Find the user location
     	$location = $user->location()->first();
 
@@ -74,16 +80,13 @@ class CustomerController extends Controller
 	    	->select(
 	            DB::raw('panel_id'),
 	            DB::raw('sum(energy) as energy'), 
-	            DB::raw('round(sum(energy)/'.$creditRate.', 2) as credits'),
-	            DB::raw('round(sum(energy)/'.$creditRate.'*'.$carbonPrice.', 2) as amount') 
+	            DB::raw('sum(energy)/'.$creditRate.' as credits'),
+	            DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount') 
 	    	)->groupBy('panel_id')->get();
 		
 	    // Return a json response with the data
     	return response()->json([
-			'location' => [
-				'longitude' => $location->longitude,
-				'latitude' => $location->latitude,
-			],
+			'locationData' => $locationData,
 			'controls' => $user->panelControls()->first(['mode', 'runtime', 'angle']),
 			'conditions' => $user->panelData()->orderBy('panel_data.created_at', 'desc')->first(['panel_data.voltage','panel_data.power', 'panel_data.energy']),
 			'chart' => [
@@ -136,10 +139,12 @@ class CustomerController extends Controller
         // Get the current carbon cost
         $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
         $carbonPrice = $record->value;
-        $energy = $data->sum('energy') / 1000;
+        $energy = $data->sum('panel_data.energy');
         $credits = $energy/($record->credit_rate);
 
         $stats = [
+            'voltage' => number_format((float) $data->avg('panel_data.voltage') ,2,'.',''),
+            'power' => number_format((float) $data->avg('panel_data.power') ,2,'.',''),
             'energy' => number_format((float) $energy,2,'.',''),
             'credits' => number_format((float) $credits,2,'.',''),
             'amount' => number_format((float) $credits * $carbonPrice,2,'.',''),
@@ -200,7 +205,7 @@ class CustomerController extends Controller
         $data = $data->select([
             DB::raw('panel_data.created_at as date'),
             DB::raw('panel_id'),
-            DB::raw('round(sum(energy)) as energy'),
+            DB::raw('energy'),
             DB::raw('(select rate from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as rate'),
             DB::raw('(select price from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as price'),
             DB::raw('(select sold_on from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as sale_date'),
