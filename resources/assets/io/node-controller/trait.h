@@ -12,7 +12,8 @@ void connectToWIFI(char *myssid, char *mypass){
         delay(500);
         Serial.print(".");
     }
-    Serial.println(".");
+    Serial.println(".\n");
+
 }
 
 // **********************************************************
@@ -104,3 +105,23 @@ void generateSerialJSON(SoftwareSerial NodeSerial,String key, String value, int 
     NodeSerial.print(data);
     delay(1500);    
 }
+
+// void getSettings() {
+//     // String response = getRequest(apiHost, settingsPage);
+//     //JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
+//     // String mode = root["m"];
+//     // String runtime = root["r"];
+//     String mode = "1";
+//     String runtime = "15";
+//     delay(5000);
+
+//     for (int i = 0; i < 10; i++) {
+//         NodeSerial.print(" {\"m\":" + mode + ",");
+//         delay(500);
+//         NodeSerial.print(" \"r\":" + runtime + "}");
+//         delay(1000);
+//         NodeSerial.print("\n");
+//         Serial.println("Sent Configurations....");
+//         delay(1000);
+//     }
+// }

@@ -22,7 +22,7 @@ Route::prefix('auth')->group(function(){
     Route::post('payload', 'AuthController@payload');
 });
 
-// Users
+// Customer routes
 Route::prefix('customers')->middleware('jwt.auth')->group(function(){
 	Route::post('/dashboard-data', 'CustomerController@getDashboardData')->name('customers.dashboard.data');	
 	Route::post('/panel-data', 'CustomerController@getPanelData')->name('customers.panel.data');	
@@ -33,22 +33,20 @@ Route::prefix('customers')->middleware('jwt.auth')->group(function(){
 	Route::post('/update-profile', 'CustomerController@updateUserProfile')->name('customers.update.profile');	
 });
 
-// Users
+// Admin Routes
 Route::prefix('admin')->middleware('jwt.auth')->group(function(){
 	Route::post('/dashboard-data', 'AdminController@getDashboardData')->name('admin.dashboard.data');	
 	Route::post('/customer-data', 'AdminController@getCustomerData')->name('admin.customer.data');	
 	Route::post('/customer-analysis', 'AdminController@customerAnalysis')->name('admin.customer.analysis');	
 	Route::post('/carbon-transactions', 'AdminController@carbonTransactions')->name('admin.carbon.transactions');	
 	Route::post('/energy-reports', 'AdminController@energyReports')->name('admin.energy.reports');	
-	// Route::post('/update-profile', 'CustomerController@updateUserProfile')->name('customers.update.profile');	
+});
+
+// Panel Routes
+Route::prefix('panel')->middleware('jwt.auth')->group(function(){
+	Route::post('/receive-panel-data', 'PanelController@receivePanelData')->name('panel.receive.data');	
 });
 
 Route::prefix('application')->middleware('jwt.auth')->group(function(){
 	Route::post('/session-data', 'AppController@getSessionData')->name('app.session.data');	
-});
-
-Route::get('/reset-password', function(){
-	App\User::find(2)->update([
-		'password' => Hash::make('secret'),
-	]);
 });

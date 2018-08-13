@@ -1,13 +1,13 @@
-int mode = 0;
-int runtime = 0; // Runtime in seconds
+int mode = 2;
+int runtime = 15; // Runtime in seconds
 
 class SolarPanel {
-public:
-    float position;
-    float voltage;
-    float intensity;
-    float energy;
-    float power;
+    public:
+        float power = 0.00;
+        float energy = 0.00;
+        float voltage = 0.00;
+        float position = 0.00;
+        float intensity = 0.00;
 };
 
 // **********************************************************

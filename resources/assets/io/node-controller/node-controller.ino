@@ -1,16 +1,22 @@
+// **********************************************************
+//  Include libraries and define constants
+// **********************************************************
 #include <ArduinoJson.h> 
-#include <SoftwareSerial.h>
 #include "ESP8266WiFi.h"
-#include <ESP8266HTTPClient.h>
+#include <SoftwareSerial.h>
 #include <WiFiClientSecure.h>
+#include <ESP8266HTTPClient.h>
 
 #include "env.h"
-#include "nodetrait.h"
+#include "trait.h"
 
 #define RXPin D2
 #define TXPin D3
 
-// Connect to WiFi
+// **********************************************************
+//  Define variables
+// **********************************************************
+// WiFI Parameters
 char* ssid = "Gichira";
 char* password = "kaburu123";
 
@@ -28,84 +34,62 @@ String response;
 
 SoftwareSerial NodeSerial(RXPin, TXPin);
 
-void getSettings() {
-    // String response = getRequest(apiHost, settingsPage);
-    //JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
-    // String mode = root["m"];
-    // String runtime = root["r"];
-    String mode = "1";
-    String runtime = "15";
-    delay(5000);
-
-    for (int i = 0; i < 10; i++) {
-        NodeSerial.print(" {\"m\":" + mode + ",");
-        delay(500);
-        NodeSerial.print(" \"r\":" + runtime + "}");
-        delay(1000);
-        NodeSerial.print("\n");
-        Serial.println("Sent Configurations....");
-        delay(1000);
-    }
-}
-
+// **********************************************************
+//  Define the loop method
+// **********************************************************
 void setup() {
-    pinMode(RXPin, INPUT);
-    pinMode(TXPin, OUTPUT);
     Serial.begin(115200);
     NodeSerial.begin(9600);
+
+    pinMode(RXPin, INPUT);
+    pinMode(TXPin, OUTPUT);
     connectToWIFI(ssid, password);
-    getSettings();
 }
-
+// **********************************************************
+//  Define the loop method
+// **********************************************************
 void loop() {
-    Serial.println("Main Loop");
-    if (Serial.available() > 0) {
-        // {"m":2, "r":40} 
-        String buffer = Serial.readString();
-        Serial.println(buffer);
-        JsonObject& root = parseJson(JSON_OBJECT_SIZE(2) + 10 + 10, buffer);
-        String mode = root["m"];
-        String runtime = root["r"];
 
-        // Send to serial
-        NodeSerial.print(" {\"m\":" + mode + ",");
-        delay(500);
-        NodeSerial.print(" \"r\":" + runtime + "}");
-        delay(1000);
-        NodeSerial.print("\n");
-        Serial.println("Sent Manual Configurations....");
-        delay(1000);
-    }
+    // -------------------------------------------------------
+    // Action if WiFi is connected
+    // -------------------------------------------------------
     if (WiFi.status() == WL_CONNECTED) {
+
+        // -------------------------------------------------------
+        // Listen for incoming data
+        // -------------------------------------------------------
         while (NodeSerial.available() > 0) {
             if (NodeSerial.read() == '\n') {
-
-                Serial.println("SENDING DATA TO SERVER");
+                Serial.println("Sending data to server...");
                 delay(5000);
 
-                //----------Get the current state and location of the device---------------//
-                // response = postRequest(geolocationHost, geolocationPage, geolocationKey, "{\n\n}");
-                // Serial.println(response);
-                // delay(500);
+                // -------------------------------------------------------
+                // Action if WiFi is connected
+                // -------------------------------------------------------
+                response = postRequest(geolocationHost, geolocationPage, geolocationKey, "{\n\n}");
+                Serial.println(response);
+                delay(500);
 
-                //JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
-                // double latitude = root["location"]["lat"];
-                // double longitude = root["location"]["lng"];
-                double latitude = -1.2980124;
-                double longitude = 36.8842065;
+                // -------------------------------------------------------
+                // Get the logitude and latitude
+                // -------------------------------------------------------
+                JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
+                double latitude = root["location"]["lat"];
+                double longitude = root["location"]["lng"];
 
                 buffer += " \"device\":\"888888\",";
                 buffer += " \"latitude\":" + String(latitude, 7) + ",";
                 buffer += " \"longitude\":" + String(longitude, 7) + "\n}";
-
                 Serial.println(buffer);
 
-                // response = postRequest(apiHost, storagePage, "", buffer);
-                // Serial.println(response);
-                delay(5000);
+                // -------------------------------------------------------
+                // Post data to the server
+                // -------------------------------------------------------
+                response = postRequest(apiHost, storagePage, "", buffer);
+                Serial.println(response);
+                delay(1000);
                 Serial.println("Received connection...");
                 buffer = "";
-                getSettings();
             } else {
                 buffer += NodeSerial.readString();
             }
