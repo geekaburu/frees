@@ -25,8 +25,8 @@ const char* geolocationHost = "www.googleapis.com";
 String geolocationPage = "/geolocation/v1/geolocate?key=";
 
 // Storage API parameters
-const char* apiHost = "project-solar.herokuapp.com";
-String storagePage = "/api/panel/data";
+const char* apiHost = "gichirakaburu.amprest.co.ke";
+String storageLink = "/api/panel/receive-panel-data";
 String settingsPage = "/api/panel/settings/receive";
 
 String buffer = "";
@@ -85,7 +85,7 @@ void loop() {
                 // -------------------------------------------------------
                 // Post data to the server
                 // -------------------------------------------------------
-                response = postRequest(apiHost, storagePage, "", buffer);
+                response = postRequest(apiHost, storageLink, "", buffer);
                 Serial.println(response);
                 delay(1000);
                 Serial.println("Received connection...");
