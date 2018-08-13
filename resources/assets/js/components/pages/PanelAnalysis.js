@@ -141,7 +141,7 @@ export default class PanelAnalysis extends Component {
 					<div className="row">
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
-							    height: '100px'
+							    height: '130px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -162,7 +162,7 @@ export default class PanelAnalysis extends Component {
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
-							    height: '100px'
+							    height: '130px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -183,7 +183,7 @@ export default class PanelAnalysis extends Component {
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
-							    height: '100px'
+							    height: '130px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -204,7 +204,7 @@ export default class PanelAnalysis extends Component {
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
-							    height: '100px'
+							    height: '130px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -225,7 +225,7 @@ export default class PanelAnalysis extends Component {
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
-							    height: '100px'
+							    height: '130px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -246,7 +246,7 @@ export default class PanelAnalysis extends Component {
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
-							    height: '100px'
+							    height: '130px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}

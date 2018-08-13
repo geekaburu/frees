@@ -13,7 +13,7 @@ class CarbonTransactionsTableSeeder extends Seeder
     {
     	App\CarbonTransaction::insert([[
             'rate' => 900,
-            'price' => 800,
+            'price' => 2300,
             'energy' => 1468800,
             'credits' => 1632,
             'amount' => 1305600,
@@ -21,7 +21,7 @@ class CarbonTransactionsTableSeeder extends Seeder
             'dispatched_on' => '2017-12-30 01:05:56',
     	],[
             'rate' => 1000,
-            'price' => 700,
+            'price' => 2000,
             'energy' => 1468800,
             'credits' => 1632,
             'amount' => 1305600,

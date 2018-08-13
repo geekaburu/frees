@@ -17,10 +17,7 @@ class CreatePanelDataTable extends Migration
             $table->increments('id');
             $table->integer('panel_id');
             $table->float('angle');
-            $table->float('intensity');
-            $table->float('voltage');
-            $table->float('temperature');
-            $table->float('humidity');
+            $table->float('voltage');          
             $table->float('power');
             $table->float('energy');
             $table->float('runtime');

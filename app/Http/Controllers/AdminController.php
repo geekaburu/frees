@@ -152,9 +152,6 @@ class AdminController extends Controller
         $credits = $energy/($record->credit_rate);
 
         $stats = [
-            'temperature' => number_format((float) $data->avg('temperature'),2,'.',''),
-            'humidity' => number_format((float) $data->avg('humidity'),2,'.',''),
-            'intensity' => number_format((float) $data->avg('intensity'),2,'.',''),
             'energy' => number_format((float) $energy,2,'.',''),
             'credits' => number_format((float) $credits,2,'.',''),
             'amount' => number_format((float) $credits * $carbonPrice,2,'.',''),

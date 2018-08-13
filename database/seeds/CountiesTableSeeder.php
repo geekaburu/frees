@@ -12,7 +12,6 @@ class CountiesTableSeeder extends Seeder
      */
     public function run()
     {
-    	$path = env('DB_CONNECTION') == 'pgsql' ? database_path('counties_postgress.sql') : database_path('counties.sql');
-    	DB::unprepared(File::get($path));
+    	DB::unprepared(File::get(database_path('counties.sql')));
     }
 }

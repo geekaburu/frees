@@ -16,10 +16,7 @@ trait HelperTrait
 	{
 		// Define parameters
 	    $parameters = [
-	    	DB::raw('round(avg(humidity),2) as humidity'), 
-	    	DB::raw('round(avg(temperature),2) as temperature'), 
 	    	DB::raw('round(sum(energy),2) as energy'), 
-	    	DB::raw('round(avg(intensity),2) as intensity'), 
 	    ];
 
 	    // Create filters for the query

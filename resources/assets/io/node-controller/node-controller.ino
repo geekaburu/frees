@@ -33,6 +33,8 @@ String buffer = "";
 String response;
 
 int location = 0;
+double latitude = 0.00;
+double longitude = 0.00;
 
 SoftwareSerial NodeSerial(RXPin, TXPin);
 
@@ -73,14 +75,21 @@ void loop() {
                     Serial.println(response);
                     delay(500);
                     JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
-                    buffer += " \"latitude\":" + String(root["location"]["lat"], 7) + ",";
-                    buffer += " \"longitude\":" + String(root["location"]["lng"], 7) + ",";
+                    latitude = root["location"]["lat"];
+                    longitude = root["location"]["lng"];
                 }
 
                 // -------------------------------------------------------
-                // Append more information and post data to the server
-                // -------------------------------------------------------               
-                buffer += " \"panel_id\":\"888888\",\n}";
+                // Append more information
+                // -------------------------------------------------------
+                buffer += "\"panel_id\":8,";
+                buffer += "\"latitude\":" + String(latitude, 7) + ",";
+                buffer += "\"longitude\":" + String(longitude, 7) + "\n}";
+                Serial.println(buffer);
+
+                // -------------------------------------------------------
+                // Post data to the server
+                // -------------------------------------------------------
                 response = postRequest(apiHost, storageLink, "", buffer);
                 Serial.println(response);
                 delay(1000);

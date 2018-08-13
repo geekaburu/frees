@@ -85,7 +85,7 @@ class CustomerController extends Controller
 				'latitude' => $location->latitude,
 			],
 			'controls' => $user->panelControls()->first(['mode', 'runtime', 'angle']),
-			'conditions' => $user->panelData()->orderBy('panel_data.created_at', 'desc')->first(['temperature', 'humidity', 'intensity']),
+			'conditions' => $user->panelData()->orderBy('panel_data.created_at', 'desc')->first(['panel_data.voltage','panel_data.power', 'panel_data.energy']),
 			'chart' => [
 				'data' => $this->generateChartData($user->panelData()->orderBy('panel_data.created_at', 'asc'), $request->chart_filter),
 			],
@@ -140,9 +140,6 @@ class CustomerController extends Controller
         $credits = $energy/($record->credit_rate);
 
         $stats = [
-            'temperature' => number_format((float) $data->avg('temperature'),2,'.',''),
-            'humidity' => number_format((float) $data->avg('humidity'),2,'.',''),
-            'intensity' => number_format((float) $data->avg('intensity'),2,'.',''),
             'energy' => number_format((float) $energy,2,'.',''),
             'credits' => number_format((float) $credits,2,'.',''),
             'amount' => number_format((float) $credits * $carbonPrice,2,'.',''),

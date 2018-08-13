@@ -12,16 +12,13 @@ class LocationsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $i = 1;
         foreach (App\User::all() as $user) {
             App\Location::create([
-                'id' => $i,
                 'county_id'	=> $faker->numberBetween($min = 1, $max = 48),
                 'longitude' => $faker->latitude($min = 34, $max = 40.75),
                 'latitude' 	=> $faker->latitude($min = -4.5, $max = 5),
                 'town'      => 'Random',
             ]);
-            $i++;
         }
     }
 }

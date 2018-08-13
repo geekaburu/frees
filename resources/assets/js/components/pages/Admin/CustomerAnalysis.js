@@ -55,7 +55,7 @@ export default class CustomerAnalysis extends Component {
       		customer: this.state.filter,	
     	})
     	.then((response) => {
-    		var chart = chartData(response.data.chart.data, ['temperature', 'energy', 'intensity', 'humidity'])
+    		var chart = chartData(response.data.chart.data, ['energy'])
     		chart.filter = this.state.chart.filter
     		this.setState({
 				loader:false,
@@ -212,20 +212,20 @@ export default class CustomerAnalysis extends Component {
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={60}
-								  	value={parseInt(this.state.stats.temperature)}
+									maxValue={50}
+								  	value={parseInt(this.state.stats.energy)}
 								  	width={200}
 								  	height={250}
-								  	needleColor="rgb(220, 53, 69)"
+								  	needleColor="purple"
 								  	segments={5}
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.temperature)}
+								  	currentValueText={String(this.state.stats.energy)}
 								  	ringWidth={40}
 								/>
 							</div>
-							<div className="col-12">Temperature</div>
+							<div className="col-12">Energy</div>
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
@@ -233,20 +233,20 @@ export default class CustomerAnalysis extends Component {
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={100}
-								  	value={parseInt(this.state.stats.humidity)}
+									maxValue={50}
+								  	value={parseInt(this.state.stats.energy)}
 								  	width={200}
 								  	height={250}
-								  	needleColor="rgb(23, 162, 184)"
+								  	needleColor="purple"
 								  	segments={5}
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.humidity)}
+								  	currentValueText={String(this.state.stats.energy)}
 								  	ringWidth={40}
 								/>
 							</div>
-							<div className="col-12">Humidity</div>
+							<div className="col-12">Energy</div>
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{
@@ -254,20 +254,20 @@ export default class CustomerAnalysis extends Component {
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={100}
-								  	value={parseInt(this.state.stats.intensity)}
+									maxValue={50}
+								  	value={parseInt(this.state.stats.energy)}
 								  	width={200}
 								  	height={250}
-								  	needleColor="rgb(255, 193, 7)"
+								  	needleColor="purple"
 								  	segments={5}
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.intensity)}
+								  	currentValueText={String(this.state.stats.energy)}
 								  	ringWidth={40}
 								/>
 							</div>
-							<div className="col-12">Intensity</div>
+							<div className="col-12">Energy</div>
 						</div>
 						<div className="col-12 col-lg-2 text-center border py-4">
 							<div className="w-100" style={{

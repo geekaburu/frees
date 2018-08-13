@@ -11,6 +11,6 @@ class PanelsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Panel::class, 300)->create();
+        factory(App\Panel::class, 20)->create();
     }
 }

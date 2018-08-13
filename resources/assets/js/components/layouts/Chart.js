@@ -40,7 +40,6 @@ export default class Chart extends Component {
 					</div>
 				</div>	
 				<div className="col-12 my-0">
-					{console.log(this.props.data)}
 					<Line
 						data={ this.props.data }
 						width={ 100 }

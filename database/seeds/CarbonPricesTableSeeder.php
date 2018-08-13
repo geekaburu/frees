@@ -13,8 +13,8 @@ class CarbonPricesTableSeeder extends Seeder
     {
     	// Create an active price
     	App\CarbonPrice::create([
-            'value' => 1200,
-			'credit_rate' => 900,
+            'value' => 2400,
+			'credit_rate' => 600,
 			'active' => 1,
     	]);
         factory(App\CarbonPrice::class, 29)->create();

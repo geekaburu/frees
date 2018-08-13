@@ -15,9 +15,4 @@ class AppController extends Controller
 			'price' => CarbonPrice::where('active', 1)->first()->value,
     	], 200);
     }
-
-    public function reverseGeocoding()
-    {
-    	
-    }
 }

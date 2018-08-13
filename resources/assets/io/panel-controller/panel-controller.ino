@@ -150,7 +150,8 @@ void loop() {
     generateSerialJSON("temperature", (String)dht.temperature);
     generateSerialJSON("humidity", (String)dht.humidity);
     generateSerialJSON("power", (String)panel.power);
-    generateSerialJSON("energy", (String)panel.energy);
+    generateSerialJSON("energy",(String)panel.energy);
+    generateSerialJSON("runtime", (String)runtime);
     ArduinoSerial.print("\n");
     Serial.println("\n}");
     delay(1000);
