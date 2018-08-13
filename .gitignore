@@ -13,4 +13,4 @@ yarn-error.log
 .env
 env.h
 out.log
-.htacess
+/public/.htacess

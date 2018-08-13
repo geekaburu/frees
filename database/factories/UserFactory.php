@@ -32,7 +32,7 @@ $factory->define(App\PanelData::class, function (Faker $faker) {
         'power' => $faker->numberBetween($min = 1, $max = 2), 
         'energy' => $faker->numberBetween($min = 5, $min = 10), 
         'runtime' => $faker->numberBetween($min = 10, $max = 20), 
-        'created_at' => $faker->dateTimeBetween($startDate = '2018-08-01 00:00:00', $endDate = '2018-08-13 10:00:00', $timezone = null),
+        'created_at' => $faker->dateTimeBetween($startDate = '2018-08-01 00:00:00', $endDate = '2018-08-13 00:00:00', $timezone = null),
     ];
 });
 
