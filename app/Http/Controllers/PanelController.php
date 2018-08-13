@@ -9,7 +9,7 @@ class PanelController extends Controller
 {
     public function receivePanelData(Request $request)
     {
-    	Log::info($request->all());
+    	Log::info('log entry');
     	return response()->json([
     		'status' => 'success',
     		'data' => $request->all()
