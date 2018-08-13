@@ -25,14 +25,13 @@ $factory->define(App\Panel::class, function (Faker $faker) {
 // Generate panel data
 $factory->define(App\PanelData::class, function (Faker $faker) {
     return [
-        'panel_id' => $faker->randomElement($array = [2,19]), 
-        // 'panel_id' => $faker->numberBetween($min = 1, $max = 20), 
+        'panel_id' => $faker->numberBetween($min = 1, $max = 20), 
         'angle' => $faker->numberBetween($min = 0, $max = 180), 
         'voltage' => $faker->numberBetween($min = 1, $max = 5), 
         'power' => $faker->numberBetween($min = 1, $max = 2), 
         'energy' => $faker->numberBetween($min = 5, $min = 10), 
         'runtime' => $faker->numberBetween($min = 10, $max = 20), 
-        'created_at' => $faker->dateTimeBetween($startDate = '2018-08-01 00:00:00', $endDate = '2018-08-13 00:00:00', $timezone = null),
+        'created_at' => $faker->dateTimeBetween($startDate = '2018-07-01 00:00:00', $endDate = 'now', $timezone = null),
     ];
 });
 
