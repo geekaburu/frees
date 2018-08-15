@@ -19,7 +19,7 @@ class CreatePanelControlsTable extends Migration
             $table->string('mode');
             $table->integer('runtime');
             $table->float('angle');
-            $table->boolean('location');
+            $table->boolean('location_request');
             $table->timestamps();
         });
     }

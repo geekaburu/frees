@@ -16,7 +16,6 @@ class PanelControlsTableSeeder extends Seeder
             'runtime' => 15,
             'mode' => 'search',
             'angle' => 90,
-            'location' => true,
         ]);
     }
 }
