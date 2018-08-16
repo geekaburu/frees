@@ -203,7 +203,7 @@ class SolarPanel extends Component {
 						<ReactSpeedometer
 							fluidWidth={true}
 							maxValue={180}
-						  	value={this.state.controls.angle}
+						  	value={this.state.controls.angle.parseInt()}
 						  	width={250}
 						  	height={250}
 						  	needleColor="red"
