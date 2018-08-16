@@ -40,8 +40,6 @@ class CustomerController extends Controller
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year') 
             )->groupBy('year')->first();
 
-        return $cardData;
-
        $chartData = $user->panelData()->orderBy('panel_data.created_at', 'asc');
 
         return response()->json([
