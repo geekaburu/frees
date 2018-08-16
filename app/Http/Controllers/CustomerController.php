@@ -44,7 +44,7 @@ class CustomerController extends Controller
 
         return response()->json([
             'cards' => $cardData,
-            'chart' => $this->generateChartData($chartData, 'month'),
+            'chart' => $this->generateChartData($chartData, 'today'),
             'lastDate' => Carbon::now()->endOfYear()->format('d/m/Y H:i:s'),
             'rates' => $record,
         ]);

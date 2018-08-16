@@ -87,7 +87,7 @@ export default class Dashboard extends Component {
 								        },
 										title: {
 								            display: true,
-								            text: 'Energy Readings this Month'
+								            text: 'Energy Readings Today'
 								        },
 								        scales: {
 								            yAxes: [{

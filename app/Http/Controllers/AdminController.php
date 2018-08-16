@@ -71,7 +71,7 @@ class AdminController extends Controller
                 'month' => $monthData,
             ],
             'cards' => $cardData,
-            'chart' => $this->generateChartData($chartData, 'month'),
+            'chart' => $this->generateChartData($chartData, 'today'),
             'lastDate' => Carbon::now()->endOfYear()->format('d/m/Y H:i:s'),
             'rates' => $record,
             'counties' => $countyData,

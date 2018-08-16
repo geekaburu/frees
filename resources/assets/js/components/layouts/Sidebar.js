@@ -34,7 +34,7 @@ export default class Sidebar extends Component {
     	)
     	return (
     		<div>	
-    			<ReactTooltip id="sidebar" place="top" data-border={true} className="bg-success text-white font-weight-bold" effect="float"/>
+    			<ReactTooltip id="sidebar" place="top" data-border={true} className="bg-success text-white font-weight-bold" effect="solid"/>
 				<nav id="sidebar" className={`text-white position-fixed h-100 ${this.props.active ? 'active' : ''}`}>
 		            <div className="sidebar-header px-2 py-3">
 		                <h6 className="m-0 text-white font-weight-bold text-uppercase"><NavLink exact to='/'>{this.props.title}</NavLink></h6>
