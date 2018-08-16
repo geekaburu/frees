@@ -87,7 +87,31 @@ export default class Customers extends Component {
 				height={ 325 }
 				handleFilterValue={this.handleFilterValue}
 				options={{
-					maintainAspectRatio: false
+					maintainAspectRatio: false,
+					legend: {
+			            display: true,
+			            position: 'bottom',
+			        },
+					title: {
+			            display: true,
+			            text: 'Energy Vs Time'
+			        },
+			        scales: {
+			            yAxes: [{
+			            	scaleLabel: {
+					        	display: true,
+					        	labelString: 'Energy in kWh',
+					        	fontColor:'rgba(4, 33, 47, 1)',
+					      	}
+					    }],
+					    xAxes: [{
+			            	scaleLabel: {
+					        	display: true,
+					        	labelString: 'Time',
+					        	fontColor:'rgba(4, 33, 47, 1)',
+					      	}
+					    }]
+			        }
 				}}
 			/>
         )

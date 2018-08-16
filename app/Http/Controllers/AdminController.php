@@ -135,12 +135,12 @@ class AdminController extends Controller
     public function customerAnalysis(Request $request)
     {
         // Get the data requested for
-        $data = (is_numeric($request->customer) ? PanelData::where('id', $request->customer) : PanelData::where('id', '>', 0));
+        $data = (is_numeric($request->customer) ? User::findOrFail($request->customer)->panelData() : PanelData::where('id', '>', 0));
 
         // Filter panel data by duration
         if($request->chart_filter == 'today') $data =  $data->whereDate('panel_data.created_at', Carbon::today());
         if($request->chart_filter == 'week')  $data =  $data->whereBetween('panel_data.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
-        if($request->chart_filter == 'month') $data =  $data->whereMonth('panel_data.created_at', date('m'));
+        if($request->chart_filter == 'month') $data =  $data->whereMonth('panel_data.created_at', date('m'))->whereYear('panel_data.created_at', date('Y'));
         if($request->chart_filter == '3month')$data =  $data->whereMonth('panel_data.created_at', '>=', Carbon::now()->subMonth(3)->month);
         if($request->chart_filter == 'year')  $data =  $data->whereYear('panel_data.created_at', date('Y'));
         if($request->chart_filter == 'today') $data =  $data->whereYear('panel_data.created_at', date('Y')); 

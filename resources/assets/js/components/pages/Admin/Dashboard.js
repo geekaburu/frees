@@ -73,23 +73,22 @@ export default class Dashboard extends Component {
 				</td>
     		</tr>
     	))
-
     	return (
 			<div id="dashboard" className="row align-items-center justify-content-center m-0">
 				<Loader load={this.state.loader} />  
 				<div className="col-12">
 					<div className="row justify-content-center">
 						<div className="col-12 col-md-3 pl-0 pr-1">
-							<DashboardCard icon='users' title='Customers' text={this.state.cards.customers} iconStyle='rgb(90, 178, 94)' />					
+							<DashboardCard icon='users' title='Number of Customers' text={this.state.cards ? this.state.cards.customers : 0} iconStyle='rgb(90, 178, 94)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='burn' title='Energy' text={`${this.state.cards.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} kWh`}  iconStyle='rgb(254, 161, 29)' />					
+							<DashboardCard icon='burn' title='Energy this Year' text={`${(this.state.cards ? this.state.cards.energy : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='credit-card' title='Credits' text={this.state.cards.credits.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}  iconStyle='rgb(231, 55, 115)' />					
+							<DashboardCard icon='credit-card' title='Credits this Year' text={(this.state.cards ? this.state.cards.credits : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='hand-holding-usd' title='Amount Earned so Far' text={`KES ${this.state.cards.amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}`}  iconStyle='rgb(17, 183, 204)' />
+							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${(this.state.cards ? this.state.cards.amount : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>
 					<div className="row mt-2">
@@ -154,7 +153,31 @@ export default class Dashboard extends Component {
 									width={100}
 									height={330}
 									options={{
-										maintainAspectRatio: false
+										maintainAspectRatio: false,
+										legend: {
+								            display: true,
+								            position: 'bottom',
+								        },
+										title: {
+								            display: true,
+								            text: 'Energy Readings this Month'
+								        },
+								        scales: {
+								            yAxes: [{
+								            	scaleLabel: {
+										        	display: true,
+										        	labelString: 'Energy in kWh',
+										        	fontColor:'rgba(4, 33, 47, 1)',
+										      	}
+										    }],
+										    xAxes: [{
+								            	scaleLabel: {
+										        	display: true,
+										        	labelString: 'Time',
+										        	fontColor:'rgba(4, 33, 47, 1)',
+										      	}
+										    }]
+								        }
 									}}
 								/>
 							</div>

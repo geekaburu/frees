@@ -94,15 +94,23 @@ export default class CarbonTransactions extends Component {
 						<DataTable 
 							data={this.state.transactions.data}
 							columns={this.state.transactions.columns}
-							defs={[{
-				                'render': function ( data, type, row ) {
-				                    return parseFloat(data).toFixed(2);
-				                },
-					                'targets': [2,3,4,5]
-					            }
+							defs={[
+								{
+				                	render: function ( data, type, row ) {
+				                    	return parseFloat(data).toFixed(2);
+				                	},
+					            	targets: [2,3,4,5]
+					            },
+					            {
+				                	render: function ( data, type, row ) {
+				                    	if(!data) return 'Not Available'
+				                	},
+					            	targets: [6,7,8,9]
+					            },
+
 					        ]}
 							order={[[ 1, 'desc' ]]}
-							sumColumns={[2,3,4,5]}
+							sumColumns={[2,3,5]}
 							withFooter={true} 
 						/>
 					}
