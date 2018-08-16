@@ -123,7 +123,7 @@ void loop() {
 
     servo.write(panel.position);
     delay(1000);
-    
+
     // -------------------------------------------------------
     // Collect voltage readings...
     // ------------------------------------------------------
@@ -133,7 +133,7 @@ void loop() {
         Serial.println(voltage);
         totalVoltage += voltage;
         voltageCounter++;
-        delay(1000);
+        delay(500);
     }
 
     // -------------------------------------------------------

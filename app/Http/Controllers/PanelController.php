@@ -18,14 +18,5 @@ class PanelController extends Controller
 		if($request->has('latitude') && $request->has('longitude')){
 			Panel::findOrFail($request->panel_id)->user->location()->update($request->only(['latitude', 'longitude']));
 		}
-		
-		// Log data
-		Log::info($request->all());
-
-		// Return a response
-    	return response()->json([
-    		'status' => 'success',
-    		'data' => $request->all()
-    	]);
     }
 }
