@@ -63,13 +63,13 @@ export default class Dashboard extends Component {
 							<DashboardCard icon='qrcode' title='Number of Panels' text={this.state.cards ? this.state.cards.panels : 0}  iconStyle='rgb(90, 178, 94)' />				
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='burn' title='Energy this Year' text={`${this.state.cards ? this.state.cards.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }) : 0.00} kWh`}  iconStyle='rgb(254, 161, 29)' />					
+							<DashboardCard icon='burn' title='Energy this Year' text={`${(this.state.cards ? this.state.cards.energy : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='credit-card' title='Credits this Year' text={this.state.cards ? this.state.cards.credits.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }) : 0.00}  iconStyle='rgb(231, 55, 115)' />					
+							<DashboardCard icon='credit-card' title='Credits this Year' text={(this.state.cards ? this.state.cards.credits : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${this.state.cards ? this.state.cards.amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }) : 0.00}`}  iconStyle='rgb(17, 183, 204)' />
+							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${(this.state.cards ? this.state.cards.amount : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>
 					<div className="row justify-content-center mt-2">
