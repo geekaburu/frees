@@ -23,6 +23,7 @@ class CustomerController extends Controller
     public function getDashboardData(Request $request)
     {
         $user = Auth::user();
+        return $user;
 
         // Get the current carbon cost
         $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
