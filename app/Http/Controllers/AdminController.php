@@ -246,7 +246,7 @@ class AdminController extends Controller
 
         return response([
             'transactions' =>  $this->getTransactionData($data),
-            'customers' =>  $customers,
+            'customers' =>  User::ofType('customers')->get(['id','name']),
             'counties' => County::all(['id','name']),
         ], 200);
     }
