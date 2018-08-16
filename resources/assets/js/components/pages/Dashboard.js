@@ -15,6 +15,7 @@ export default class Dashboard extends Component {
             	energy:0,
             	credits:0,
             	amount:0,
+            	panels:0,
             },
             chart:{},
             rates:{

@@ -148,10 +148,7 @@ void loop() {
     // Generate JSON to send to server and pass it to node MCU
     // -------------------------------------------------------
     generateSerialJSON("angle", (String)panel.position, 1);
-    generateSerialJSON("intensity", (String)panel.intensity);
     generateSerialJSON("voltage", (String)panel.voltage);
-    generateSerialJSON("temperature", (String)dht.temperature);
-    generateSerialJSON("humidity", (String)dht.humidity);
     generateSerialJSON("power", (String)panel.power);
     generateSerialJSON("energy",(String)panel.energy);
     generateSerialJSON("runtime", (String)runtime);

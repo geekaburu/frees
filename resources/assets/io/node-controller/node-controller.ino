@@ -76,23 +76,23 @@ void loop() {
                     JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
                     latitude = root["location"]["lat"];
                     longitude = root["location"]["lng"];
+                    buffer += "\"latitude\":" + String(latitude, 7) + ",";
+                    buffer += "\"longitude\":" + String(longitude, 7) + ",";
                 }
 
                 // -------------------------------------------------------
                 // Append more information
                 // -------------------------------------------------------
-                buffer += "\"panel_id\":8,";
-                buffer += "\"latitude\":" + String(latitude, 7) + ",";
-                buffer += "\"longitude\":" + String(longitude, 7) + "\n}";
+                buffer += "\"panel_id\":8}";
                 Serial.println(buffer);
 
                 // -------------------------------------------------------
                 // Post data to the server
                 // -------------------------------------------------------
                 response = postRequest(apiHost, storageLink, "", buffer);
-                Serial.println(response);
-                delay(1000);
-                Serial.println("Received connection...");
+                delay(500);
+                Serial.println("Connection completed...");
+                Serial.println("---------------------------------------------\n");
                 buffer = "";
             } else {
                 buffer += NodeSerial.readString();
