@@ -23,7 +23,6 @@ class CustomerController extends Controller
     public function getDashboardData(Request $request)
     {
         $user = Auth::user();
-        return $user;
 
         // Get the current carbon cost
         $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
@@ -40,6 +39,8 @@ class CustomerController extends Controller
                 DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount'),
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year') 
             )->groupBy('year')->first();
+
+        return $cardData;
 
        $chartData = $user->panelData()->orderBy('panel_data.created_at', 'asc');
 
