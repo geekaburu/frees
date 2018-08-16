@@ -23,12 +23,16 @@ export default class PanelAnalysis extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	this.fetchData()
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			30000,
+    	)      	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    //clearInterval(this.timerID);
+	    clearInterval(this.timerID);
 	}	
 
 	componentWillReceiveProps(nextProps) {
