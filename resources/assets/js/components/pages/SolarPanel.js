@@ -19,12 +19,14 @@ class SolarPanel extends Component {
             alert:{ display:false, type:'', title:'' ,body:'' },
             locationData:{
             	'location': {
-			        'latitude': 0,
-			        'longitude': 0,
+			        'latitude': -1.2950316,
+			        'longitude': 36.8842988,
 			    }
             },
             conditions:'',
-            controls:'',
+            controls:{
+            	angle:0
+            },
             chart: { datasets:[], labels:[], filter:'today' },
             panels: '',
             angle: '',
@@ -203,7 +205,7 @@ class SolarPanel extends Component {
 						<ReactSpeedometer
 							fluidWidth={true}
 							maxValue={180}
-						  	value={this.state.controls.angle.parseInt()}
+						  	value={parseInt(this.state.controls.angle)}
 						  	width={250}
 						  	height={250}
 						  	needleColor="red"
