@@ -65,7 +65,6 @@ void loop() {
         while (NodeSerial.available() > 0) {
             if (NodeSerial.read() == '\n') {
                 Serial.println("Sending data to server...");
-                delay(5000);
 
                 // -------------------------------------------------------
                 // Get the logitude and latitude if location is requested

@@ -30,9 +30,9 @@ class AdminController extends Controller
             ->orderBy('panel_data.created_at', 'asc')
             ->select(
                 DB::raw('(select count(users.id) as customers from users) as customers'), 
-                DB::raw('round(sum(energy), 2) as energy'), 
-                DB::raw('round(sum(energy)/'.$creditRate.', 2) as credits'),
-                DB::raw('round(sum(energy)/'.$creditRate.'*'.$carbonPrice.',2) as amount'),
+                DB::raw('sum(energy) as energy'), 
+                DB::raw('sum(energy)/'.$creditRate.' as credits'),
+                DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount'),
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year') 
             )->groupBy('year')->first();
 
@@ -42,24 +42,24 @@ class AdminController extends Controller
        // Get county data
        $countyData = County::withCount([
             'panelData as energy' =>function($query){
-                $query->select(DB::raw('round(sum(energy),2) as energy'))
+                $query->select(DB::raw('sum(energy) as energy'))
                     ->whereYear('panel_data.created_at', date('Y'));
             },
             'panelData as amount' => function($query) use ($creditRate, $carbonPrice) {
-                $query->select(DB::raw('round(sum(energy)/'.$creditRate.'*'.$carbonPrice.', 2) as amount'))
+                $query->select(DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount'))
                     ->whereYear('panel_data.created_at', date('Y'));
             }
         ])->orderBy('energy', 'desc')->get(['id','name','energy']);
 
        $customerData = User::ofType('customer')->withCount([
             'panelData as energy' =>function($query){
-                $query->select(DB::raw('round(sum(energy),2) as energy'))
+                $query->select(DB::raw('sum(energy) as energy'))
                     ->whereYear('panel_data.created_at', date('Y'));
             },
         ])->orderBy('energy', 'desc')->get(['id','name','energy']);
 
        $monthData = PanelData::whereYear('created_at', date('Y'))->select(
-                DB::raw('round(sum(energy), 2) as energy'), 
+                DB::raw('sum(energy) as energy'), 
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%M") as month') 
             )->groupBy('month')->orderBy('energy', 'desc')->first();
 
@@ -92,7 +92,7 @@ class AdminController extends Controller
         // Customer Data
     	$customerData =  User::ofType('customer')->withCount([
 			'panelData as energy' => function($query){
-	    		$query->select(DB::raw('round(sum(energy),2) as energy'))->whereYear('panel_data.created_at', date('Y'));
+	    		$query->select(DB::raw('sum(energy) as energy'))->whereYear('panel_data.created_at', date('Y'));
 	    	}, 
 			'panels as panels', 
 	    ])->with('location')->get();
@@ -100,17 +100,17 @@ class AdminController extends Controller
         // Energy Data
         $panelData = User::ofType('customer')->withCount([
             'panelData as energy' => function($query) {
-                $query->select(DB::raw('round(sum(energy),2) as energy'))
+                $query->select(DB::raw('sum(energy) as energy'))
                     ->whereYear('panel_data.created_at', date('Y'))
                     ->whereMonth('panel_data.created_at', date('m'));
             }, 
             'panelData as credits' => function($query) use ($creditRate) {
-                $query->select(DB::raw('round(sum(energy)/'.$creditRate.', 2) as credits'))
+                $query->select(DB::raw('sum(energy)/'.$creditRate.' as credits'))
                     ->whereYear('panel_data.created_at', date('Y'))
                     ->whereMonth('panel_data.created_at', date('m'));
             },
             'panelData as amount' => function($query) use ($creditRate, $carbonPrice) {
-                $query->select(DB::raw('round(sum(energy)/'.$creditRate.'*'.$carbonPrice.', 2) as amount'))
+                $query->select(DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount'))
                     ->whereYear('panel_data.created_at', date('Y'))
                     ->whereMonth('panel_data.created_at', date('m'));
             }
@@ -152,9 +152,9 @@ class AdminController extends Controller
         $credits = $energy/($record->credit_rate);
 
         $stats = [
-            'energy' => number_format((float) $energy,2,'.',''),
-            'credits' => number_format((float) $credits,2,'.',''),
-            'amount' => number_format((float) $credits * $carbonPrice,2,'.',''),
+            'energy' => $energy,
+            'credits' => $credits,
+            'amount' => $credits * $carbonPrice,
         ];
 
         // Return response data
@@ -179,7 +179,7 @@ class AdminController extends Controller
         $data = PanelData::select(
             DB::raw('panel_data.created_at as date'),
             DB::raw('"" as control'),
-            DB::raw('round(sum(energy),2) as energy'),
+            DB::raw('sum(energy) as energy'),
             DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year'),
             DB::raw('(select rate from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as rate'),
             DB::raw('(select price from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as price'),

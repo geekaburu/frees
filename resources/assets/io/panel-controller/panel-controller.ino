@@ -24,7 +24,7 @@ dht dht;
 Servo servo;
 SolarPanel panel;
 
-int position = 90;
+int position = 0;
 int eastAngle = 0;
 int nightIntensity = 150;
 
@@ -59,6 +59,7 @@ void loop() {
     // Handle versatile mode of the panel
     // -------------------------------------------------------
     if (mode == 1) {
+
         for (int angle = 0; angle <= 180; angle += 18) {
             servo.write(angle);
             delay(500);
@@ -120,11 +121,13 @@ void loop() {
         }
     }
 
+    servo.write(panel.position);
+    delay(1000);
+    
     // -------------------------------------------------------
     // Collect voltage readings...
-    // -------------------------------------------------------
+    // ------------------------------------------------------
     Serial.println("Voltage Readings....");
-
     for (int i = 0; i < voltageLoops; i++) {
         voltage = analogRead(voltagePin) / 1023.0 * 5.0 * 2.0;
         Serial.println(voltage);

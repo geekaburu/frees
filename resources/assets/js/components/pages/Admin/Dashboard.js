@@ -14,15 +14,22 @@ export default class Dashboard extends Component {
         super(props)
         this.state = {
             loader:true,
-            cards:{},
+             cards:{
+            	energy:0,
+            	credits:0,
+            	amount:0,
+            },
             chart:{},
-            rates:{},
+            rates:{
+            	value:0,
+            	credit_rate:0,
+            },
             lastDate:'',
             counties:[],
             highestCards:{
             	county:{name:''},
             	customer:{name:''},
-            	month:{month:'',energy:''}
+            	month:{month:'',energy:0.00}
             },
         }
         this.fetchData = this.fetchData.bind(this)
@@ -57,8 +64,8 @@ export default class Dashboard extends Component {
     	const counties = this.state.counties.map((county, i) => (
     		<tr key={county.id}>
     			<td className="text-success font-weight-bold">{i+1}</td><td>{county.name}</td>
-				<td>{!county.energy ? 0 : county.energy}</td>												
-				<td>{!county.amount ? 0 : county.amount}</td>												
+				<td>{(!county.energy ? 0.00 : county.energy).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</td>					
+				<td>{(!county.amount ? 0.00 : county.amount).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</td>
 				<td className="text-center">
 					<NavLink to={`/admin/energy-reports/customers/all?county=${county.id}`}>
 						<FontAwesomeIcon icon="eye" size="lg" className="mr-2 text-success" />
@@ -76,13 +83,13 @@ export default class Dashboard extends Component {
 							<DashboardCard icon='users' title='Customers' text={this.state.cards.customers} iconStyle='rgb(90, 178, 94)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='burn' title='Energy' text={`${this.state.cards.energy} kwh`}  iconStyle='rgb(254, 161, 29)' />					
+							<DashboardCard icon='burn' title='Energy' text={`${this.state.cards.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='credit-card' title='Credits' text={this.state.cards.credits}  iconStyle='rgb(231, 55, 115)' />					
+							<DashboardCard icon='credit-card' title='Credits' text={this.state.cards.credits.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='hand-holding-usd' title='Amount Earned so Far' text={`KES ${this.state.cards.amount}`}  iconStyle='rgb(17, 183, 204)' />
+							<DashboardCard icon='hand-holding-usd' title='Amount Earned so Far' text={`KES ${this.state.cards.amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>
 					<div className="row mt-2">
@@ -92,7 +99,7 @@ export default class Dashboard extends Component {
 								<div className="col-6">
 									<KenyanMap />
 								</div>
-								<div style={{height:'400px', overflowY:'scroll'}} className="col-6 pl-0">
+								<div style={{height:'450px', overflowY:'scroll'}} className="col-6 pl-0">
 									<table className="dashboard-table table table-bordered table-striped table-hover table-sm">
 										<thead className="thead-dark">
 											<tr>
@@ -136,7 +143,7 @@ export default class Dashboard extends Component {
 							<DashboardCard icon='calendar-plus' title='Highest Month' text={this.state.highestCards.month.month} iconStyle='rgb(90, 178, 94)' />
 						</div>
 						<div className="col-12 col-md-3 pl-0 pr-1">
-							<DashboardCard icon={['fab', 'react']} title='Highest Month Energy' text={`${this.state.highestCards.month.energy} Kwh`} iconStyle='rgb(17, 183, 204)' />					
+							<DashboardCard icon={['fab', 'react']} title='Highest Month Energy' text={`${this.state.highestCards.month.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} Kwh`} iconStyle='rgb(17, 183, 204)' />					
 						</div>
 					</div>
 					<div className="row justify-content-center mt-2">
@@ -161,11 +168,11 @@ export default class Dashboard extends Component {
 										<div className="row">
 											<div className="col">
 												<h6 className="text-success font-weight-bold">Carbon Price</h6>
-												<h5 style={{backgroundColor:'rgb(231, 55, 115)'}} className="p-3 text-white font-weight-bold">KES {this.state.rates.value}</h5>
+												<h5 style={{backgroundColor:'rgb(231, 55, 115)'}} className="p-3 text-white font-weight-bold">KES {this.state.rates.value.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</h5>
 											</div>
 											<div className="col">
 												<h6 className="text-success font-weight-bold">Conversion Rate</h6>
-												<h5 style={{backgroundColor:'rgb(17, 183, 204)'}} className="p-3 text-white font-weight-bold">KES {this.state.rates.credit_rate}</h5>
+												<h5 style={{backgroundColor:'rgb(17, 183, 204)'}} className="p-3 text-white font-weight-bold">1 Cr/{this.state.rates.credit_rate}kWh</h5>
 											</div>
 										</div>
 									</div>

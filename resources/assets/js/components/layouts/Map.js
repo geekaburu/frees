@@ -31,7 +31,6 @@ export default class Map extends Component {
         this.state = {
         }
     } 
-    
     render() {    
         return(
             <div>
