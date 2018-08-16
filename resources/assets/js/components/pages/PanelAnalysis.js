@@ -113,7 +113,7 @@ export default class PanelAnalysis extends Component {
 						<div className="col-12 card-shadow">
 							<div className="row">
 								<div className="col-3 py-2 text-white bg-dark-secondary border border-white">
-									{this.state.stats.energy}
+									Energy Collected : {this.state.stats.energy}
 								</div>
 								<div className="col-3 py-2 text-white bg-dark-secondary border border-white">
 									{ this.state.filter == 'all' ? (<span></span>) : (<span>Voltage : {this.state.activePanel.voltage}V</span>)}
