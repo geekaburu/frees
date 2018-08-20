@@ -42,8 +42,10 @@ Route::prefix('admin')->middleware('jwt.auth')->group(function(){
 	Route::post('/energy-reports', 'AdminController@energyReports')->name('admin.energy.reports');	
 });
 
+// Application Routes
 Route::prefix('application')->middleware('jwt.auth')->group(function(){
 	Route::post('/session-data', 'AppController@getSessionData')->name('app.session.data');	
+	Route::post('/pricing', 'AppController@getPricingData')->name('app.pricing.data');	
 });
 
 // Panel Routes

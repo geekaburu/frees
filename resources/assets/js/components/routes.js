@@ -16,6 +16,9 @@ import AdminCustomerAnalysis from './pages/Admin/CustomerAnalysis'
 import AdminEnergyReport from './pages/Admin/EnergyReport'
 import AdminCarbonTransactions from './pages/Admin/CarbonTransactions'
 
+// Import global components
+import Pricing from './pages/Global/Pricing'
+
 export class AppRoutes extends Component {
 	constructor(props) {
         super(props);
@@ -39,7 +42,8 @@ export class AppRoutes extends Component {
 					        <Route path='/my-solar-panel' name='pages.solarpanel' component={SolarPanel}></Route>
 					        <Route path='/panel-analysis/panels/:number' name='pages.carbon-report' component={PanelAnalysis}></Route>
 					        <Route path='/energy-reports/panels/:id' name='pages.energy-reports' component={EnergyReport}></Route>
-					        <Route path='/carbon-transactions' name='pages.carbon-transactions' component={CarbonTransactions}></Route>
+                            <Route path='/carbon-transactions' name='pages.carbon-transactions' component={CarbonTransactions}></Route>
+					        <Route path='/carbon-pricing' name='global.pricing' component={Pricing}></Route>
 					        <Route path='/account' name='pages.account' component={Account}></Route>
 					    </div>
 					)
@@ -72,6 +76,7 @@ export class AdminRoutes extends Component {
 					        <Route path='/admin/customers' name='admin.solarpanel' component={AdminCustomers}></Route>
 					        <Route path='/admin/customer-analysis/customers/:number' name='admin.customer-analysis' component={AdminCustomerAnalysis}></Route>
 					        <Route path='/admin/energy-reports/customers/:id' name='admin.energy-reports' component={AdminEnergyReport}></Route>
+                            <Route path='/admin/carbon-pricing' name='global.pricing' component={Pricing}></Route>
 					        <Route path='/admin/carbon-transactions' name='admin.carbon-transactions' component={AdminCarbonTransactions}></Route>
 		    			</div>    				
 					)}

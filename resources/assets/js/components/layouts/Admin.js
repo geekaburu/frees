@@ -28,6 +28,7 @@ export default class Admin extends Component {
 					{title:'Customer Analysis', icon:'chart-line', link:'/admin/customer-analysis/customers/all'},
 					{title:'Carbon Transactions', icon:'shopping-basket', link:'/admin/carbon-transactions'},
 					{title:'Energy Reports', icon:['fab', 'react'], link:'/admin/energy-reports/customers/all'},
+					{title:'Carbon Pricing', icon:'money-bill-alt', link:'/admin/carbon-pricing'},
 				]} active={this.state.active} />
 				<div id="content" className={`px-4 pb-4 pt-3 ${this.state.active ? 'active' : ''}`}>	
 					<Navbar username={User.data().name} avatar={`img/avatars/${User.data().avatar}`} elements={[

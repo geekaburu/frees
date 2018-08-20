@@ -1,4 +1,4 @@
-int mode = 1;
+int mode = 2;
 int runtime = 15; // Runtime in seconds
 
 class SolarPanel {

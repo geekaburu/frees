@@ -84,7 +84,7 @@ class Navbar extends Component {
 	                    </button>
 	                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
 	                        <ul className="nav navbar-nav ml-auto align-items-center">
-	                        	<li style={{marginTop:'-3px'}} className="font-weight-bold"><span className="text-success">Carbon Price Today</span>: KES {this.state.price} | </li>	 
+	                        	<li style={{marginTop:'-3px'}} className="font-weight-bold"><span className="text-success">Carbon Price Today</span>: KES {this.state.price.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} | </li>	 
 	                        	{elements}	 
 	                        </ul>
 	                    </div>

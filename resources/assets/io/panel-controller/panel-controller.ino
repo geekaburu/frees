@@ -24,10 +24,6 @@ dht dht;
 Servo servo;
 SolarPanel panel;
 
-int position = 0;
-int eastAngle = 0;
-int nightIntensity = 150;
-
 // **********************************************************
 //  Define the set up method
 // **********************************************************
@@ -54,25 +50,33 @@ void loop() {
     int voltageLoops = runtime / 0.5;
     
     int chk = dht.read11(dhtPin);
+    int position = 0;
+    int eastAngle = 0;
+    int nightIntensity = 150;
+
+    panel.position = 0.00;
+    panel.power = 0.00;
+    panel.energy = 0.00;
+    panel.voltage = 0.00;
+    panel.intensity = 0.00;
 
     // -------------------------------------------------------
     // Handle versatile mode of the panel
     // -------------------------------------------------------
     if (mode == 1) {
-
         for (int angle = 0; angle <= 180; angle += 18) {
             servo.write(angle);
             delay(500);
 
             int totalIntensity = analogRead(LDRPin1) + analogRead(LDRPin2);
             voltage = analogRead(voltagePin) / 1023.0 * 5.0 * 2.0;
+            Serial.println(panel.intensity);
 
             if (panel.intensity < totalIntensity ) {
                 panel.intensity = totalIntensity;
                 panel.position = angle;
                 panel.voltage = voltage;
             }
-
             Serial.println("Current Angle: " + (String) angle + " | Current Intensity: " +  (String)totalIntensity + " | Current Voltage: " + (String)voltage);
         }
     }
@@ -92,10 +96,14 @@ void loop() {
                 break;
             } else {
                 int LDR1 = analogRead(LDRPin1);
+                Serial.println(LDR1);
                 delay(50);
 
                 int LDR2 = analogRead(LDRPin2);
+                Serial.println(LDR2);
                 delay(50);
+
+                delay(5000);
 
                 // Check the stronger intesity
                 if (LDR1 < 20 && LDR2 < 20) {
@@ -122,6 +130,7 @@ void loop() {
     }
 
     servo.write(panel.position);
+    Serial.println((String)panel.position + "Degrees");
     delay(1000);
 
     // -------------------------------------------------------

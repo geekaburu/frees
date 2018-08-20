@@ -28,6 +28,7 @@ export default class App extends Component {
 					{title:'Panel Analysis', icon:'qrcode', link:'/panel-analysis/panels/all'},
 					{title:'Carbon Transactions', icon:'shopping-basket', link:'/carbon-transactions'},
 					{title:'Energy Reports', icon:['fab', 'react'], link:'/energy-reports/panels/all'},
+					{title:'Carbon Pricing', icon:'money-bill-alt', link:'/carbon-pricing'},
 				]} active={this.state.active} />
 				<div id="content" className={this.state.active ? 'active' : ''}>
 					<div className="px-4 pb-4 pt-3">
