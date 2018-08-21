@@ -17,6 +17,6 @@ class CarbonPricesTableSeeder extends Seeder
 			'credit_rate' => 600,
 			'active' => 1,
     	]);
-        factory(App\CarbonPrice::class, 2)->create();
+        factory(App\CarbonPrice::class, 100)->create();
     }
 }
