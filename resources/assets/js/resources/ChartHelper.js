@@ -1,24 +1,26 @@
-export function chartData (chart, dataSets) {
+export function chartData (chart, dataSets, filter) {
 	var datasets = []
 	dataSets.map((dataSet) => {
 		if(dataSet == 'energy'){
 			datasets.push({
+				type:'line',
 		        label: 'Energy Collection',
 		        backgroundColor: 'transparent',
 		        borderColor: 'rgb(40, 167, 69)',
 		        data: chart.map(function(e) { return e.energy }),
 			})
 		}
-		if(dataSet == 'price'){
+		if(dataSet == 'rate'){
 			datasets.push({
-				type:'line',
+				type:'bar',
 				fill:false,
 		        label: 'Carbon Price',
-		        borderColor: 'purple',
+		        backgroundColor: 'rgba(40, 167, 69, 1)',
+		        borderColor: 'rgba(40, 167, 69, 1)',
 		        data: chart.map(function(e) { return e.price}),
 			})
 		}
-		if(dataSet == 'rate'){
+		if(dataSet == 'price'){
 			datasets.push({
 				type:'line',
 				fill:false,
@@ -30,6 +32,7 @@ export function chartData (chart, dataSets) {
 	})
 	return {
 		labels: chart.map(function(e) { return e.label}),
-		datasets: datasets
+		datasets: datasets,
+		filter: filter,
 	}
 }

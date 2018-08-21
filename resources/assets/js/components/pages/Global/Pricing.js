@@ -13,7 +13,7 @@ export default class Pricing extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-        	chart: { datasets:[], labels:[], filter:'week'}, 
+        	chart: { datasets:[], labels:[], filter:'3month'}, 
         	upperBar: {
         		price:0.00,
         		rate:0.00,
@@ -27,41 +27,45 @@ export default class Pricing extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
 	    clearInterval(this.timerID);
-	}	
+	}
 
 	fetchData(){
-		this.setState({
-			loader:true,
-		}, ()=>{
-			axios.post('api/application/pricing', {
-				chart_filter: this.state.chart.filter,	
-			})
-	    	.then((response) => {	
-	    		var chart = chartData(response.data.prices.chart, ['price', 'rate'])
-	    		chart.filter = this.state.chart.filter
-	    		this.setState({
-					loader:false,
-					chart: chart,
-					upperBar: {
-		        		price:response.data.today.value,
-		        		rate:response.data.today.credit_rate,
-		        		avgPrice:response.data.prices.priceAverage ? response.data.prices.priceAverage : 0.00 ,
-		        		avgRate:response.data.prices.rateAverage ? response.data.prices.rateAverage : 0.00 ,
-		        	}
-				})
-	    	})
-	    	.catch((error) => {
-	    		if(User.hasTokenHasExpired(error.response.data)){
-	    			this.props.history.push('/login')
-	    		}
-	    	})
+		axios.post('api/application/pricing', {
+			chart_filter: this.state.chart.filter,	
 		})
+    	.then((response) => {	
+    		var chart = chartData(response.data.prices.chart, ['price', 'rate'])
+    		chart.filter = this.state.chart.filter
+    		this.setState({
+				loader:false,
+				chart: chart,
+				upperBar: {
+	        		price:response.data.today.value,
+	        		rate:response.data.today.credit_rate,
+	        		avgPrice:response.data.prices.priceAverage ? response.data.prices.priceAverage : 0.00 ,
+	        		avgRate:response.data.prices.rateAverage ? response.data.prices.rateAverage : 0.00 ,
+	        	}
+			})
+    	})
+    	.catch((error) => {
+    		if(User.hasTokenHasExpired(error.response.data)){
+    			this.props.history.push('/login')
+    		}
+    	})
 	}
 	
 	handleFilterValue(value){
@@ -104,9 +108,10 @@ export default class Pricing extends Component {
 					<Chart
 						data={ this.state.chart }
 						width={ 100 }
-						height={ 470 }
+						height={ 430 }
 						handleFilterValue={this.handleFilterValue}
 						filters={[{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+						activeFilter='week'
 						options={{
 							maintainAspectRatio: false,
 							legend: {

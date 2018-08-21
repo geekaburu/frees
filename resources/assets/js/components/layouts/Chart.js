@@ -7,10 +7,16 @@ export default class Chart extends Component {
         super(props);
         this.state = {
           	monthFilter:'',
-          	active:'week'
+          	active:''
         }
 		this.handleFilters = this.handleFilters.bind(this)
 		this.handleMonthFilter = this.handleMonthFilter.bind(this)
+    }
+
+    componentWillMount(){
+    	this.setState({
+    		active:this.props.activeFilter
+    	})
     }	
 
 	handleMonthFilter(e){
@@ -28,7 +34,9 @@ export default class Chart extends Component {
 	
     render() {
     	const filters = this.props.filters && this.props.filters.map((filter, index) => (
-    		<button type="button" key={index} className={`${this.state.active == filter.value ? 'active' : ''} btn btn-success border border-white` } onClick={(e) => this.handleFilters(filter.value, e )}>{filter.label}</button>
+    		<span key={index}>
+	    		<button type="button" className={`${this.state.active == filter.value ? 'active' : ''} btn btn-success border border-white btn-sm rounded-0` } onClick={(e) => this.handleFilters(filter.value, e )}>{filter.label}</button>			
+    		</span>
     	))
     	return (
 			<div style={{height: '100%'}} className="row text-center justify-content-center px-3">		
@@ -38,7 +46,7 @@ export default class Chart extends Component {
 					</div>
 				</div>	
 				<div className="col-12 my-0">
-					<Line
+					<Bar
 						data={ this.props.data }
 						width={ 100 }
 						height={ this.props.height }

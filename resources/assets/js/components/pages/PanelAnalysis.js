@@ -23,57 +23,58 @@ export default class PanelAnalysis extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
     	this.fetchData()
+    	// Apply fetch duration
     	this.timerID = setInterval(
 			() => this.fetchData(),
-			30000,
+			App.fetchDuration(),
     	)      	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
 	    clearInterval(this.timerID);
-	}	
+	}
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			filter:nextProps.match.params.number,
 			loader:true,
+			filter:nextProps.match.params.number,
 		},()=>{
 			this.fetchData()					
-			this.setState({loader:false})
 		})
     }
 
 	fetchData(){
-		this.setState({
-			loader:true
-		}, ()=>{
-			axios.post('api/customers/panel-analysis', {
-	      		chart_filter: this.state.chart.filter,	
-	      		panel: this.state.filter,	
-	    	})
-	    	.then((response) => {
-	    		var chart = chartData(response.data.chart.data, ['energy'])
-	    		chart.filter = this.state.chart.filter
-	    		this.setState({
-					loader:false,
-					chart: chart,
-	    			panels: response.data.panels.map(function(e) { return e.id}),
-	    			stats: response.data.stats,
-	    			activePanel: response.data.activePanel,
-				})
-	    	})
-	    	.catch((error) => {
-	    		if(User.hasTokenHasExpired(error.response.data)){
-	    			this.props.history.push('/login')
-	    		}
-	    	})			
-		})
+		console.log('heey')
+		axios.post('api/customers/panel-analysis', {
+      		chart_filter: this.state.chart.filter,	
+      		panel: this.state.filter,	
+    	})
+    	.then((response) => {
+    		var chart = chartData(response.data.chart.data, ['energy'])
+    		chart.filter = this.state.chart.filter
+    		this.setState({
+				loader:false,
+				chart: chart,
+    			panels: response.data.panels.map(function(e) { return e.id}),
+    			stats: response.data.stats,
+    			activePanel: response.data.activePanel,
+			})
+    	})
+    	.catch((error) => {
+    		if(User.hasTokenHasExpired(error.response.data)){
+    			this.props.history.push('/login')
+    		}
+    	})			
 	}
 
 	handleFilterValue(value){
 		this.setState({
+			loader:true,
 			chart:{
 				datasets:this.state.chart.datasets, 
 				labels:this.state.chart.labels, 
@@ -160,7 +161,8 @@ export default class PanelAnalysis extends Component {
 									    }]
 							        }
 								}}
-								filters={[{label: 'Today', value:'today'}, {label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+								filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+								activeFilter='today'
 								handleFilterValue={this.handleFilterValue}
 							/>
 						</div>
@@ -168,9 +170,9 @@ export default class PanelAnalysis extends Component {
 				</div>
 				<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
 					<div className="row">
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg-2 text-center border py-3">
 							<div className="w-100" style={{
-							    height: '130px'
+							    height: '120px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -189,9 +191,9 @@ export default class PanelAnalysis extends Component {
 							</div>
 							<div className="col-12">Voltage</div>
 						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg-2 text-center border py-3">
 							<div className="w-100" style={{
-							    height: '130px'
+							    height: '120px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -210,9 +212,9 @@ export default class PanelAnalysis extends Component {
 							</div>
 							<div className="col-12">Power</div>
 						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg-2 text-center border py-3">
 							<div className="w-100" style={{
-							    height: '130px'
+							    height: '120px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -231,9 +233,9 @@ export default class PanelAnalysis extends Component {
 							</div>
 							<div className="col-12">Intensity</div>
 						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg-2 text-center border py-3">
 							<div className="w-100" style={{
-							    height: '130px'
+							    height: '120px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -252,9 +254,9 @@ export default class PanelAnalysis extends Component {
 							</div>
 							<div className="col-12">Energy</div>
 						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg-2 text-center border py-3">
 							<div className="w-100" style={{
-							    height: '130px'
+							    height: '120px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
@@ -273,9 +275,9 @@ export default class PanelAnalysis extends Component {
 							</div>
 							<div className="col-12">Credits</div>
 						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg-2 text-center border py-3">
 							<div className="w-100" style={{
-							    height: '130px'
+							    height: '120px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}

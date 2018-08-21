@@ -27,7 +27,7 @@ class SolarPanel extends Component {
             controls:{
             	angle:0
             },
-            chart: { datasets:[], labels:[], filter:'today' },
+            chart: { datasets:[], labels:[], filter:'month' },
             panels: '',
             angle: '',
         }
@@ -42,53 +42,58 @@ class SolarPanel extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    //clearInterval(this.timerID);
-	}	
+	    clearInterval(this.timerID);
+	}
 
 	fetchData(){
-		this.setState({
-			loader:true,
-		}, ()=>{
-			axios.post('api/customers/panel-data', {
-	      		chart_filter: this.state.chart.filter,	
-	    	})
-	    	.then((response) => {
-	    		const data = response.data
-	    		var table = {
-	    			data: data.panels.data,
-	    			columns: [
-						{ title: 'Panel ID', data: 'panel_id' },
-	            		{ title: 'Energy (Kwh)', data: 'energy' },
-	            		{ title: 'User', data: 'user_id' },
-	            		{ title: 'Credits Earned', data: 'credits' },
-	            		{ title: 'Amount Earned', data: 'amount' },
-	    			]
-	    		}
-	    		this.setState({
-					locationData: data.locationData,
-					conditions: data.conditions,
-					controls: data.controls,
-					chart: chartData(data.chart.data, ['energy']),
-					panels: table,
-					loader:false,
-					angle: data.controls.angle,
-				})
-	    	})
-	    	.catch((error) => {
-	    		if(User.hasTokenHasExpired(error.response.data)){
-	    			this.props.history.push('/login')
-	    		}
-	    	})
-		})
+		axios.post('api/customers/panel-data', {
+      		chart_filter: this.state.chart.filter,	
+    	})
+    	.then((response) => {
+    		const data = response.data
+    		var table = {
+    			data: data.panels.data,
+    			columns: [
+					{ title: 'Panel ID', data: 'panel_id' },
+            		{ title: 'Energy (Kwh)', data: 'energy' },
+            		{ title: 'User', data: 'user_id' },
+            		{ title: 'Credits Earned', data: 'credits' },
+            		{ title: 'Amount Earned', data: 'amount' },
+    			]
+    		}
+    		this.setState({
+				locationData: data.locationData,
+				conditions: data.conditions,
+				controls: data.controls,
+				chart: chartData(data.chart.data, ['energy'], this.state.chart.filter),
+				panels: table,
+				loader:false,
+				angle: data.controls.angle,
+			})
+    	})
+    	.catch((error) => {
+    		if(User.hasTokenHasExpired(error.response.data)){
+    			this.props.history.push('/login')
+    		}
+    	})
 	}
 
 	handleFilterValue(value){
 		this.setState({
+			loader:true,
 			chart:{
 				datasets:this.state.chart.datasets, 
 				labels:this.state.chart.labels, 
@@ -200,7 +205,7 @@ class SolarPanel extends Component {
 				</div>
 				<div className="col-12 col-md-7">
 					<div className="w-100" style={{
-					    height: '250px'
+					    height: '220px'
 					}}>
 						<ReactSpeedometer
 							fluidWidth={true}
@@ -243,6 +248,7 @@ class SolarPanel extends Component {
 						? <DataTable 
 							data={this.state.panels.data}
 							columns={this.state.panels.columns}
+							order = {[[ 1, 'desc' ]]}
 							searching={false} 
 							defs={[{
 				                'render': function ( data, type, row ) {
@@ -268,8 +274,10 @@ class SolarPanel extends Component {
         	<div>
 				<Chart
 					data={ this.state.chart }
-					height={ 324 }
+					height={ 410 }
 					handleFilterValue={this.handleFilterValue}
+					filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+					activeFilter='month'
 					options = {{
 						maintainAspectRatio: false,
 						legend: {
@@ -324,7 +332,7 @@ class SolarPanel extends Component {
 									<Card header="Solar Panel Configurations Control" body={mode} />
 								</div>
 								<div className="col-12 col-lg-6 p-0 mt-1">
-									<Card header="Energy Readings this Month" body={chart}  />
+									<Card header="Energy Readings" body={chart}  />
 								</div>
 							</div>
 						</div>

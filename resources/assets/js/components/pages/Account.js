@@ -6,7 +6,6 @@ export default class Account extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			loader: true,
 			alert:{
 				display:false,
 				type:'',
@@ -28,13 +27,25 @@ export default class Account extends Component {
 		this.handleModalDismiss = this.handleModalDismiss.bind(this)
 	}
 
-	componentDidMount(){
-		// Activate Loader
-		this.setState({
-			loader: true
-		})
+	// Get data when the component loads
+    componentDidMount(){
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
+    }
 
-		// Make API request
+	// Tear down the interval 
+    componentWillUnmount() {
+	    clearInterval(this.timerID);
+	}
+
+	fetchData(){
 		axios.post('/api/auth/me')
 	    .then((response) => {
 	    	this.setState({
@@ -113,14 +124,6 @@ export default class Account extends Component {
 	    		if(User.hasTokenHasExpired(error.response.data)){
 	    			this.props.history.push('/login')
 	    		}
-				// Collect errors
-				var errors = error.response.data.errors
-	    		let collection = errors.map(( error ) => (
-	    			<li key={errors.indexOf(error)}>
-	    				{error}
-	    			</li>
-	    		))
-
 	    		// Launch the alert box
 	    		var errors = <ul>{collection}</ul>
 	    		this.setState({
@@ -128,7 +131,7 @@ export default class Account extends Component {
 	    				display:true,
 	    				type:'error',
 	    				title:'Error',
-	    				body: errors
+	    				body: App.displayErrors(error.response.data.errors)
 	    			},
 	    		})   			
     		})

@@ -32,14 +32,23 @@ export default class EnergyReport extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    //clearInterval(this.timerID);
-	}	
+	    clearInterval(this.timerID);
+	}
 
+	// On receipt of new props
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			filters: {
@@ -55,6 +64,37 @@ export default class EnergyReport extends Component {
 			})
 		})
     }
+
+    // Fetch data from the database
+    fetchData(){
+    	console.log('fetching')
+		axios.post('api/customers/energy-reports', this.state.filters)
+    	.then((response) => {
+    		let options = response.data.panels.map(function(e) { return {label:`Panel #${e.id}`, value:e.id}})
+    		options.unshift({label:'All Panels', value:'all'})
+    		this.setState({
+    			loader:false,
+    			options: options,
+    			transactions: {
+    				data:response.data.transactions,
+    				columns: [
+						{ title: 'Date', data: 'date' },
+						{ title: 'Panel', data: 'panel_id' },
+	            		{ title: 'Energy (Kwh)', data: 'energy' },
+	            		{ title: 'Price', data: 'price' },
+	            		{ title: 'Credits', data: 'credits' },
+	            		{ title: 'Amount (Ksh)', data: 'amount' },
+	            		{ title: 'Status', data: 'status' },
+	    			]
+    			},
+			})
+    	})
+    	.catch((error) => {
+    		if(User.hasTokenHasExpired(error.response.data)){
+    			this.props.history.push('/login')
+    		}
+    	})			
+	}
 
     // Handle the dismiss of the alert modal
 	handleModalDismiss(state){
@@ -100,38 +140,6 @@ export default class EnergyReport extends Component {
 		})
 	}
 
-	fetchData(){
-		this.setState({
-            loader:true
-		}, ()=>{
-			axios.post('api/customers/energy-reports', this.state.filters)
-	    	.then((response) => {
-	    		let options = response.data.panels.map(function(e) { return {label:`Panel #${e.id}`, value:e.id}})
-	    		options.unshift({label:'All Panels', value:'all'})
-	    		this.setState({
-	    			loader:false,
-	    			options: options,
-	    			transactions: {
-	    				data:response.data.transactions,
-	    				columns: [
-							{ title: 'Date', data: 'date' },
-							{ title: 'Panel', data: 'panel_id' },
-		            		{ title: 'Energy (Kwh)', data: 'energy' },
-		            		{ title: 'Price', data: 'price' },
-		            		{ title: 'Credits', data: 'credits' },
-		            		{ title: 'Amount (Ksh)', data: 'amount' },
-		            		{ title: 'Status', data: 'status' },
-		    			]
-	    			},
-				})
-	    	})
-	    	.catch((error) => {
-	    		if(User.hasTokenHasExpired(error.response.data)){
-	    			this.props.history.push('/login')
-	    		}
-	    	})			
-		})
-	}
     render() {
     	return (
 			<div id="energy-reports" className="row align-items-center justify-content-center m-0">

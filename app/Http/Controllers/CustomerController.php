@@ -76,7 +76,6 @@ class CustomerController extends Controller
     	$panelData = $user->panelData()
 	    	->whereYear('panel_data.created_at', date('Y'))
             ->whereMonth('panel_data.created_at', date('m'))
-	    	->orderBy('panel_data.created_at', 'asc')
 	    	->select(
 	            DB::raw('panel_id'),
 	            DB::raw('sum(energy) as energy'), 

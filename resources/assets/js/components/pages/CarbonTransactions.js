@@ -7,7 +7,6 @@ export default class CarbonTransactions extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-            loader:true,
             transactions:'',
             energyChart: { datasets:[], labels:[] },
             amountChart: { datasets:[], labels:[] },
@@ -18,13 +17,21 @@ export default class CarbonTransactions extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    //clearInterval(this.timerID);
-	}	
+	    clearInterval(this.timerID);
+	}
 
 	fetchData(){
 		axios.post('api/customers/carbon-transactions', {})

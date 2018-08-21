@@ -29,28 +29,37 @@ export default class Dashboard extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
 
+	// Tear down the interval 
+    componentWillUnmount() {
+	    clearInterval(this.timerID);
+	}
+
     fetchData(){
-    	this.setState({
-            loader:true,
-    	},() =>{
-    		axios.post('api/customers/dashboard-data')
-	    	.then((response) => {
-	    		this.setState({
-	    			loader:false,
-	    			cards:response.data.cards,
-	    			chart: chartData(response.data.chart, ['energy']),
-	    			lastDate: response.data.lastDate,
-	    			rates: response.data.rates,
-	    		})
-	    	})
-	    	.catch((error) => {
-	    		if(User.hasTokenHasExpired(error.response.data)){
-	    			this.props.history.push('/login')
-	    		}
-	    	})
+		axios.post('api/customers/dashboard-data')
+    	.then((response) => {
+    		this.setState({
+    			loader:false,
+    			cards:response.data.cards,
+    			chart: chartData(response.data.chart, ['energy']),
+    			lastDate: response.data.lastDate,
+    			rates: response.data.rates,
+    		})
+    	})
+    	.catch((error) => {
+    		if(User.hasTokenHasExpired(error.response.data)){
+    			this.props.history.push('/login')
+    		}
     	})
     }
     render() {
