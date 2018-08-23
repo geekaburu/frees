@@ -167,7 +167,7 @@ class SolarPanel extends Component {
     	const data = [this.state.locationData]
     	const map = (
 			this.state.locationData && <Map 
-				center={ {lat: this.state.locationData.location.latitude, lng: this.state.locationData.location.longitude} } 
+				center={ {lat: Number(this.state.locationData.location.latitude), lng: Number(this.state.locationData.location.longitude)} } 
 				zoom={ 17 }
 				mapTypeId='hybrid'
 				contentWidth='100%'
