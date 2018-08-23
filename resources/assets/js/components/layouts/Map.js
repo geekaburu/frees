@@ -10,7 +10,7 @@ const GoogleMapContainer = withScriptjs(withGoogleMap(props => (
         mapTypeId = { props.mapTypeId }>
         {props.markers.map(marker => (
             <MapInformationMarker 
-                position = {{lat: marker.location.latitude, lng: marker.location.longitude}}
+                position = {{lat: Number(marker.location.latitude), lng: Number(marker.location.longitude)}}
                 data = {{
                     id:marker.id,
                     customer:marker.name,
