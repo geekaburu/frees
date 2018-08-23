@@ -17,12 +17,6 @@ class SolarPanel extends Component {
         super(props)
         this.state = {
             alert:{ display:false, type:'', title:'' ,body:'' },
-            locationData:{
-            	'location': {
-			        'latitude': -1.2950316,
-			        'longitude': 36.8842988,
-			    }
-            },
             conditions:'',
             controls:{
             	angle:0
@@ -172,9 +166,9 @@ class SolarPanel extends Component {
     render() {
     	const data = [this.state.locationData]
     	const map = (
-			<Map 
-				defaultCenter={ {lat: this.state.locationData.location.latitude, lng: this.state.locationData.location.longitude} } 
-				defaultZoom={ 17 }
+			this.state.locationData && <Map 
+				center={ {lat: this.state.locationData.location.latitude, lng: this.state.locationData.location.longitude} } 
+				zoom={ 17 }
 				mapTypeId='hybrid'
 				contentWidth='100%'
 				contentHeight='300px'				

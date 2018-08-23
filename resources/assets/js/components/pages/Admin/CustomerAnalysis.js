@@ -12,8 +12,7 @@ export default class CustomerAnalysis extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-            loader:true,
-            chart: { datasets:[], labels:[], filter:'today'},
+            chart: { datasets:[], labels:[], filter:'month'},
             customers: [],
             initialCustomers:[],
             activeCustomer:{
@@ -23,20 +22,32 @@ export default class CustomerAnalysis extends Component {
             	}
             },
             filter: this.props.match.params.number,
-            stats: '',
+            stats: {
+            	energy:0,
+            	credits:0,
+            	amount:0,
+            },
         }
         this.handleFilterValue = this.handleFilterValue.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
         this.fetchData = this.fetchData.bind(this)
     }
-    // Get data when the component loads
+   	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    //clearInterval(this.timerID);
+	    clearInterval(this.timerID);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -148,20 +159,46 @@ export default class CustomerAnalysis extends Component {
 					</div>
 					<div className="row mx-0 mt-1">
 						<div className="col-8 px-0 pr-1 h-100">
-							<div style={{height:'450px'}} className="col-12 card-shadow py-2">
+							<div style={{height:'440px'}} className="col-12 card-shadow py-2">
 								<Chart
 									data={ this.state.chart }
 									width={ 100 }
 									height={ 287 }
+									filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+									activeFilter='month'
 									handleFilterValue={this.handleFilterValue}
 									options={{
-										maintainAspectRatio: false
+										maintainAspectRatio: false,
+										legend: {
+								            display: true,
+								            position: 'bottom',
+								        },
+										title: {
+								            display: true,
+								            text: 'Energy Vs Time'
+								        },
+								        scales: {
+								            yAxes: [{
+								            	scaleLabel: {
+										        	display: true,
+										        	labelString: 'Energy in kWh',
+										        	fontColor:'rgba(4, 33, 47, 1)',
+										      	}
+										    }],
+										    xAxes: [{
+								            	scaleLabel: {
+										        	display: true,
+										        	labelString: 'Time',
+										        	fontColor:'rgba(4, 33, 47, 1)',
+										      	}
+										    }]
+								        }
 									}}
 								/>
 							</div>
 						</div>
 						<div className="col-4 px-0 h-100">
-							<div style={{height:'450px'}} className="col-12 card-shadow py-2">
+							<div style={{height:'440px'}} className="col-12 card-shadow py-2">
 								<div className="row h-100 align-items-center">
 									<div className="col-12">
 										{this.state.activeCustomer !='all' &&
@@ -221,7 +258,7 @@ export default class CustomerAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy)}
+								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
 								  	ringWidth={40}
 								/>
 							</div>
@@ -242,7 +279,7 @@ export default class CustomerAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy)}
+								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
 								  	ringWidth={40}
 								/>
 							</div>
@@ -263,7 +300,7 @@ export default class CustomerAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy)}
+								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
 								  	ringWidth={40}
 								/>
 							</div>
@@ -284,7 +321,7 @@ export default class CustomerAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy)}
+								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
 								  	ringWidth={40}
 								/>
 							</div>
@@ -305,7 +342,7 @@ export default class CustomerAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.credits)}
+								  	currentValueText={String(this.state.stats.credits.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
 								  	ringWidth={40}
 								/>
 							</div>
@@ -326,7 +363,7 @@ export default class CustomerAnalysis extends Component {
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.amount)}
+								  	currentValueText={String(this.state.stats.amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
 								  	ringWidth={40}
 								/>
 							</div>

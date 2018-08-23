@@ -111,7 +111,7 @@ export default class Pricing extends Component {
 						height={ 430 }
 						handleFilterValue={this.handleFilterValue}
 						filters={[{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
-						activeFilter='week'
+						activeFilter='3month'
 						options={{
 							maintainAspectRatio: false,
 							legend: {

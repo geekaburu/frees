@@ -7,8 +7,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Traits\HelperTrait;
+use App\Http\Traits\LocationTrait;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, HelperTrait;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, HelperTrait, LocationTrait;
 }

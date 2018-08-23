@@ -7,7 +7,6 @@ export default class CarbonTransactions extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-            loader : true,
             transactions:'',
             energyChart: { datasets:[], labels:[] },
             amountChart: { datasets:[], labels:[] },
@@ -18,12 +17,15 @@ export default class CarbonTransactions extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    //clearInterval(this.timerID);
+	    clearInterval(this.timerID);
 	}
 
 	fetchData(){
@@ -66,7 +68,7 @@ export default class CarbonTransactions extends Component {
 	}
     render() {   
     	return (
-			<div id="admin-carbon-transactions" className="row align-items-center justify-content-center m-0">]
+			<div id="admin-carbon-transactions" className="row align-items-center justify-content-center m-0">
 				<Loader load={this.state.loader} />  
 				<div className="col-12 card-shadow pt-2 pb-3">
 					<small className="font-weight-bold mb-2">Values as at {(new Date()).toLocaleDateString('en-GB')}</small>

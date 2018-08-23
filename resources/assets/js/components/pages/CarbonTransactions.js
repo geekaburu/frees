@@ -20,12 +20,7 @@ export default class CarbonTransactions extends Component {
     	// Set loader to true
     	this.setState({loader:true})
     	// Fetch data
-    	this.fetchData()
-    	// Apply fetch duration
-    	this.timerID = setInterval(
-			() => this.fetchData(),
-			App.fetchDuration(),
-    	)      	
+    	this.fetchData()	
     }
 
 	// Tear down the interval 

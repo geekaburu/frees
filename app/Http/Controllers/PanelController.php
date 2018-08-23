@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use App\PanelData;
 use App\Panel;
+use App\County;
+use App\PanelData;
+use Illuminate\Http\Request;
 
 class PanelController extends Controller
 {
@@ -14,9 +14,13 @@ class PanelController extends Controller
       	// Create a panel data entry
 		PanelData::create($request->all());
 
-		// Update location information for the user
+		// Update location information for the user if latitude and longitude have been availed
 		if($request->has('latitude') && $request->has('longitude')){
-			Panel::findOrFail($request->panel_id)->user->location()->update($request->only(['latitude', 'longitude']));
+			$county = County::where('name',$this->getCounty(['latitude'=>$request->latitude, 'longitude'=>$request->longitude]))->first();
+			// Update panel data according to data provided
+			Panel::findOrFail($request->panel_id)->user->location()->update(array_merge($request->all(), [
+				'county_id' => $county ? $county->id : 0
+			]));
 		}
     }
 }

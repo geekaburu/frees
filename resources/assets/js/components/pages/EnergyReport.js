@@ -35,12 +35,7 @@ export default class EnergyReport extends Component {
     	// Set loader to true
     	this.setState({loader:true})
     	// Fetch data
-    	this.fetchData()
-    	// Apply fetch duration
-    	this.timerID = setInterval(
-			() => this.fetchData(),
-			App.fetchDuration(),
-    	)      	
+    	this.fetchData()	
     }
 
 	// Tear down the interval 
@@ -67,7 +62,6 @@ export default class EnergyReport extends Component {
 
     // Fetch data from the database
     fetchData(){
-    	console.log('fetching')
 		axios.post('api/customers/energy-reports', this.state.filters)
     	.then((response) => {
     		let options = response.data.panels.map(function(e) { return {label:`Panel #${e.id}`, value:e.id}})

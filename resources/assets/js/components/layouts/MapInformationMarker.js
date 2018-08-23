@@ -44,7 +44,7 @@ export default class MapInformationMarker extends Component {
 	                    		</tr>
 	                    		<tr>
 	                    			<th>Energy so Far</th>
-	                    			<td>{this.props.data.energy} Kwh</td>	                    			
+	                    			<td>{this.props.data.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} Kwh</td>	                    			
 	                    		</tr>
 	                    	</tbody>	                    	
 	                    </table>    

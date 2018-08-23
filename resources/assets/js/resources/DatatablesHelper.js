@@ -7,9 +7,9 @@ export function renderRow (id, data) {
 			<tr>
 				<td>${element.name}</td>
 				<td>${element.county}</td>
-				<td>${element.energy}</td>
-				<td>${element.credits}</td>
-				<td>${element.amount}</td>
+				<td>${parseFloat(element.energy).toFixed(2)}</td>
+				<td>${parseFloat(element.credits).toFixed(2)}</td>
+				<td>${parseFloat(element.amount).toFixed(2)}</td>
 			</tr>`					
     	)
     )

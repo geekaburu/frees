@@ -14,7 +14,6 @@ export default class EnergyReport extends Component {
         super(props)
 		this.parameters = new URLSearchParams(this.props.location.search)
         this.state = {
-            loader:true,
             alert:{ display:false, type:'', title:'' ,body:'' },
             transactions:'',
             upperBar: '',
@@ -43,15 +42,19 @@ export default class EnergyReport extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()   	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()	
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    //clearInterval(this.timerID);
-	}	
+	    clearInterval(this.timerID);
+	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log(nextProps)
 		this.setState({
 			filters: {
 				customer: {
@@ -72,58 +75,46 @@ export default class EnergyReport extends Component {
     }
 
     fetchData(){
-    	this.setState({
-    		loader:true
-    	}, ()=>{
-    		axios.post('api/admin/energy-reports', {
-				'customer_id':this.state.filters.customer.value,
-	        	'start_date': this.state.filters.start_date,
-	        	'end_date': this.state.filters.end_date,
-	        	'county_id': this.state.filters.county.value,
+		axios.post('api/admin/energy-reports', {
+			'customer_id':this.state.filters.customer.value,
+        	'start_date': this.state.filters.start_date,
+        	'end_date': this.state.filters.end_date,
+        	'county_id': this.state.filters.county.value,
+		})
+    	.then((response) => {
+    		let countyOptions = response.data.counties.map(function(e) { return {label:`${e.name}`, value:e.id}})
+    		countyOptions.unshift({label:'All Counties', value:'all'})
+
+    		let customerOptions = response.data.customers.map(function(e) { return {label:`${e.name}`, value:e.id}})
+    		customerOptions.unshift({label:'All Customers', value:'all'})
+
+    		// let defaultCounty = countyOptions.find(object => object.value == this.parameters.get('county'))
+    		// let defaultCustomer = customerOptions.find(object => object.value == this.props.match.params.id)
+    
+    		this.setState({
+    			loader:false,
+    			countyOptions,
+    			customerOptions,
+    			transactions: {
+    				data:response.data.transactions,
+    				columns: [
+						{ title: 'Date', data: 'date' },
+						{ title: 'County', data: 'county' },
+						{ title: 'Customer', data: 'customer' },
+	            		{ title: 'Energy (Kwh)', data: 'energy' },
+	            		{ title: 'Price', data: 'price' },
+	            		{ title: 'Credits', data: 'credits' },
+	            		{ title: 'Amount (Ksh)', data: 'amount' },
+	            		{ title: 'Status', data: 'status' },
+	    			]
+    			},
 			})
-	    	.then((response) => {
-	    		let countyOptions = response.data.counties.map(function(e) { return {label:`${e.name}`, value:e.id}})
-	    		countyOptions.unshift({label:'All Counties', value:'all'})
-
-	    		let customerOptions = response.data.customers.map(function(e) { return {label:`${e.name}`, value:e.id}})
-	    		customerOptions.unshift({label:'All Customers', value:'all'})
-
-	    		let defaultCounty = countyOptions.find(object => object.value == this.parameters.get('county'))
-	    		let defaultCustomer = customerOptions.find(object => object.value == this.props.match.params.id)
-	    
-	    		this.setState({
-	    			loader:false,
-	    			countyOptions,
-	    			customerOptions,
-	    			filters:{
-		    			customer:this.props.match.params.id && defaultCustomer
-		            		? defaultCustomer
-							: { label: 'All Customers', value:'all'},
-		            	county:this.parameters.has('county') && defaultCounty 
-		            		? defaultCounty
-							: { label: 'All Counties', value:'all'},
-		    		},
-	    			transactions: {
-	    				data:response.data.transactions,
-	    				columns: [
-							{ title: 'Date', data: 'date' },
-							{ title: 'County', data: 'county' },
-							{ title: 'Customer', data: 'customer' },
-		            		{ title: 'Energy (Kwh)', data: 'energy' },
-		            		{ title: 'Price', data: 'price' },
-		            		{ title: 'Credits', data: 'credits' },
-		            		{ title: 'Amount (Ksh)', data: 'amount' },
-		            		{ title: 'Status', data: 'status' },
-		    			]
-	    			},
-				})
-	    	})
-	    	.catch((error) => {
-	    		if(User.hasTokenHasExpired(error.response.data)){
-	    			this.props.history.push('/login')
-	    		}
-	    	})
-    	})		
+    	})
+    	.catch((error) => {
+    		if(User.hasTokenHasExpired(error.response.data)){
+    			this.props.history.push('/login')
+    		}
+    	})
 	}
 
     // Handle the dismiss of the alert modal

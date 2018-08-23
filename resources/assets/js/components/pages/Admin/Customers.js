@@ -11,7 +11,6 @@ export default class Customers extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-            loader:true,
             customerData:[],
             chart: { datasets:[], labels:[], filter:'today' },
             panels:'',
@@ -20,10 +19,23 @@ export default class Customers extends Component {
         this.handleFilterValue = this.handleFilterValue.bind(this)
     }	
 
-   // Get data when the component loads
+   	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
+
+	// Tear down the interval 
+    componentWillUnmount() {
+	    clearInterval(this.timerID);
+	}
 
     fetchData(){
 		axios.post('api/admin/customer-data', {
@@ -45,7 +57,7 @@ export default class Customers extends Component {
     			loader:false,
     			customerData:data.customerData,
     			panels: table,
-    			chart: chartData(data.chart.data, ['temperature', 'energy', 'intensity', 'humidity']),
+    			chart: chartData(data.chart.data, ['energy'], this.state.chart.filter),
     		})
     	})
     	.catch((error) => {
@@ -70,11 +82,11 @@ export default class Customers extends Component {
     render() {
     	const map = (
 			<Map 
-				defaultCenter={ {lat: 0.0236, lng: 37.9062} } 
-				defaultZoom={ 6 }
+				center={ {lat: 0.0236, lng: 37.9062} } 
+				zoom={ 6 }
 				mapTypeId='roadmap'
 				contentWidth='100%'
-				contentHeight='450px'				
+				contentHeight='470px'				
 				markers={this.state.customerData}
 			/>
     	)
@@ -84,8 +96,10 @@ export default class Customers extends Component {
 			<Chart
 				data={ this.state.chart }
 				width={ 100 }
-				height={ 325 }
+				height={ 430 }
 				handleFilterValue={this.handleFilterValue}
+				filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+				activeFilter='month'
 				options={{
 					maintainAspectRatio: false,
 					legend: {
@@ -144,14 +158,14 @@ export default class Customers extends Component {
     	return (
 			<div id="solar-panel" className="row m-0">
 				<Loader load={this.state.loader} />  
-				<div className="col-7 p-0 pr-1">
+				<div className="col-6 p-0 pr-1">
 					<div className="row">
 						<div className="col-12">
 							<Card header="Location" body={map} />
 						</div>
 					</div>
 				</div>
-				<div className="col-5">
+				<div className="col-6">
 					<div className="row">
 						<div className="col-12 p-0">
 							<Card header="Customer Energy Collection" body={chart} />

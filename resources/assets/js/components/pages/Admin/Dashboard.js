@@ -13,8 +13,7 @@ export default class Dashboard extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-            loader:true,
-             cards:{
+            cards:{
             	energy:0,
             	credits:0,
             	amount:0,
@@ -37,8 +36,21 @@ export default class Dashboard extends Component {
 
 	// Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+    	// Set loader to true
+    	this.setState({loader:true})
+    	// Fetch data
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      	
     }
+
+	// Tear down the interval 
+    componentWillUnmount() {
+	    clearInterval(this.timerID);
+	}
 
     fetchData(){
 		axios.post('api/admin/dashboard-data')
