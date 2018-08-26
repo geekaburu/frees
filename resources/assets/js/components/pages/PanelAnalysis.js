@@ -161,7 +161,7 @@ export default class PanelAnalysis extends Component {
 							        }
 								}}
 								filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
-								activeFilter='today'
+								activeFilter='month'
 								handleFilterValue={this.handleFilterValue}
 							/>
 						</div>
