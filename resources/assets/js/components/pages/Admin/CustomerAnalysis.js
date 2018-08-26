@@ -128,7 +128,7 @@ export default class CustomerAnalysis extends Component {
 				<Loader load={this.state.loader} /> 
 				<div className="col-2 bg-dark-primary panel-nav-bar px-0" style={{ boxShadow: '1px 2px 2px rgba(0, 0, 0, 0.7)' }}>
 					<input placeholder="Search" type="text" className="w-100 form-control rounded-0" onChange={this.handleSearch}/>	
-					<div style={{height:'450px', overflowY:'scroll', overflowX:'hidden'}} className="bg-dark-primary">
+					<div style={{height:'450px', overflowY:'auto', overflowX:'hidden'}} className="bg-dark-primary">
 						<div className="row">
 							<NavLink className="col-12 py-2 px-0 border-white border-bottom text-white" to={`/admin/customer-analysis/customers/all`}>
 								<FontAwesomeIcon icon="qrcode" size="lg" className="mr-2" />
@@ -158,7 +158,7 @@ export default class CustomerAnalysis extends Component {
 						</div>
 					</div>
 					<div className="row mx-0 mt-1">
-						<div className="col-8 px-0 pr-1 h-100">
+						<div className="col-12 px-0 pr-1 h-100">
 							<div style={{height:'440px'}} className="col-12 card-shadow py-2">
 								<Chart
 									data={ this.state.chart }
@@ -196,178 +196,108 @@ export default class CustomerAnalysis extends Component {
 									}}
 								/>
 							</div>
-						</div>
-						<div className="col-4 px-0 h-100">
-							<div style={{height:'440px'}} className="col-12 card-shadow py-2">
-								<div className="row h-100 align-items-center">
-									<div className="col-12">
-										{this.state.activeCustomer !='all' &&
-											<div>
-												<img style={{height:'130px', width:'130px'}} className="img-fluid rounded-circle d-block mx-auto mb-3" src={App.asset(`storage/avatars/${this.state.activeCustomer.avatar}`)} alt=""/>	
-												<table className="table table-sm table-bordered table-hover">
-												    <tbody>
-												    	<tr>
-												            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Name</th>
-												            <td className="pl-2">{this.state.activeCustomer.name}</td>
-												        </tr>
-												        <tr>
-												            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Email</th>
-												            <td className="pl-2">{this.state.activeCustomer.email}</td>
-												        </tr>
-												        <tr>
-												            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Phone Number</th>
-												            <td className="pl-2">{this.state.activeCustomer.phone_number}</td>
-												        </tr>
-												        <tr>
-												            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">County</th>
-												            <td className="pl-2">{this.state.activeCustomer.location.county}</td>
-												        </tr>
-												        <tr>
-												            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Town</th>
-												            <td className="pl-2">{this.state.activeCustomer.location.town}</td>
-												        </tr>
-												    </tbody>
-												</table>												
-											</div>
-										}
-										{this.state.activeCustomer == 'all' &&
-											<div className="text-center">
-												<h3 className="font-weight-bold">No Information Available</h3>
-											</div>
-										}
-					    			</div>
-								</div>								
-							</div>
 						</div>		
 					</div>
 				</div>
 				<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
-					<div className="row">
-						<div className="col-12 col-lg-2 text-center border py-4">
+					<div className="row align-items-center">
+						<div className="col-12 col-lg-4 text-center pt-4 px-4 pb-2">
+							{this.state.activeCustomer !='all' && 
+							<div>
+								<table className="table table-sm table-bordered table-hover w-100">
+								    <tbody>
+								    	<tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Name</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.name}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Email</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.email}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Phone Number</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.phone_number}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">County</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.location.county}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Town</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.location.town}</td>
+								        </tr>
+								    </tbody>
+								</table>
+							</div>
+							}
+							{this.state.activeCustomer =='all' && 
+								<div className="text-center">
+									<h4>No Information Available</h4>
+								</div>	
+							}
+						</div>
+						<div className="col-12 col-lg text-center border-left border-right pt-4 px-4 pb-3">
 							<div className="w-100" style={{
-							    height: '120px'
+							    height: '140px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={50}
+									maxValue={10000}
 								  	value={parseInt(this.state.stats.energy)}
 								  	width={200}
-								  	height={250}
+								  	height={200}
 								  	needleColor="purple"
 								  	segments={5}
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
 								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={40}
+								  	ringWidth={45}
 								/>
 							</div>
-							<div className="col-12">Energy</div>
+							<div className="col-12 pt-2">Energy</div>
 						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg text-center border-right pt-4 px-4 pb-3">
 							<div className="w-100" style={{
-							    height: '120px'
+							    height: '140px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={50}
-								  	value={parseInt(this.state.stats.energy)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="purple"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Energy</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={50}
-								  	value={parseInt(this.state.stats.energy)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="purple"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Energy</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={50}
-								  	value={parseInt(this.state.stats.energy)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="purple"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Energy</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={5}
+									maxValue={20}
 								  	value={parseInt(this.state.stats.credits)}
 								  	width={200}
-								  	height={250}
+								  	height={200}
 								  	needleColor="green"
 								  	segments={5}
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
 								  	currentValueText={String(this.state.stats.credits.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={40}
+								  	ringWidth={45}
 								/>
 							</div>
-							<div className="col-12">Credits</div>
+							<div className="col-12 pt-2">Credits</div>
 						</div>
-						<div className="col-12 col-lg-2 text-center border py-4">
+						<div className="col-12 col-lg text-center border-right pt-4 px-4 pb-3">
 							<div className="w-100" style={{
-							    height: '120px'
+							    height: '140px'
 							}}>
 								<ReactSpeedometer
 									fluidWidth={true}
-									maxValue={200}
+									maxValue={30000}
 								  	value={parseInt(this.state.stats.amount)}
 								  	width={200}
-								  	height={250}
+								  	height={200}
 								  	needleColor="blue"
 								  	segments={5}
 								  	textColor="#fff"
 								  	needleTransitionDuration={4000}
 								  	needleTransition="easeElastic"
 								  	currentValueText={String(this.state.stats.amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={40}
+								  	ringWidth={45}
 								/>
 							</div>
-							<div className="col-12">Value</div>
+							<div className="col-12 pt-2">Value</div>
 						</div>
 					</div>
 				</div>
