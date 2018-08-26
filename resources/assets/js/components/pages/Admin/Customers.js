@@ -37,7 +37,7 @@ export default class Customers extends Component {
 	    clearInterval(this.timerID);
 	}
 
-    fetchData(payload){
+    fetchData(){
 		axios.post('api/admin/customer-data', {
 			chart_filter: this.state.chart.filter,
 		})
@@ -55,7 +55,7 @@ export default class Customers extends Component {
     		}
     		this.setState({
     			loader:false,
-    			customerData: payload.map ? data.customerData : this.state.customerData,
+    			customerData: data.customerData,
     			panels: table,
     			chart: chartData(data.chart.data, ['energy'], this.state.chart.filter),
     		})
