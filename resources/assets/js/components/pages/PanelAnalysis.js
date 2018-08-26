@@ -11,7 +11,7 @@ export default class PanelAnalysis extends Component {
 	constructor(props) {
         super(props)
         this.state = {
-            chart: { datasets:[], labels:[], filter:'today'},
+            chart: { datasets:[], labels:[], filter:'month'},
             panels: [],
             activePanel:'',
             filter: this.props.match.params.number,
