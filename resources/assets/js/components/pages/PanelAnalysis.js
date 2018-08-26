@@ -49,7 +49,6 @@ export default class PanelAnalysis extends Component {
     }
 
 	fetchData(){
-		console.log('heey')
 		axios.post('api/customers/panel-analysis', {
       		chart_filter: this.state.chart.filter,	
       		panel: this.state.filter,	
