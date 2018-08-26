@@ -16,7 +16,7 @@ export default class DashboardCard extends Component {
 						</div>
 						<div className="col-12 mt-3 text-white">
 							<h5 className="card-title font-weight-bold">{this.props.title}</h5>
-							<h6 style={{marginTop:'-10px'}} className="card-text font-weight-bold text-success">{this.props.text}</h6>		
+							<h5 style={{marginTop:'-10px'}} className="card-text font-weight-bold text-success">{this.props.text}</h5>		
 						</div>
 					</div>
 				</div>
