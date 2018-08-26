@@ -131,7 +131,7 @@ export default class Dashboard extends Component {
 											</div>
 											<div className="col">
 												<h6 className="text-success font-weight-bold">Conversion Rate</h6>
-												<h5 style={{backgroundColor:'rgb(17, 183, 204)'}} className="p-3 text-white font-weight-bold">1 Cr/{this.state.rates.credit_rate}kWh</h5>
+												<h5 style={{backgroundColor:'rgb(17, 183, 204)'}} className="p-3 text-white font-weight-bold">1 Cr/{this.state.rates.credit_rate} kWh</h5>
 											</div>
 										</div>
 									</div>
