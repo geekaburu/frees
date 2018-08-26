@@ -12,7 +12,7 @@ export default class Customers extends Component {
         super(props)
         this.state = {
             customerData:[],
-            chart: { datasets:[], labels:[], filter:'today' },
+            chart: { datasets:[], labels:[], filter:'month' },
             panels:'',
         }
         this.fetchData = this.fetchData.bind(this)
