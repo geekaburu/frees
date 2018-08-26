@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 export default class DashboardCard extends Component {
     render() {
     	return (
-			<div style={{height:'130px'}} id="dashboard-card" className="card mt-4 rounded-0">
+			<div style={{height:'140px'}} id="dashboard-card" className="card mt-4 rounded-0">
 				<div className="overlay"></div>
 				<div className="card-body">
 					<div className="row">
