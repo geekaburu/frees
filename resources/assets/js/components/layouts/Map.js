@@ -5,7 +5,7 @@ import MapInformationMarker from './MapInformationMarker'
 
 const GoogleMapContainer = withScriptjs(withGoogleMap(props => (
     <GoogleMap
-        center = { props.center }
+        defaultCenter = { props.defaultCenter }
         zoom = { props.zoom }
         mapTypeId = { props.mapTypeId }>
         {props.markers.map(marker => (
@@ -40,7 +40,7 @@ export default class Map extends Component {
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={ <div style={{ height: this.props.contentHeight, width: this.props.contentWidth }} /> }
                     mapElement={ <div style={{ height: '100%' }} /> }
-                    center = {this.props.center }
+                    defaultCenter = {this.props.defaultCenter }
                     zoom = { this.props.zoom }
                     mapTypeId = { this.props.mapTypeId }
                     markers = { this.props.markers }

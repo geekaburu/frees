@@ -23,9 +23,7 @@ class SolarPanel extends Component {
             },
             chart: { datasets:[], labels:[], filter:'month' },
             panels: '',
-            angle: '',
         }
-        this.handleRangeIncrease = this.handleRangeIncrease.bind(this)
         this.handleRadioChange = this.handleRadioChange.bind(this)
         this.handleModeUpdate = this.handleModeUpdate.bind(this)
         this.handleRuntimeChange = this.handleRuntimeChange.bind(this)
@@ -39,10 +37,10 @@ class SolarPanel extends Component {
     	// Set loader to true
     	this.setState({loader:true})
     	// Fetch data
-    	this.fetchData({map:true})
+    	this.fetchData()
     	// Apply fetch duration
     	this.timerID = setInterval(
-			() => this.fetchData(),
+			() => this.fetchData({map:false}),
 			App.fetchDuration(),
     	)      	
     }
@@ -52,7 +50,7 @@ class SolarPanel extends Component {
 	    clearInterval(this.timerID);
 	}
 
-	fetchData(payload){
+	fetchData(){
 		axios.post('api/customers/panel-data', {
       		chart_filter: this.state.chart.filter,	
     	})
@@ -69,7 +67,7 @@ class SolarPanel extends Component {
     			]
     		}
     		this.setState({
-				locationData: payload.map ? data.locationData : this.state.locationData,
+				locationData: data.locationData,
 				conditions: data.conditions,
 				controls: data.controls,
 				chart: chartData(data.chart.data, ['energy'], this.state.chart.filter),
@@ -100,12 +98,11 @@ class SolarPanel extends Component {
 	
 	// When the radio buttons that control the mode are changed
     handleRadioChange(event){
-    	const mode = event.target.value
 	    this.setState({
 	        controls : {
-	        	mode: mode,
+	        	mode: event.target.value,
 	        	runtime:this.state.controls.runtime,
-	        	angle: mode=='manual' ? this.state.controls.angle : this.state.angle,
+	        	angle: this.state.controls.angle,
 	        }
 	    })
     }
@@ -127,7 +124,6 @@ class SolarPanel extends Component {
     	axios.post('api/customers/update-controls', {	
     		mode:this.state.controls.mode,
     		runtime:this.state.controls.runtime,
-    		angle:this.state.controls.angle,
     	})
     	.then((response) => {
     		this.setState({
@@ -142,17 +138,6 @@ class SolarPanel extends Component {
     		}
     	})    		
     }
-	
-	// Handle the increase of the range modal control component
-	handleRangeIncrease(data){
-		this.setState({
-			controls: {
-				mode:this.state.controls.mode,
-				runtime:this.state.controls.runtime,
-				angle:parseInt(data)
-			}
-		})
-	}
 
 	// Handle the dismiss of the alert modal
 	handleModalDismiss(state){
@@ -167,7 +152,7 @@ class SolarPanel extends Component {
     	const data = [this.state.locationData]
     	const map = (
 			this.state.locationData && <Map 
-				center={ {lat: Number(this.state.locationData.location.latitude), lng: Number(this.state.locationData.location.longitude)} } 
+				defaultCenter={ {lat: Number(this.state.locationData.location.latitude), lng: Number(this.state.locationData.location.longitude)} } 
 				zoom={ 17 }
 				mapTypeId='hybrid'
 				contentWidth='100%'
@@ -195,7 +180,6 @@ class SolarPanel extends Component {
 					<div onChange={this.handleRadioChange}>						
 						<span className="mx-2"><input type="radio" value="search" name="mode" checked={this.state.controls.mode == 'search' ? true : false} /> Seach</span> 						
 						<span className="mx-2"><input type="radio" value="versatile" name="mode" checked={this.state.controls.mode == 'versatile' ? true : false} /> Versatile</span>						
-						<span className="mx-2"><input type="radio" value="manual" name="mode" checked={this.state.controls.mode == 'manual' ? true : false} /> Manual</span>					
 					</div>
 				</div>
 				<div className="col-12 col-md-7">
@@ -219,7 +203,6 @@ class SolarPanel extends Component {
 					</div>
 				</div>
 				<div className="col-8 m-0">
-					<RangeSlider disabled={this.state.controls.mode == 'manual' ? false : true} angle={this.state.controls.mode == 'manual' ? this.state.controls.angle : this.state.angle} min={0} max={180} rangeIncrease={this.handleRangeIncrease} />
 					<div className="input-group my-3">
 						<div className="input-group-prepend">
 					    	<span className="input-group-text">Change Runtime in Minutes</span>

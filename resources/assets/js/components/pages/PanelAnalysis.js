@@ -98,7 +98,7 @@ export default class PanelAnalysis extends Component {
 			<div id="carbon-reports" className="row m-0">
 				<Loader load={this.state.loader} /> 
 				<div className="col-2 bg-dark-primary panel-nav-bar px-0" style={{ boxShadow: '1px 2px 2px rgba(0, 0, 0, 0.7)' }}>	
-					<div style={{height:'450px', overflowY:'auto', overflowX:'hidden'}} className="bg-dark-primary">
+					<div style={{height:'550px', overflowY:'auto', overflowX:'hidden'}} className="bg-dark-primary">
 						<div className="row">
 							<NavLink className="col-12 py-2 px-0 border-white border-bottom text-white" to={`/panel-analysis/panels/all`}>
 								<FontAwesomeIcon icon="qrcode" size="lg" className="mr-2" />
@@ -166,134 +166,115 @@ export default class PanelAnalysis extends Component {
 							/>
 						</div>
 					</div>
-				</div>
-				<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
-					<div className="row">
-						<div className="col-12 col-lg-2 text-center border py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={6}
-								  	value={parseInt(this.state.stats.voltage)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="rgb(220, 53, 69)"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.voltage)}
-								  	ringWidth={40}
-								/>
+					<div className="row mx-0 mt-1">
+						<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
+							<div className="row">
+								<div className="col-12 col-lg text-center border py-3">
+									<div className="w-100" style={{
+									    height: '120px'
+									}}>
+										<ReactSpeedometer
+											fluidWidth={true}
+											maxValue={6}
+										  	value={parseFloat(this.state.stats.voltage)}
+										  	width={200}
+										  	height={250}
+										  	needleColor="rgb(220, 53, 69)"
+										  	segments={5}
+										  	textColor="#fff"
+										  	needleTransitionDuration={4000}
+										  	needleTransition="easeElastic"
+										  	currentValueText={String(this.state.stats.voltage)}
+										  	ringWidth={40}
+										/>
+									</div>
+									<div className="col-12">Avg Voltage</div>
+								</div>
+								<div className="col-12 col-lg text-center border py-3">
+									<div className="w-100" style={{
+									    height: '120px'
+									}}>
+										<ReactSpeedometer
+											fluidWidth={true}
+											maxValue={1.5}
+										  	value={parseFloat(this.state.stats.power)}
+										  	width={200}
+										  	height={250}
+										  	needleColor="rgb(23, 162, 184)"
+										  	segments={5}
+										  	textColor="#fff"
+										  	needleTransitionDuration={4000}
+										  	needleTransition="easeElastic"
+										  	currentValueText={String(this.state.stats.power)}
+										  	ringWidth={40}
+										/>
+									</div>
+									<div className="col-12">Avg Power</div>
+								</div>
+								<div className="col-12 col-lg text-center border py-3">
+									<div className="w-100" style={{
+									    height: '120px'
+									}}>
+										<ReactSpeedometer
+											fluidWidth={true}
+											maxValue={5000}
+										  	value={parseFloat(this.state.stats.energy)}
+										  	width={200}
+										  	height={250}
+										  	needleColor="purple"
+										  	segments={5}
+										  	textColor="#fff"
+										  	needleTransitionDuration={4000}
+										  	needleTransition="easeElastic"
+										  	currentValueText={String(this.state.stats.energy)}
+										  	ringWidth={40}
+										/>
+									</div>
+									<div className="col-12">Energy</div>
+								</div>
+								<div className="col-12 col-lg text-center border py-3">
+									<div className="w-100" style={{
+									    height: '120px'
+									}}>
+										<ReactSpeedometer
+											fluidWidth={true}
+											maxValue={5}
+										  	value={parseFloat(this.state.stats.credits)}
+										  	width={200}
+										  	height={250}
+										  	needleColor="green"
+										  	segments={5}
+										  	textColor="#fff"
+										  	needleTransitionDuration={4000}
+										  	needleTransition="easeElastic"
+										  	currentValueText={String(this.state.stats.credits)}
+										  	ringWidth={40}
+										/>
+									</div>
+									<div className="col-12">Credits</div>
+								</div>
+								<div className="col-12 col-lg text-center border py-3">
+									<div className="w-100" style={{
+									    height: '120px'
+									}}>
+										<ReactSpeedometer
+											fluidWidth={true}
+											maxValue={12000}
+										  	value={parseFloat(this.state.stats.amount)}
+										  	width={200}
+										  	height={250}
+										  	needleColor="blue"
+										  	segments={5}
+										  	textColor="#fff"
+										  	needleTransitionDuration={4000}
+										  	needleTransition="easeElastic"
+										  	currentValueText={String(this.state.stats.amount)}
+										  	ringWidth={40}
+										/>
+									</div>
+									<div className="col-12">Value</div>
+								</div>
 							</div>
-							<div className="col-12">Voltage</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={1.5}
-								  	value={parseInt(this.state.stats.power)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="rgb(23, 162, 184)"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.power)}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Power</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={100}
-								  	value={parseInt(this.state.stats.intensity)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="rgb(255, 193, 7)"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.intensity)}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Intensity</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={50}
-								  	value={parseInt(this.state.stats.energy)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="purple"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy)}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Energy</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={2}
-								  	value={parseInt(this.state.stats.credits)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="green"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.credits)}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Credits</div>
-						</div>
-						<div className="col-12 col-lg-2 text-center border py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={200}
-								  	value={parseInt(this.state.stats.amount)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="blue"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.amount)}
-								  	ringWidth={40}
-								/>
-							</div>
-							<div className="col-12">Value</div>
 						</div>
 					</div>
 				</div>

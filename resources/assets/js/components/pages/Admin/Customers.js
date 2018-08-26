@@ -24,7 +24,7 @@ export default class Customers extends Component {
     	// Set loader to true
     	this.setState({loader:true})
     	// Fetch data
-    	this.fetchData({map:true})
+    	this.fetchData()
     	// Apply fetch duration
     	this.timerID = setInterval(
 			() => this.fetchData(),
@@ -82,7 +82,7 @@ export default class Customers extends Component {
     render() {
     	const map = (
 			<Map 
-				center={ {lat: 0.0236, lng: 37.9062} } 
+				defaultCenter={ {lat: 0.0236, lng: 37.9062} } 
 				zoom={ 6 }
 				mapTypeId='roadmap'
 				contentWidth='100%'
