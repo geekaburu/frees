@@ -10,7 +10,12 @@ export default class CarbonTransactions extends Component {
             transactions:'',
             energyChart: { datasets:[], labels:[] },
             amountChart: { datasets:[], labels:[] },
-            upperBar: '',
+            upperBar: {
+            	price: 0, 
+            	energy: 0,
+            	credits: 0,
+            	amount: 0 
+            },
         }
         this.fetchData = this.fetchData.bind(this)
     }
