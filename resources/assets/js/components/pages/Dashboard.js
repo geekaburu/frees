@@ -72,13 +72,13 @@ export default class Dashboard extends Component {
 							<DashboardCard icon='qrcode' title='Number of Panels' text={this.state.cards ? this.state.cards.panels : 0}  iconStyle='rgb(90, 178, 94)' />				
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='burn' title='Energy this Year' text={`${(this.state.cards ? this.state.cards.energy : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} kWh`}  iconStyle='rgb(254, 161, 29)' />					
+							<DashboardCard icon='burn' title='Energy this Year' text={`${(this.state.cards ? this.state.cards.energy : 0.00).toFixed(2)} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='credit-card' title='Credits this Year' text={(this.state.cards ? this.state.cards.credits : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}  iconStyle='rgb(231, 55, 115)' />					
+							<DashboardCard icon='credit-card' title='Credits this Year' text={(this.state.cards ? this.state.cards.credits : 0.00).toFixed(2)}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
 						<div className="col-12 col-md-3 px-1">
-							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${(this.state.cards ? this.state.cards.amount : 0.00).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}`}  iconStyle='rgb(17, 183, 204)' />
+							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${(this.state.cards ? this.state.cards.amount : 0.00).toFixed(2)}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>
 					<div className="row justify-content-center mt-2">
@@ -127,7 +127,7 @@ export default class Dashboard extends Component {
 										<div className="row">
 											<div className="col">
 												<h6 className="text-success font-weight-bold">Carbon Price</h6>
-												<h5 style={{backgroundColor:'rgb(231, 55, 115)'}} className="p-3 text-white font-weight-bold">KES {this.state.rates.value.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</h5>
+												<h5 style={{backgroundColor:'rgb(231, 55, 115)'}} className="p-3 text-white font-weight-bold">KES {this.state.rates.value.toFixed(2)}</h5>
 											</div>
 											<div className="col">
 												<h6 className="text-success font-weight-bold">Conversion Rate</h6>
