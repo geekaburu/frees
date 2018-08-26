@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom';
 export default class DashboardCard extends Component {
     render() {
     	return (
-			<div id="dashboard-card" className="card mt-4 rounded-0">
+			<div style={{height:'150px'}} id="dashboard-card" className="card mt-4 rounded-0">
 				<div className="overlay"></div>
 				<div className="card-body">
 					<div className="row">
 						<div className="col-6">
-							<div style={{backgroundColor:this.props.iconStyle}} className="icon float-left text-white p-3 rounded">
+							<div style={{backgroundColor:this.props.iconStyle}} className="icon float-left text-white p-4 rounded">
 								<FontAwesomeIcon icon={this.props.icon} size="2x" pulse />					
 							</div>
 						</div>
