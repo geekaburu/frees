@@ -39,7 +39,7 @@ class SolarPanel extends Component {
     	// Set loader to true
     	this.setState({loader:true})
     	// Fetch data
-    	this.fetchData()
+    	this.fetchData({map:true})
     	// Apply fetch duration
     	this.timerID = setInterval(
 			() => this.fetchData(),
@@ -52,7 +52,7 @@ class SolarPanel extends Component {
 	    clearInterval(this.timerID);
 	}
 
-	fetchData(){
+	fetchData(payload){
 		axios.post('api/customers/panel-data', {
       		chart_filter: this.state.chart.filter,	
     	})
@@ -69,7 +69,7 @@ class SolarPanel extends Component {
     			]
     		}
     		this.setState({
-				locationData: data.locationData,
+				locationData: payload.map ? data.locationData : this.state.locationData,
 				conditions: data.conditions,
 				controls: data.controls,
 				chart: chartData(data.chart.data, ['energy'], this.state.chart.filter),
