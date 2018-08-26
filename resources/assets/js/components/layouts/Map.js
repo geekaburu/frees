@@ -17,9 +17,10 @@ const GoogleMapContainer = withScriptjs(withGoogleMap(props => (
                     panels:marker.panels,
                     county:marker.location.county,
                     town:marker.location.town,
-                    energy:marker.energy
+                    energy:marker.energy,
                 }}
                 key = {props.markers.indexOf(marker)}
+                link = {props.link}
             />
         ))}
     </GoogleMap>
@@ -43,6 +44,7 @@ export default class Map extends Component {
                     zoom = { this.props.zoom }
                     mapTypeId = { this.props.mapTypeId }
                     markers = { this.props.markers }
+                    link = {this.props.link}
                 />
             </div>
         )

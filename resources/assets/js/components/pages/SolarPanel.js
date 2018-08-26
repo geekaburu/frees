@@ -173,6 +173,7 @@ class SolarPanel extends Component {
 				contentWidth='100%'
 				contentHeight='300px'				
 				markers={data}
+				link='/panel-analysis/panels/all'
 			/>
     	)
 

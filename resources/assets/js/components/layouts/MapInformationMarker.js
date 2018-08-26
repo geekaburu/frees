@@ -44,11 +44,11 @@ export default class MapInformationMarker extends Component {
 	                    		</tr>
 	                    		<tr>
 	                    			<th>Energy so Far</th>
-	                    			<td>{this.props.data.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 })} Kwh</td>	                    			
+	                    			<td>{parseFloat(this.props.data.energy).toFixed(2)} Kwh</td>	                    			
 	                    		</tr>
 	                    	</tbody>	                    	
 	                    </table>    
-	                    <Link to={`/admin/customer-analysis/customers/${this.props.data.id}`} className="btn btn-success btn-sm">View More</Link>           
+	                    <Link to={this.props.link ? this.props.link : `/admin/customer-analysis/customers/${this.props.data.id}`} className="btn btn-success btn-sm">View More</Link>           
 	                </div>
 	            </InfoWindow>}
 	        </Marker>
