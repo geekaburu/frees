@@ -89,7 +89,7 @@ class CustomerController extends Controller
 			'controls' => $user->panelControls()->first(['mode', 'runtime', 'angle']),
 			'conditions' => $user->panelData()->orderBy('panel_data.created_at', 'desc')->first(['panel_data.voltage','panel_data.power', 'panel_data.energy']),
 			'chart' => [
-				'data' => $this->generateChartData($user->panelData()->orderBy('panel_data.created_at', 'asc'), $request->chart_filter),
+				'data' => $this->generateChartData($user->panelData(), $request->chart_filter),
 			],
 			'panels' => [
 				'data' => $panelData,

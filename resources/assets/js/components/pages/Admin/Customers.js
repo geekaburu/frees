@@ -98,34 +98,12 @@ export default class Customers extends Component {
 				width={ 100 }
 				height={ 430 }
 				handleFilterValue={this.handleFilterValue}
-				filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+				filters={[{label: 'Live', value:'live'},{label: 'Today', value:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 				activeFilter='month'
-				options={{
-					maintainAspectRatio: false,
-					legend: {
-			            display: true,
-			            position: 'bottom',
-			        },
-					title: {
-			            display: true,
-			            text: 'Energy Vs Time'
-			        },
-			        scales: {
-			            yAxes: [{
-			            	scaleLabel: {
-					        	display: true,
-					        	labelString: 'Energy in kWh',
-					        	fontColor:'rgba(4, 33, 47, 1)',
-					      	}
-					    }],
-					    xAxes: [{
-			            	scaleLabel: {
-					        	display: true,
-					        	labelString: 'Time',
-					        	fontColor:'rgba(4, 33, 47, 1)',
-					      	}
-					    }]
-			        }
+				title='A Graph of Energy Against Time'
+				axesLabels = {{
+					yAxes:'Energy in kWh',
+					'xAxes': 'Time'
 				}}
 			/>
         )

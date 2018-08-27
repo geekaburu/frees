@@ -112,25 +112,10 @@ export default class Pricing extends Component {
 						handleFilterValue={this.handleFilterValue}
 						filters={[{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 						activeFilter='3month'
-						options={{
-							maintainAspectRatio: false,
-							legend: {
-					            display: true,
-					            position: 'bottom',
-					        },
-							title: {
-					            display: true,
-					            text: 'Carbon Prices'
-					        },
-					        scales: {
-							    xAxes: [{
-					            	scaleLabel: {
-							        	display: true,
-							        	labelString: 'Time',
-							        	fontColor:'rgba(4, 33, 47, 1)',
-							      	}
-							    }]
-					        }
+						title='Carbon Prices'
+						axesLabels = {{
+							yAxes:'Prices in KES',
+							'xAxes': 'Time'
 						}}
 					/>
 				</div>

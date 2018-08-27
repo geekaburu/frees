@@ -36,3 +36,27 @@ export function chartData (chart, dataSets, filter) {
 		filter: filter,
 	}
 }
+
+export function displayUnit(filter){
+	const formats = {
+		'live':'hour',
+		'today':'hour',
+		'week':'day',
+		'month':'day',
+		'3month':'month',
+		'year':'month',
+	}
+	return formats[filter]
+}
+
+export function displayParser(filter){
+	const formats = {
+		'live':'YYYY-MM-DD HH:mm:ss',
+		'today':'YYYY-MM-DD HH:mm:ss',
+		'week':'YYYY-MM-DD HH:mm:ss',
+		'month':'YYYY-MM-DD HH:mm:ss',
+		'3month':'MMMM YYYY',
+		'year':'MMMM YYYY',
+	}
+	return formats[filter]
+}

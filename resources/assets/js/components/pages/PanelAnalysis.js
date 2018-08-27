@@ -133,34 +133,12 @@ export default class PanelAnalysis extends Component {
 								data={ this.state.chart }
 								width={ 100 }
 								height={ 350 }
-								options={{
-									maintainAspectRatio: false,
-									legend: {
-							            display: true,
-							            position: 'bottom',
-							        },
-									title: {
-							            display: true,
-							            text: 'Carbon Prices'
-							        },
-							        scales: {
-							        	yAxes: [{
-							            	scaleLabel: {
-									        	display: true,
-									        	labelString: 'Energy in kWh',
-									        	fontColor:'rgba(4, 33, 47, 1)',
-									      	}
-									    }],
-									    xAxes: [{
-							            	scaleLabel: {
-									        	display: true,
-									        	labelString: 'Time',
-									        	fontColor:'rgba(4, 33, 47, 1)',
-									      	}
-									    }]
-							        }
+								title='Energy Collection against Time'
+								axesLabels = {{
+									yAxes:'Energy in kWh',
+									'xAxes': 'Time'
 								}}
-								filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+								filters={[{label: 'Live', value:'live'}, {label: 'Today', value:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 								activeFilter='month'
 								handleFilterValue={this.handleFilterValue}
 							/>

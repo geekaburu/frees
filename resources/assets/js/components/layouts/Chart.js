@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Line,Bar } from 'react-chartjs-2'
 import { NavLink } from 'react-router-dom';
+import { displayUnit, displayParser } from '../../resources/ChartHelper'
 
 export default class Chart extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-          	monthFilter:'',
           	active:''
         }
 		this.handleFilters = this.handleFilters.bind(this)
-		this.handleMonthFilter = this.handleMonthFilter.bind(this)
     }
 
     componentWillMount(){
@@ -18,13 +17,7 @@ export default class Chart extends Component {
     		active:this.props.activeFilter
     	})
     }	
-
-	handleMonthFilter(e){
-		this.setState({
-			monthFilter:e.target.value
-		})
-	}
-
+    
     handleFilters(value){
     	this.setState({
 			active:value,
@@ -50,7 +43,39 @@ export default class Chart extends Component {
 						data={ this.props.data }
 						width={ 100 }
 						height={ this.props.height }
-						options={ this.props.options }
+						options = {{
+							maintainAspectRatio: false,
+							legend: {
+					            display: true,
+					            position: 'bottom',
+					        },
+							title: {
+					            display: true,
+					            text: this.props.title
+					        },
+					        scales: {
+					            yAxes: [{
+					            	scaleLabel: {
+							        	display: true,
+							        	labelString: this.props.axesLabels.yAxes,
+							        	fontColor:'rgba(4, 33, 47, 1)',
+							      	}
+							    }],
+							    xAxes: [{
+							    	type:'time',
+				                    time:{
+				                    	unit: displayUnit(this.state.active),
+				                        parser: displayParser(this.state.active),
+				                        tooltipFormat: 'll',
+				                    },
+					            	scaleLabel: {
+							        	display: true,
+							        	labelString: this.props.axesLabels.xAxes,
+							        	fontColor:'rgba(4, 33, 47, 1)',
+							      	}
+							    }]
+					        }
+						}}
 					/>		        	
 				</div>
 			</div>

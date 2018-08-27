@@ -164,35 +164,13 @@ export default class CustomerAnalysis extends Component {
 									data={ this.state.chart }
 									width={ 100 }
 									height={ 287 }
-									filters={[{label: 'Today', value:'today', active:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+									filters={[{label: 'Live', value:'live'},{label: 'Today', value:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 									activeFilter='month'
 									handleFilterValue={this.handleFilterValue}
-									options={{
-										maintainAspectRatio: false,
-										legend: {
-								            display: true,
-								            position: 'bottom',
-								        },
-										title: {
-								            display: true,
-								            text: 'Energy Vs Time'
-								        },
-								        scales: {
-								            yAxes: [{
-								            	scaleLabel: {
-										        	display: true,
-										        	labelString: 'Energy in kWh',
-										        	fontColor:'rgba(4, 33, 47, 1)',
-										      	}
-										    }],
-										    xAxes: [{
-								            	scaleLabel: {
-										        	display: true,
-										        	labelString: 'Time',
-										        	fontColor:'rgba(4, 33, 47, 1)',
-										      	}
-										    }]
-								        }
+									title='A Graph of Energy Against Time'
+									axesLabels = {{
+										yAxes:'Energy in kWh',
+										'xAxes': 'Time'
 									}}
 								/>
 							</div>
@@ -201,41 +179,6 @@ export default class CustomerAnalysis extends Component {
 				</div>
 				<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
 					<div className="row align-items-center">
-						<div className="col-12 col-lg-4 text-center pt-4 px-4 pb-2">
-							{this.state.activeCustomer !='all' && 
-							<div>
-								<table className="table table-sm table-bordered table-hover w-100">
-								    <tbody>
-								    	<tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Name</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.name}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Email</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.email}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Phone Number</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.phone_number}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">County</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.location.county}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Town</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.location.town}</td>
-								        </tr>
-								    </tbody>
-								</table>
-							</div>
-							}
-							{this.state.activeCustomer =='all' && 
-								<div className="text-center">
-									<h4>No Information Available</h4>
-								</div>	
-							}
-						</div>
 						<div className="col-12 col-lg text-center border-left border-right pt-4 px-4 pb-3">
 							<div className="w-100" style={{
 							    height: '140px'
@@ -298,6 +241,41 @@ export default class CustomerAnalysis extends Component {
 								/>
 							</div>
 							<div className="col-12 pt-2">Value</div>
+						</div>
+						<div className="col-12 col-lg-4 text-center pt-4 px-4 pb-2">
+							{this.state.activeCustomer !='all' && 
+							<div>
+								<table className="table table-sm table-bordered table-hover w-100">
+								    <tbody>
+								    	<tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Name</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.name}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Email</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.email}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Phone Number</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.phone_number}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">County</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.location.county}</td>
+								        </tr>
+								        <tr>
+								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Town</th>
+								            <td className="text-left pl-2">{this.state.activeCustomer.location.town}</td>
+								        </tr>
+								    </tbody>
+								</table>
+							</div>
+							}
+							{this.state.activeCustomer =='all' && 
+								<div className="text-center">
+									<h4>Click on Customer Name to View More</h4>
+								</div>	
+							}
 						</div>
 					</div>
 				</div>
