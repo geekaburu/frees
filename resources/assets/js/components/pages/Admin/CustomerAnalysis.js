@@ -95,6 +95,7 @@ export default class CustomerAnalysis extends Component {
 
 	handleFilterValue(value){
 		this.setState({
+			loader:true,
 			chart:{
 				datasets:'', 
 				labels:'', 

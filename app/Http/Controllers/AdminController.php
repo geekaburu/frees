@@ -36,9 +36,6 @@ class AdminController extends Controller
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year') 
             )->groupBy('year')->first();
 
-        // Get chart data
-       $chartData = PanelData::orderBy('panel_data.created_at', 'asc');
-
        // Get county data
        $countyData = County::withCount([
             'panelData as energy' =>function($query){
@@ -63,6 +60,9 @@ class AdminController extends Controller
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%M") as month') 
             )->groupBy('month')->orderBy('energy', 'desc')->first();
 
+  // Get chart data
+       $chartData = PanelData::orderBy('panel_data.created_at', 'asc');
+
        // Return response 
         return response()->json([
             'highestCards' => [
@@ -71,7 +71,7 @@ class AdminController extends Controller
                 'month' => $monthData,
             ],
             'cards' => $cardData,
-            'chart' => $this->generateChartData($chartData, 'today'),
+            'chart' => $this->generateChartData($chartData, 'live'),
             'lastDate' => Carbon::now()->endOfYear()->format('d/m/Y H:i:s'),
             'rates' => $record,
             'counties' => $countyData,

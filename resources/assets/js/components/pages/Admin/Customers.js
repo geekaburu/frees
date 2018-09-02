@@ -69,6 +69,7 @@ export default class Customers extends Component {
 
     handleFilterValue(value){
 		this.setState({
+			loader:true,
 			chart:{
 				datasets:'', 
 				labels:'', 
@@ -108,7 +109,7 @@ export default class Customers extends Component {
 			/>
         )
 
-			// Create a datatable
+		// Create a datatable
 		const datatable = (
 			<div className="row justify-content-center py-4 m-0">				
 				<div className="col-12">
@@ -118,12 +119,13 @@ export default class Customers extends Component {
 							columns={this.state.panels.columns}
 							searching={false} 
 							withFooter={true} 
-							defs={[{
-				                'render': function ( data, type, row ) {
-				                    return parseFloat(data).toFixed(2);
-				                },
+							defs={[
+								{
+					                'render': function ( data, type, row ) {
+					                    return parseFloat(data ? data : 0).toFixed(2)
+					                },
 					                'targets': [2,3,4]
-					            }
+						        }
 					        ]}
 							sumColumns={[2,3,4]}
 						/>
