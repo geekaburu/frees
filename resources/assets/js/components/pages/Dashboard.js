@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Line } from 'react-chartjs-2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import Chart from '../layouts/Chart'
+import Loader from '../layouts/Loader';
 import DashboardCard from '../layouts/DashboardCard'
 import CountDownTimer from '../layouts/CountDownTimer'
 import { chartData } from '../../resources/ChartHelper'
-import Loader from '../layouts/Loader';
 
 export default class Dashboard extends Component {
 	constructor(props) {
@@ -17,7 +17,7 @@ export default class Dashboard extends Component {
             	amount:0,
             	panels:0,
             },
-            chart:{},
+            chart: { datasets:[], labels:[], filter:'live' },
             rates:{
             	value:0,
             	credit_rate:0,
@@ -51,7 +51,7 @@ export default class Dashboard extends Component {
     		this.setState({
     			loader:false,
     			cards:response.data.cards,
-    			chart: chartData(response.data.chart, ['energy']),
+    			chart: chartData(response.data.chart, ['energy'], this.state.chart.filter),
     			lastDate: response.data.lastDate,
     			rates: response.data.rates,
     		})
@@ -84,38 +84,18 @@ export default class Dashboard extends Component {
 					<div className="row justify-content-center mt-2">
 						<div className="col-8 px-2">
 							<div className="p-3" style={{boxShadow:'1px 1px 3px rgba(0, 0, 0, 0.4)'}}>
-								<Line
+								<Chart
 									data={ this.state.chart }
-									width={100}
-									height={330}
-									options={{
-										maintainAspectRatio: false,
-										legend: {
-								            display: true,
-								            position: 'bottom',
-								        },
-										title: {
-								            display: true,
-								            text: 'Energy Readings Today'
-								        },
-								        scales: {
-								            yAxes: [{
-								            	scaleLabel: {
-										        	display: true,
-										        	labelString: 'Energy in kWh',
-										        	fontColor:'rgba(4, 33, 47, 1)',
-										      	}
-										    }],
-										    xAxes: [{
-								            	scaleLabel: {
-										        	display: true,
-										        	labelString: 'Time',
-										        	fontColor:'rgba(4, 33, 47, 1)',
-										      	}
-										    }]
-								        }
+									height={ 300 }
+									handleFilterValue={this.handleFilterValue}
+									filters={[{label: 'Live', value:'live'}]}
+									activeFilter='live'
+									title='A Graph of Energy Against Time'
+									axesLabels = {{
+										yAxes:'Energy in kWh',
+										'xAxes': 'Time'
 									}}
-								/>
+								/>  
 							</div>
 						</div>
 						<div className="col-4 px-1 text-center">

@@ -40,11 +40,9 @@ class CustomerController extends Controller
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year') 
             )->groupBy('year')->first();
 
-       $chartData = $user->panelData()->orderBy('panel_data.created_at', 'asc');
-
         return response()->json([
             'cards' => $cardData,
-            'chart' => $this->generateChartData($chartData, 'today'),
+            'chart' => $this->generateChartData($user->panelData(), 'live'),
             'lastDate' => Carbon::now()->endOfYear()->format('d/m/Y H:i:s'),
             'rates' => $record,
         ]);
