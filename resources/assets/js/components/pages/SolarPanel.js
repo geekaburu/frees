@@ -72,7 +72,7 @@ class SolarPanel extends Component {
 				controls: data.controls,
 				chart: chartData(data.chart.data, ['energy'], this.state.chart.filter),
 				panels: table,
-				loader:false,
+				loader: false,
 				angle: data.controls.angle,
 			})
     	})
@@ -87,8 +87,8 @@ class SolarPanel extends Component {
 		this.setState({
 			loader:true,
 			chart:{
-				datasets:this.state.chart.datasets, 
-				labels:this.state.chart.labels, 
+				datasets:'', 
+				labels:'', 
 				filter: value 
 			}
 		}, ()=>{
@@ -254,7 +254,7 @@ class SolarPanel extends Component {
 					data={ this.state.chart }
 					height={ 410 }
 					handleFilterValue={this.handleFilterValue}
-					filters={[{label: 'Live', value:'live'}, {label: 'Today', value:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+					filters={[{label: 'Live', value:'live'}, {label: 'Today', value:'today'}, {label: 'This Week', value:'week'},{label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 					activeFilter='month'
 					title='A Graph of Energy Against Time'
 					axesLabels = {{

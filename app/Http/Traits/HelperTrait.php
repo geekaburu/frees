@@ -17,26 +17,27 @@ trait HelperTrait
 		// Define parameters
 	    $parameters = [
 	    	DB::raw('sum(energy) as energy'),
-	    	DB::raw('panel_data.created_at as label') 
 	    ];
 
 	    // Create filters for the query
 	    if($filter == 'live'){
 	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::today());
-	    	return $chartData->orderBy('panel_data.created_at', 'desc')->select($parameters)->groupBy('label')->get();
+	    	array_push($parameters, DB::raw('panel_data.created_at as label'));
+	    	return $chartData->orderBy('panel_data.created_at', 'desc')->select($parameters)->groupBy('label')->take(5)->get();
 	    } else if($filter == 'today'){
 	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::today());
+	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%H') as label"));
 	    } else if($filter == 'week'){
 	    	$chartData = $data->whereBetween('panel_data.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%D %M') as label"));
 	    } else if($filter == 'month'){
 	    	$chartData = $data->whereYear('panel_data.created_at', date('Y'))->whereMonth('panel_data.created_at', date('m'));
+	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%D %M') as label"));
 	    } else if($filter == '3month'){
 	    	$chartData = $data->whereYear('panel_data.created_at', date('Y'))->whereMonth('panel_data.created_at', '>=', Carbon::now()->subMonth(3)->month);
-	    	unset($parameters[1]);
 	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%M %Y') as label"));
 	    } else if($filter == 'year'){
 	    	$chartData = $data->whereYear('panel_data.created_at', date('Y'));
-	    	unset($parameters[1]);
 	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%M %Y') as label"));
 	    } else if(is_numeric($filter)){
 	    	$chartData = $data->whereYear('panel_data.created_at', date('Y'))->whereMonth('panel_data.created_at', '>=', Carbon::now()->subMonth($filter)->month);

@@ -75,8 +75,8 @@ export default class PanelAnalysis extends Component {
 		this.setState({
 			loader:true,
 			chart:{
-				datasets:this.state.chart.datasets, 
-				labels:this.state.chart.labels, 
+				datasets:'', 
+				labels:'', 
 				filter: value 
 			}
 		}, ()=>{
@@ -138,7 +138,7 @@ export default class PanelAnalysis extends Component {
 									yAxes:'Energy in kWh',
 									'xAxes': 'Time'
 								}}
-								filters={[{label: 'Live', value:'live'}, {label: 'Today', value:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+								filters={[{label: 'Live', value:'live'}, {label: 'Today', value:'today'}, , {label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 								activeFilter='month'
 								handleFilterValue={this.handleFilterValue}
 							/>

@@ -7,14 +7,15 @@ export default class Chart extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-          	active:''
+          	active:'',
         }
 		this.handleFilters = this.handleFilters.bind(this)
     }
 
     componentWillMount(){
     	this.setState({
-    		active:this.props.activeFilter
+    		active:this.props.activeFilter,
+    		data:this.props.data
     	})
     }	
     

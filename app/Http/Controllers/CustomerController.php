@@ -87,7 +87,7 @@ class CustomerController extends Controller
     	return response()->json([
 			'locationData' => $locationData,
 			'controls' => $user->panelControls()->first(['mode', 'runtime', 'angle']),
-			'conditions' => $user->panelData()->orderBy('panel_data.created_at', 'desc')->first(['panel_data.voltage','panel_data.power', 'panel_data.energy']),
+			'conditions' => $user->panelData()->orderBy('panel_data.created_at', 'desc')->first(['panel_data.voltage','panel_data.power','panel_data.energy']),
 			'chart' => [
 				'data' => $this->generateChartData($user->panelData(), $request->chart_filter),
 			],
@@ -128,12 +128,11 @@ class CustomerController extends Controller
         $data = (is_numeric($request->panel) ? $user->panelData()->where('panel_id', $request->panel) : $user->panelData());
 
         // Filter panel data by duration
-        if($request->chart_filter == 'today') $data =  $data->whereDate('panel_data.created_at', Carbon::today());
+        if($request->chart_filter == 'today' || $request->chart_filter == 'live') $data =  $data->whereDate('panel_data.created_at', Carbon::today());
         if($request->chart_filter == 'week')  $data =  $data->whereBetween('panel_data.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
         if($request->chart_filter == 'month') $data =  $data->whereMonth('panel_data.created_at', date('m'));
         if($request->chart_filter == '3month')$data =  $data->whereMonth('panel_data.created_at', '>=', Carbon::now()->subMonth(3)->month);
         if($request->chart_filter == 'year')  $data =  $data->whereYear('panel_data.created_at', date('Y'));
-        if($request->chart_filter == 'today') $data =  $data->whereYear('panel_data.created_at', date('Y')); 
 
         // Get the current carbon cost
         $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
@@ -153,7 +152,7 @@ class CustomerController extends Controller
     	return response()->json([
     		'panels'=>$user->panels()->get(['id']),
     		'chart'=>[
-    			'data'=> $this->generateChartData($data->orderBy('panel_data.created_at', 'asc'), $request->chart_filter),
+    			'data' => $this->generateChartData($data, $request->chart_filter),
             ],
             'activePanel' => is_numeric($request->panel) ? Panel::findOrFail($request->panel) : $request->panel,
     		'stats' => $stats,

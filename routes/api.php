@@ -52,3 +52,21 @@ Route::prefix('application')->middleware('jwt.auth')->group(function(){
 Route::prefix('panel')->group(function(){
 	Route::post('/receive-panel-data', 'PanelController@receivePanelData')->name('panel.receive.data');	
 });
+
+// Test Routes
+Route::prefix('test')->group(function(){
+	Route::get('/populate/{frequency}', function($frequency){
+		for ($i=0; $i < $frequency ; $i++) { 
+			App\PanelData::create([
+				'panel_id' => 6,
+				'angle' => rand(0,100),
+				'voltage' => rand(1,5),
+				'power' => rand(0,100)/100,
+				'energy' => rand(1,5),
+				'runtime' => rand(1,15),
+			]);
+			sleep(3);
+		}
+		return 'Done...';
+	});	
+});

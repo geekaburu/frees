@@ -39,7 +39,7 @@ export function chartData (chart, dataSets, filter) {
 
 export function displayUnit(filter){
 	const formats = {
-		'live':'hour',
+		'live':'second',
 		'today':'hour',
 		'week':'day',
 		'month':'day',
@@ -52,9 +52,9 @@ export function displayUnit(filter){
 export function displayParser(filter){
 	const formats = {
 		'live':'YYYY-MM-DD HH:mm:ss',
-		'today':'YYYY-MM-DD HH:mm:ss',
-		'week':'YYYY-MM-DD HH:mm:ss',
-		'month':'YYYY-MM-DD HH:mm:ss',
+		'today':'HH',
+		'week':'Do MMMM',
+		'month':'Do MMMM',
 		'3month':'MMMM YYYY',
 		'year':'MMMM YYYY',
 	}

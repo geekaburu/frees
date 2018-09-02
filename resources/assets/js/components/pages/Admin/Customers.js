@@ -70,8 +70,8 @@ export default class Customers extends Component {
     handleFilterValue(value){
 		this.setState({
 			chart:{
-				datasets:this.state.chart.datasets, 
-				labels:this.state.chart.labels, 
+				datasets:'', 
+				labels:'', 
 				filter: value 
 			}
 		}, ()=>{
@@ -98,7 +98,7 @@ export default class Customers extends Component {
 				width={ 100 }
 				height={ 430 }
 				handleFilterValue={this.handleFilterValue}
-				filters={[{label: 'Live', value:'live'},{label: 'Today', value:'today'},{label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+				filters={[{label: 'Live', value:'live'},{label: 'Today', value:'today'},{label: 'This Week', value:'week'},{label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 				activeFilter='month'
 				title='A Graph of Energy Against Time'
 				axesLabels = {{
