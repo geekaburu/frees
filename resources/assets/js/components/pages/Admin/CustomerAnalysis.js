@@ -52,11 +52,10 @@ export default class CustomerAnalysis extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			filter:nextProps.match.params.number,
 			loader:true,
+			filter:nextProps.match.params.number,
 		},()=>{
 			this.fetchData()	
-			this.setState({loader:false})
 		})
     }
 
