@@ -49,7 +49,7 @@ export function sumFooterColumns (type, row, data, start, end, display){
 		var column = this
 		$(column.footer()).html(
 			column.data().reduce( function(a,b) {
-				return (parseFloat(a) + parseFloat(b)).toFixed(2)
+				return (parseFloat(a ? a : 0 ) + parseFloat(b? b : 0)).toFixed(2)
 			}, 0)
 		)		
 	})	
