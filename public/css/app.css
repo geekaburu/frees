@@ -10338,7 +10338,7 @@ ul ul a {
     max-width: 80px;
     text-align: center;
     margin-left: -80px;
-    position: absolute;
+    position: fixed;
   }
 
   #sidebar.active {
