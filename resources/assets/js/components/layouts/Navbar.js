@@ -17,7 +17,13 @@ class Navbar extends Component {
 
     // Get data when the component loads
     componentDidMount(){
-    	this.fetchData()      	
+        // Fetch data
+        this.fetchData()
+        // Apply fetch duration
+        this.timerID = setInterval(
+            () => this.fetchData(),
+            App.fetchDuration(),
+        )         	
     }
 
     fetchData(){

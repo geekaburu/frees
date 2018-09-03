@@ -51,6 +51,8 @@ Route::prefix('application')->middleware('jwt.auth')->group(function(){
 // Panel Routes
 Route::prefix('panel')->group(function(){
 	Route::post('/receive-panel-data', 'PanelController@receivePanelData')->name('panel.receive.data');	
+	Route::post('/market-pricing', 'PanelController@marketPricing')->name('panel.market.pricing');	
+	Route::post('/create-pricing', 'PanelController@createMarketPrice')->name('panel.create.pricing');	
 });
 
 // Test Routes

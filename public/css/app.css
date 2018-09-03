@@ -10469,7 +10469,7 @@ html::-webkit-scrollbar-thumb {
 #content #dashboard #dashboard-card {
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  background-image: url("https://gichirakaburu.amprest.co.ke/img/backgrounds/5.jpg");
+  background-image: url("http://solar.invest/img/backgrounds/5.jpg");
   background-position: center 0;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10483,7 +10483,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 #content #dashboard .dashboard-card-side {
-  background-image: url("https://gichirakaburu.amprest.co.ke/img/backgrounds/5.jpg");
+  background-image: url("http://solar.invest/img/backgrounds/5.jpg");
   background-position: center 0;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10496,7 +10496,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 #content #account .profile-card {
-  background-image: url("https://gichirakaburu.amprest.co.ke/img/backgrounds/2.jpg");
+  background-image: url("http://solar.invest/img/backgrounds/2.jpg");
   background-position: center 0;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10716,5 +10716,33 @@ svg {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid rgba(92, 89, 84, 0.7) !important;
+}
+
+#market-simulation {
+  background-image: url("/img/backgrounds/4.jpg");
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #000;
+}
+
+#market-simulation .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#market-simulation .content {
+  z-index: 3;
+}
+
+#market-simulation .card-shadow {
+  border: 10px solid rgba(255, 255, 255, 0.6);
+}
+
+#market-simulation .card-shadow.bg-dark-primary {
+  background-color: rgba(4, 33, 47, 0.9) !important;
 }
 

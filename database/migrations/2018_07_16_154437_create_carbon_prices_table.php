@@ -17,7 +17,7 @@ class CreateCarbonPricesTable extends Migration
             $table->increments('id');
             $table->float('value');
             $table->float('credit_rate');
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

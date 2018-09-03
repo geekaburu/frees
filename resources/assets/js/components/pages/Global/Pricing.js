@@ -71,8 +71,8 @@ export default class Pricing extends Component {
 	handleFilterValue(value){
 		this.setState({
 			chart:{
-				datasets:this.state.chart.datasets, 
-				labels:this.state.chart.labels, 
+				datasets:'', 
+				labels:'', 
 				filter: value 
 			}
 		}, ()=>{

@@ -35,7 +35,12 @@ export default class EnergyReport extends Component {
     	// Set loader to true
     	this.setState({loader:true})
     	// Fetch data
-    	this.fetchData()	
+    	this.fetchData()
+    	// Apply fetch duration
+    	this.timerID = setInterval(
+			() => this.fetchData(),
+			App.fetchDuration(),
+    	)      		
     }
 
 	// Tear down the interval 

@@ -78,6 +78,7 @@ export default class Account extends Component {
     	}
     }
 
+	// Handle change of input boxes
 	handleChange(event) {	
 	    const name = event.target.name;
 	    name == 'avatar' ? this.handleImageUpload(event) : this.setState({ [name]: event.target.value })	    		    	
