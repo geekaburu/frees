@@ -58,16 +58,13 @@ export default class Login extends Component {
     	return (
     		<div id="auth" className="h-100 w-100 position-absolute">
     			{/* Include Alert boxes */}
-				{ this.state.alert.display ? 
-					(
-						<Alert backdrop ='static' keyboard={false} focus={true} show={true} title={this.state.alert.title} body={this.state.alert.body} type={this.state.alert.type} dismissModal={this.handleModalDismiss} />
-		    		) : null
-    			}  		
+				{ this.state.alert.display && <Alert backdrop ='static' keyboard={false} focus={true} show={true} title={this.state.alert.title} body={this.state.alert.body} type={this.state.alert.type} dismissModal={this.handleModalDismiss} />}
+
     			<div className="overlay"></div>
-				<div className="row justify-content-center row m-0 h-100 align-items-center">
+				<div className="row justify-content-center m-0 h-100 align-items-center">
 					<div className="col-12 col-md-6 col-lg-4 text-white content">
-						<div className="row">
-							<div className="col-12 card-shadow bg-dark-primary p-5 rounded">
+						<div className="row justify-content-center">
+							<div className="col-11 col-md-12 card-shadow bg-dark-primary p-4 p-lg-5 rounded">
 								<img className={`mx-auto ${this.state.loader ? 'd-block' : 'd-none'} `} src="img/loaders/wedges.svg" alt=""/>
 								<form className={this.state.loader ? 'd-none' : 'd-block'} onSubmit={this.handleSubmit}>
 						    		<h5 className="text-success my-3 font-weight-bold">Login</h5>
