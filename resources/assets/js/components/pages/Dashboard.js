@@ -82,7 +82,7 @@ export default class Dashboard extends Component {
 						</div>
 					</div>
 					<div className="row justify-content-center mt-2">
-						<div className="col-8 px-2">
+						<div className="col-12 col-md-8 px-2 mt-2 mt-md-0">
 							<div className="p-3" style={{boxShadow:'1px 1px 3px rgba(0, 0, 0, 0.4)'}}>
 								<Chart
 									data={ this.state.chart }
@@ -98,7 +98,7 @@ export default class Dashboard extends Component {
 								/>  
 							</div>
 						</div>
-						<div className="col-4 px-1 text-center">
+						<div className="col-12 col-md-4 px-1 text-center mt-2 mt-md-0">
 							<div className="col-12 p-0 mb-1 dashboard-card-side">
 								<div className="overlay"></div>
 								<div style={{height:'180px'}} className="row mx-0 px-3 align-items-center">
