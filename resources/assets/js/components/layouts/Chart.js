@@ -64,6 +64,7 @@ export default class Chart extends Component {
 							    }],
 							    xAxes: [{
 							    	type:'time',
+							    	distribution: 'series',
 				                    time:{
 				                    	unit: displayUnit(this.state.active),
 				                        parser: displayParser(this.state.active),
