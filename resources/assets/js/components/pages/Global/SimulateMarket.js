@@ -99,7 +99,7 @@ export default class SimulateMarket extends Component {
 					<div className="col-11 col-md-10 col-lg-6 text-white content">
 						<Loader load={this.state.loader} /> 
 						<div className="row">
-							<div className="col-12 card-shadow bg-dark-primary pt-1 px-2 px-md-3 px-lg-5 pb-4 rounded">
+							<div className="col-12 card-shadow bg-dark-primary pt-1 px-3 px-lg-5 pb-4 rounded">
 								<div className="row">	
 									<div className="col-12 mb-3 text-center">	
 										<img className="mx-auto d-block w-auto" src={App.asset('img/loaders/globe.svg')} alt="" /> 	
