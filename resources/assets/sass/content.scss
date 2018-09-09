@@ -185,6 +185,10 @@ html::-webkit-scrollbar-thumb {
         display: none;
     }
     #content {
+        #dashboard .county-section{
+            background-image: none;
+        }
+        
         width: 100%;
         left: 0px;
         #carbon-reports {

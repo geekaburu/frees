@@ -11086,6 +11086,10 @@ html::-webkit-scrollbar-thumb {
     /*----------------Chart JS------------*/
   }
 
+  #content #dashboard .county-section {
+    background-image: none;
+  }
+
   #content #carbon-reports .side-selector {
     height: 150px !important;
   }

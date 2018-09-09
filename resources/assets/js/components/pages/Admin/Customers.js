@@ -138,16 +138,16 @@ export default class Customers extends Component {
     	return (
 			<div id="solar-panel" className="row m-0">
 				<Loader load={this.state.loader} />  
-				<div className="col-6 p-0 pr-1">
+				<div className="col-lg-6 col-12 px-0">
 					<div className="row">
 						<div className="col-12">
 							<Card header="Location" body={map} />
 						</div>
 					</div>
 				</div>
-				<div className="col-6">
+				<div className="col-lg-6 co-12 px-0 pl-lg-1 mt-2 mt-lg-0">
 					<div className="row">
-						<div className="col-12 p-0">
+						<div className="col-12">
 							<Card header="Customer Energy Collection" body={chart} />
 						</div>
 					</div>

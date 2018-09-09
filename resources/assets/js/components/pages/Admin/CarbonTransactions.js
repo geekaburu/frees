@@ -80,16 +80,16 @@ export default class CarbonTransactions extends Component {
 					<div className="row m-0">						
 						<div className="col-12 bg-dark-secondary text-white py-0">
 							<div className="row">
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Carbon Price: KES {parseFloat(this.state.upperBar.price).toFixed(2)}
 								</div>
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Energy: {parseFloat(this.state.upperBar.energy).toFixed(2)} KWh
 								</div>
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Credits: {parseFloat(this.state.upperBar.credits).toFixed(2)}
 								</div>
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Amount: KES {parseFloat(this.state.upperBar.amount).toFixed(2)}
 								</div>
 							</div> 
@@ -122,7 +122,7 @@ export default class CarbonTransactions extends Component {
 						/>
 					}
 				</div>
-				<div className="col-6 mt-1 pr-4">
+				<div className="col-12 col-lg-6 mt-1 pr-4">
 					<div className="row">
 						<div className="col-12 card-shadow py-3" style={{height:'300px'}}>
 							<Bar
@@ -144,7 +144,7 @@ export default class CarbonTransactions extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="col-6 mt-1">
+				<div className="col-12 col-lg-6 mt-1">
 					<div className="row">
 						<div className="col-12 card-shadow py-3" style={{height:'300px'}}>
 							<Bar

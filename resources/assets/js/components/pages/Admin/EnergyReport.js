@@ -196,7 +196,7 @@ export default class EnergyReport extends Component {
     			}  	
 				<form className="col-12 pt-2 pb-3 my-1 card-shadow search-bar">
 					<div className="row h-100 align-items-end m-0">
-						<div className="form-group col p-0 px-1 m-0">
+						<div className="form-group col-12 col-lg p-0 px-1 m-0">
 							<small className="font-weight-bold px-2">Choose County</small>
 							<Select
 						        value={this.state.filters.county}
@@ -207,7 +207,7 @@ export default class EnergyReport extends Component {
 						        placeholder="Select a County"
 						    />
 						</div>
-						<div className="form-group col p-0 px-1 m-0">
+						<div className="form-group col-12 col-lg p-0 px-1 m-0">
 							<small className="font-weight-bold px-2">Choose Customer</small>
 							<Select
 						        value={this.state.filters.customer}
@@ -218,7 +218,7 @@ export default class EnergyReport extends Component {
 						        placeholder="Select a Customer"
 						    />
 						</div>
-						<div className="form-group col p-0 px-1 m-0">
+						<div className="form-group col-12 col-lg p-0 px-1 m-0">
 							<small className="font-weight-bold px-2">From Date</small>
 							<Picker
 								id="start_date"
@@ -236,7 +236,7 @@ export default class EnergyReport extends Component {
 					            handleDateModification={this.handleDateChange}
 							/>
 						</div>
-						<div className="form-group col p-0 px-1 m-0">
+						<div className="form-group col-12 col-lg p-0 px-1 m-0">
 							<small className="font-weight-bold px-2">End Date</small>
 							<Picker
 								id="end_date"

@@ -36,7 +36,7 @@ export default class App extends Component {
 							{title:'My Solar Panels', link:'#', dropdown:[
 								{title:'Account', link:'/account'},
 							]},						
-						]} sidebarChange={this.handleSidebarToggle} />
+						]} />
 						<AppRoutes />						
 					</div>
 				</div>

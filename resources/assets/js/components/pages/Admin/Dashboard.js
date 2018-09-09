@@ -105,13 +105,13 @@ export default class Dashboard extends Component {
 						</div>
 					</div>
 					<div className="row mt-2">
-						<div className="col-12 card-shadow p-0 dashboard-card-side">
+						<div className="col-12 card-shadow p-0 dashboard-card-side county-section">
 							<div className="overlay"></div>
-							<div className="row p-5">
-								<div className="col-6">
+							<div className="row p-lg-5">
+								<div className="d-none d-lg-block col-lg-6">
 									<KenyanMap />
 								</div>
-								<div style={{height:'450px', overflowY:'scroll'}} className="col-6 pl-0">
+								<div style={{height:'420px', overflowY:'scroll'}} className="col-12 col-lg-6">
 									<table className="dashboard-table table table-bordered table-striped table-hover table-sm">
 										<thead className="thead-dark">
 											<tr>
@@ -159,7 +159,7 @@ export default class Dashboard extends Component {
 						</div>
 					</div>
 					<div className="row justify-content-center mt-2">
-						<div className="col-8 px-2">
+						<div className="col-12 col-md-8 px-2 mt-2 mt-md-0">
 							<div className="p-3" style={{boxShadow:'1px 1px 3px rgba(0, 0, 0, 0.4)'}}>
 								<Chart
 									data={ this.state.chart }
@@ -175,7 +175,7 @@ export default class Dashboard extends Component {
 								/>
 							</div>
 						</div>
-						<div className="col-4 px-1 text-center">
+						<div className="col-12 col-md-4 px-1 text-center mt-2 mt-md-0">
 							<div className="col-12 p-0 mb-1 dashboard-card-side">
 								<div className="overlay"></div>
 								<div style={{height:'180px'}} className="row mx-0 px-3 align-items-center">
