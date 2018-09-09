@@ -1,12 +1,12 @@
 // Application Name
-window.appName = process.env.MIX_APP_NAME;
+window.appName = document.head.querySelector('meta[name="app-name"]').content
 
 // Application URL
-window.appUrl = process.env.MIX_APP_URL;
+window.appUrl = document.head.querySelector('meta[name="app-url"]').content
 
 // Application Initials 
-var initials = window.appName.match(/\b\w/g) || [];
-window.appInitials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+var initials = window.appName.match(/\b\w/g) || []
+window.appInitials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase()
 
 // Fetch Duration
 window.fetchDuration = 3000
