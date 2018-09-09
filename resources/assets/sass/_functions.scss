@@ -11,10 +11,10 @@
 
 // Return a background image
 @function backgroundPath($resource) {
-	@return $assetPath + '/backgrounds/' + $resource;
+	@return '/img/backgrounds/' + $resource;
 }
 
 // Return a resource image
 @function resourcePath($resource) {
-	@return $assetPath + '/resources/' + $resource;
+	@return '/img/resources/' + $resource;
 }

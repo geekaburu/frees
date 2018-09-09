@@ -178,8 +178,8 @@ class SolarPanel extends Component {
 			<div style={{height:'450px'}} className="row text-center justify-content-center py-4">				
 				<div className="col-12 mb-3">
 					<div onChange={this.handleRadioChange}>						
-						<span className="mx-2"><input type="radio" value="search" name="mode" checked={this.state.controls.mode == 'search' ? true : false} /> Seach</span> 						
-						<span className="mx-2"><input type="radio" value="versatile" name="mode" checked={this.state.controls.mode == 'versatile' ? true : false} /> Versatile</span>						
+						<span className="mx-2"><input type="radio" value="search" name="mode" defaultChecked={this.state.controls.mode == 'search' ? true : false} /> Seach</span> 						
+						<span className="mx-2"><input type="radio" value="versatile" name="mode" defaultChecked={this.state.controls.mode == 'versatile' ? true : false} /> Versatile</span>						
 					</div>
 				</div>
 				<div className="col-12 col-md-7">
@@ -203,12 +203,8 @@ class SolarPanel extends Component {
 					</div>
 				</div>
 				<div className="col-8 m-0">
-					<div className="input-group my-3">
-						<div className="input-group-prepend">
-					    	<span className="input-group-text">Change Runtime in Minutes</span>
-					  	</div>
-					  	<input type="number" defaultValue={this.state.controls.runtime} onChange={this.handleRuntimeChange} className="form-control" />
-					</div>
+					<p className="font-weight-bold" style={{marginBottom:'-10px'}}>Runtime in Minutes</p>
+				  	<input type="number" defaultValue={this.state.controls.runtime} onChange={this.handleRuntimeChange} className="my-3 form-control" />
 				</div>
 				<div className="col-12">
 					<button className="btn btn-success" onClick={this.handleModeUpdate}>
