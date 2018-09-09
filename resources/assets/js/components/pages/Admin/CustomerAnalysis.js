@@ -180,16 +180,16 @@ export default class CustomerAnalysis extends Component {
 				<div className="row mx-0 mt-1">
 					<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
 						<div className="row">
-							<div className="col-12 col-lg text-center border py-3">
+							<div className="col-12 col-md-4 col-lg text-center border py-3">
 								<div className="w-100" style={{
-									    height: '120px'
-									}}>
+								    height: '120px'
+								}}>
 									<ReactSpeedometer
 										fluidWidth={true}
 										maxValue={10000}
 									  	value={parseInt(this.state.stats.energy)}
 									  	width={200}
-									  	height={200}
+									  	height={250}
 									  	needleColor="purple"
 									  	segments={5}
 									  	textColor="#fff"
@@ -201,16 +201,16 @@ export default class CustomerAnalysis extends Component {
 								</div>
 								<div className="col-12 pt-2">Energy</div>
 							</div>
-							<div className="col-12 col-lg text-center border pt-4 px-4 pb-3">
+							<div className="col-12 col-md-4 col-lg text-center border py-3">
 								<div className="w-100" style={{
-								    height: '140px'
+								    height: '120px'
 								}}>
 									<ReactSpeedometer
 										fluidWidth={true}
 										maxValue={20}
 									  	value={parseInt(this.state.stats.credits)}
 									  	width={200}
-									  	height={200}
+									  	height={250}
 									  	needleColor="green"
 									  	segments={5}
 									  	textColor="#fff"
@@ -222,16 +222,16 @@ export default class CustomerAnalysis extends Component {
 								</div>
 								<div className="col-12 pt-2">Credits</div>
 							</div>
-							<div className="col-12 col-lg text-center border pt-4 px-4 pb-3">
+							<div className="col-12 col-md-4 col-lg text-center border py-3">
 								<div className="w-100" style={{
-								    height: '140px'
+								    height: '120px'
 								}}>
 									<ReactSpeedometer
 										fluidWidth={true}
 										maxValue={30000}
 									  	value={parseInt(this.state.stats.amount)}
 									  	width={200}
-									  	height={200}
+									  	height={250}
 									  	needleColor="blue"
 									  	segments={5}
 									  	textColor="#fff"

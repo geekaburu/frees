@@ -91,16 +91,16 @@ export default class Dashboard extends Component {
 				<Loader load={this.state.loader} />  
 				<div className="col-12">
 					<div className="row justify-content-center">
-						<div className="col-12 col-md-3 pl-0 pr-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon='users' title='Number of Customers' text={this.state.cards ? this.state.cards.customers : 0} iconStyle='rgb(90, 178, 94)' />					
 						</div>
-						<div className="col-12 col-md-3 px-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon='burn' title='Energy this Year' text={`${parseFloat(this.state.cards ? this.state.cards.energy : 0.00).toFixed(2)} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
-						<div className="col-12 col-md-3 px-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon='credit-card' title='Credits this Year' text={parseFloat(this.state.cards ? this.state.cards.credits : 0.00).toFixed(2)}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
-						<div className="col-12 col-md-3 px-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${parseFloat(this.state.cards ? this.state.cards.amount : 0.00).toFixed(2)}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>
@@ -131,7 +131,7 @@ export default class Dashboard extends Component {
 						</div>
 					</div>
 					<div className="row justify-content-center">
-						<div className="col-12 col-md-3 pl-0 pr-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon='building' title='Highest County' text={
 								<div>
 									{this.state.highestCards.county.name}
@@ -141,7 +141,7 @@ export default class Dashboard extends Component {
 								</div>
 							} iconStyle='rgb(254, 161, 29)' />					
 						</div>
-						<div className="col-12 col-md-3 pl-0 pr-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon='trophy' title='Highest Customer' text={
 								<div>
 									{this.state.highestCards.customer.name}
@@ -151,15 +151,15 @@ export default class Dashboard extends Component {
 								</div>
 							}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
-						<div className="col-12 col-md-3 pl-0 pr-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon='calendar-plus' title='Highest Month' text={this.state.highestCards.month.month} iconStyle='rgb(90, 178, 94)' />
 						</div>
-						<div className="col-12 col-md-3 pl-0 pr-1">
+						<div className="col-12 col-md-6 col-lg-6 px-1">
 							<DashboardCard icon={['fab', 'react']} title='Highest Month Energy' text={`${parseFloat(this.state.highestCards.month.energy).toFixed(2)} Kwh`} iconStyle='rgb(17, 183, 204)' />					
 						</div>
 					</div>
-					<div className="row justify-content-center mt-2">
-						<div className="col-12 col-md-8 px-2 mt-2 mt-md-0">
+					<div className="row justify-content-center my-2">
+						<div className="col-12 col-lg-8 px-2 mt-2 mt-lg-0">
 							<div className="p-3" style={{boxShadow:'1px 1px 3px rgba(0, 0, 0, 0.4)'}}>
 								<Chart
 									data={ this.state.chart }
@@ -175,7 +175,7 @@ export default class Dashboard extends Component {
 								/>
 							</div>
 						</div>
-						<div className="col-12 col-md-4 px-1 text-center mt-2 mt-md-0">
+						<div className="col-12 col-lg-4 px-1 text-center mt-3 mt-lg-0">
 							<div className="col-12 p-0 mb-1 dashboard-card-side">
 								<div className="overlay"></div>
 								<div style={{height:'180px'}} className="row mx-0 px-3 align-items-center">

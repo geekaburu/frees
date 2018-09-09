@@ -180,17 +180,28 @@ html::-webkit-scrollbar-thumb {
     background-color: rgba(0,0,0,.5);
 }
 
+@media (max-width: 992px) {
+     #content {
+        #carbon-reports {
+            .side-selector {
+                height:200px !important;
+            }
+        }
+    }
+}
+
 @media (max-width: 768px) {
+    width: 100%;
+    left: 0px;
+
     .__react_component_tooltip {
         display: none;
     }
+    
     #content {
         #dashboard .county-section{
             background-image: none;
         }
-        
-        width: 100%;
-        left: 0px;
         #carbon-reports {
             .side-selector {
                 height:150px !important;

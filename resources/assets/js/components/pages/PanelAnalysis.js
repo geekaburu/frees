@@ -159,7 +159,7 @@ export default class PanelAnalysis extends Component {
 					<div className="row mx-0 mt-1">
 						<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
 							<div className="row">
-								<div className="col-12 col-lg text-center border py-3">
+								<div className="col-12 col-md-4 col-lg text-center border py-3">
 									<div className="w-100" style={{
 									    height: '120px'
 									}}>
@@ -180,7 +180,7 @@ export default class PanelAnalysis extends Component {
 									</div>
 									<div className="col-12">Avg Voltage</div>
 								</div>
-								<div className="col-12 col-lg text-center border py-3">
+								<div className="col-12 col-md-4 col-lg text-center border py-3">
 									<div className="w-100" style={{
 									    height: '120px'
 									}}>
@@ -201,7 +201,7 @@ export default class PanelAnalysis extends Component {
 									</div>
 									<div className="col-12">Avg Power</div>
 								</div>
-								<div className="col-12 col-lg text-center border py-3">
+								<div className="col-12 col-md-4 col-lg text-center border py-3">
 									<div className="w-100" style={{
 									    height: '120px'
 									}}>
@@ -222,7 +222,7 @@ export default class PanelAnalysis extends Component {
 									</div>
 									<div className="col-12">Energy</div>
 								</div>
-								<div className="col-12 col-lg text-center border py-3">
+								<div className="col-12 col-md-4 col-lg text-center border py-3">
 									<div className="w-100" style={{
 									    height: '120px'
 									}}>
@@ -243,7 +243,7 @@ export default class PanelAnalysis extends Component {
 									</div>
 									<div className="col-12">Credits</div>
 								</div>
-								<div className="col-12 col-lg text-center border py-3">
+								<div className="col-12 col-md-4 col-lg text-center border py-3">
 									<div className="w-100" style={{
 									    height: '120px'
 									}}>
