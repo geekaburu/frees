@@ -61,8 +61,8 @@ export default class PanelAnalysis extends Component {
     		this.setState({
 				loader:false,
 				chart: chart,
-    			panels: response.data.panels.map(function(e) { return e.id}),
-    			initialPanels: response.data.panels.map(function(e) { return e.id}),
+    			panels: this.state.panels.length == 0 ? response.data.panels.map(function(e) { return e.id}) : this.state.panels,
+    			initialPanels: this.state.initialPanels.length == 0 ? response.data.panels.map(function(e) { return e.id}) : this.state.initialPanels,
     			stats: response.data.stats,
     			activePanel: response.data.activePanel,
 			})

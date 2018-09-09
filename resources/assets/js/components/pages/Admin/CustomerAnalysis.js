@@ -70,8 +70,8 @@ export default class CustomerAnalysis extends Component {
     		this.setState({
 				loader:false,
 				chart: chart,
-    			customers: response.data.customers,
-    			initialCustomers: response.data.customers,
+    			customers: this.state.customers.length == 0 ?  response.data.customers : this.state.customers,
+    			initialCustomers: this.state.initialCustomers.length == 0 ?  response.data.customers : this.state.initialCustomers,
     			stats: response.data.stats,
     			activeCustomer: response.data.activeCustomer,
 			})
