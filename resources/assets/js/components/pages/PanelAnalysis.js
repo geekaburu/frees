@@ -116,13 +116,13 @@ export default class PanelAnalysis extends Component {
 									Energy Collected : {this.state.stats.energy} kWh
 								</div>
 								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
-									{ this.state.filter == 'all' ? (<span></span>) : (<span>Voltage : {this.state.activePanel.voltage}V</span>)}
+									{ this.state.filter == 'all' ? (<span>N/A</span>) : (<span>Voltage : {this.state.activePanel.voltage}V</span>)}
 								</div>
 								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
-									{ this.state.filter == 'all' ? (<span></span>) : (<span>Power : {this.state.activePanel.power}w</span>)}
+									{ this.state.filter == 'all' ? (<span>N/A</span>) : (<span>Power : {this.state.activePanel.power}w</span>)}
 								</div>
 								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
-									{ this.state.filter == 'all' ? (<span></span>) : (<span>Active From : {(new Date(this.state.activePanel.created_at)).toLocaleDateString('en-GB')}</span>)}
+									{ this.state.filter == 'all' ? (<span>N/A</span>) : (<span>Active From : {(new Date(this.state.activePanel.created_at)).toLocaleDateString('en-GB')}</span>)}
 								</div>
 							</div>
 						</div>
