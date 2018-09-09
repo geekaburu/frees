@@ -181,6 +181,9 @@ html::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 768px) {
+    .__react_component_tooltip {
+        display: none;
+    }
     #content {
         width: 100%;
         left: 0px;

@@ -270,10 +270,10 @@ class SolarPanel extends Component {
     			{/* Begining of the page */}
 				<div className="col-12">
 					<div className="row">
-						<div className="col-12 col-lg-9 p-0 pr-lg-1 mt-1">
+						<div className="col-12 col-lg-9 p-0 pr-lg-1">
 							<Card header="Location" body={map} />
 						</div>
-						<div className="col-12 col-lg-3 p-0 mt-1">
+						<div className="col-12 col-lg-3 p-0">
 							<Card header="Current Conditions" body={conditions}/>
 						</div>
 						<div className="col-12">
