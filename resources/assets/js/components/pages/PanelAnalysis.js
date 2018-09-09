@@ -13,11 +13,13 @@ export default class PanelAnalysis extends Component {
         this.state = {
             chart: { datasets:[], labels:[], filter:'month'},
             panels: [],
+            initialPanels:[],
             activePanel:'',
             filter: this.props.match.params.number,
             stats: '',
         }
         this.handleFilterValue = this.handleFilterValue.bind(this)
+        this.handleSearch = this.handleSearch.bind(this)
         this.fetchData = this.fetchData.bind(this)
     }
 
@@ -60,6 +62,7 @@ export default class PanelAnalysis extends Component {
 				loader:false,
 				chart: chart,
     			panels: response.data.panels.map(function(e) { return e.id}),
+    			initialPanels: response.data.panels.map(function(e) { return e.id}),
     			stats: response.data.stats,
     			activePanel: response.data.activePanel,
 			})
@@ -69,6 +72,14 @@ export default class PanelAnalysis extends Component {
     			this.props.history.push('/login')
     		}
     	})			
+	}
+
+	handleSearch(event){
+		var panels= this.state.initialPanels
+		panels = panels.filter( panel => {
+			return panel == event.target.value
+		})
+		this.setState({panels})	    
 	}
 
 	handleFilterValue(value){
@@ -98,6 +109,7 @@ export default class PanelAnalysis extends Component {
 			<div id="carbon-reports" className="row m-0">
 				<Loader load={this.state.loader} /> 
 				<div className="col-12 col-lg-2 bg-dark-primary panel-nav-bar px-0 mb-1" style={{ boxShadow: '1px 2px 2px rgba(0, 0, 0, 0.7)' }}>	
+					<input placeholder="Search" type="text" className="w-100 form-control rounded-0" onChange={this.handleSearch}/>	
 					<div className="side-selector bg-dark-primary">
 						<div className="row">
 							<NavLink className="col-12 py-2 px-0 border-white border-bottom text-white" to={`/panel-analysis/panels/all`}>
