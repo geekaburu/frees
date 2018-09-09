@@ -10,7 +10,6 @@ class Navbar extends Component {
             price: 0.00,
             user: {},
         }
-        this.toggleSidebar = this.toggleSidebar.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
         this.fetchData = this.fetchData.bind(this);
     }
@@ -47,12 +46,6 @@ class Navbar extends Component {
 	    this.props.history.push('/login')
     }	
 
-	toggleSidebar() {
-		const currentState = this.state.active;
-		this.setState({ active: !currentState }, () => {
-			return this.props.sidebarChange(currentState)
-        }); 
-    };
     render() {
     	const elements = this.props.elements.map((element) =>
     		element.dropdown ? (
@@ -81,10 +74,6 @@ class Navbar extends Component {
     		<div>	
 				<nav className="navbar navbar-expand-lg navbar-light bg-white mb-2 p-2 border-none rounded-0">
 	                <div className="container-fluid">
-	                    <button type="button" id="sidebarCollapse" className="btn btn-success btn-sm" onClick={this.toggleSidebar}>
-		                    <FontAwesomeIcon icon="align-justify" size="lg" className="mr-2" />
-	                        <span>Toggle Sidebar</span>
-	                    </button>
 	                    <button className="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	                    	<FontAwesomeIcon icon="align-justify" size="lg" className="mr-2" />
 	                    </button>

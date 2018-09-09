@@ -10208,13 +10208,19 @@ a.text-dark:focus {
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.side-container {
+  z-index: 1;
+}
+
 #sidebar {
   background-image: url("/img/backgrounds/5.jpg");
   background-position: center 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #04212f !important;
-  width: 20%;
+  opacity: 0.99;
+  min-width: 200px;
+  max-width: 200px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   transition: all 0.3s;
@@ -10235,9 +10241,17 @@ a.text-dark:focus {
   transition: all 0.3s;
 }
 
+#sidebar .bar-toggle {
+  cursor: pointer;
+}
+
+#sidebar .bar-toggle:hover {
+  color: #28a745 !important;
+}
+
 #sidebar.active {
-  min-width: 60px;
-  max-width: 60px;
+  min-width: 50px;
+  max-width: 50px;
   text-align: center;
 }
 
@@ -10279,7 +10293,8 @@ a.text-dark:focus {
   text-align: left;
 }
 
-#sidebar .sidebar-header {
+#sidebar .sidebar-header,
+#sidebar .side-container {
   background: #04212f !important;
 }
 
@@ -10333,24 +10348,12 @@ ul ul a {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
-  #sidebar {
-    min-width: 80px;
-    max-width: 80px;
-    text-align: center;
-    margin-left: -80px;
-    position: fixed;
-  }
-
   #sidebar.active {
     margin-left: 0 !important;
-  }
-
-  #sidebar .sidebar-header h6 {
-    display: none;
-  }
-
-  #sidebar .sidebar-header strong {
-    display: block;
+    min-width: 40px;
+    max-width: 40px;
+    text-align: center;
+    margin-left: -40px;
   }
 
   #sidebar ul li a {
@@ -10424,19 +10427,12 @@ html::-webkit-scrollbar-thumb {
 }
 
 #content {
-  width: 80%;
-  position: relative;
-  left: 20%;
+  width: 100%;
   min-height: 100vh;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   /*----------------Solar panel page------------*/
   /*----------------Carbon Report page------------*/
-}
-
-#content.active {
-  width: 95%;
-  left: 60px;
 }
 
 #content .line {
@@ -10516,6 +10512,12 @@ html::-webkit-scrollbar-thumb {
 
 #content #solar-panel .card-header {
   background-color: #04212f !important;
+}
+
+#content #carbon-reports .side-selector {
+  height: 550px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #content #carbon-reports .panel-nav-bar a:hover {
@@ -10600,7 +10602,16 @@ html::-webkit-scrollbar-thumb {
   #content {
     width: 100%;
     left: 0px;
-    position: absolute;
+    /*----------------Chart JS------------*/
+  }
+
+  #content #carbon-reports .side-selector {
+    height: 150px !important;
+  }
+
+  #content .chart-filters {
+    width: 250px;
+    overflow: auto;
   }
 }
 

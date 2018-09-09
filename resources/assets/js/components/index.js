@@ -12,8 +12,8 @@ import SimulateMarket from './pages/Global/SimulateMarket'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faTachometerAlt, faAlignJustify, faSun, faGlobe, faNewspaper, faShoppingBasket, faQrcode, faCreditCard, faBurn, faMoneyBillAlt, faUserClock, faHandHoldingUsd, faUsers, faChartLine, faSuitcase, faEye, faUser, faTrophy, faBuilding, faCalendarPlus} from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faTachometerAlt, faAlignJustify, faSun, faGlobe, faNewspaper, faShoppingBasket, faQrcode, faCreditCard, faBurn, faMoneyBillAlt, faUserClock, faHandHoldingUsd, faUsers, faChartLine, faSuitcase, faEye, faUser, faTrophy, faBuilding, faCalendarPlus)
+import { faTachometerAlt, faAlignJustify, faSun, faGlobe, faNewspaper, faShoppingBasket, faQrcode, faCreditCard, faBurn, faMoneyBillAlt, faUserClock, faHandHoldingUsd, faUsers, faChartLine, faSuitcase, faEye, faUser, faTrophy, faBuilding, faCalendarPlus, faArrowAltCircleRight, faArrowAltCircleLeft, faTimesCircle} from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faTachometerAlt, faAlignJustify, faSun, faGlobe, faNewspaper, faShoppingBasket, faQrcode, faCreditCard, faBurn, faMoneyBillAlt, faUserClock, faHandHoldingUsd, faUsers, faChartLine, faSuitcase, faEye, faUser, faTrophy, faBuilding, faCalendarPlus, faArrowAltCircleRight, faArrowAltCircleLeft, faTimesCircle)
 
 // Handle the main app
 if (document.getElementById('app')) {

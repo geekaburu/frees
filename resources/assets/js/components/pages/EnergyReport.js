@@ -150,7 +150,7 @@ export default class EnergyReport extends Component {
     			}  	
 				<form className="col-12 pt-2 pb-3 my-1 card-shadow search-bar">
 					<div className="row h-100 align-items-end m-0">
-						<div className="form-group col p-0 px-1 m-0">
+						<div className="form-group col-12 col-lg p-0 px-1 m-0">
 							<small className="font-weight-bold px-2">Choose Panel</small>
 							<Select
 						        value={this.state.filters.options}
@@ -162,7 +162,7 @@ export default class EnergyReport extends Component {
 						        defaultValue={{label:this.props.match.params.id == 'all' ? 'All Panels' : `Panel #${this.props.match.params.id}`, value:this.props.match.params.id}}
 						    />
 						</div>
-						<div className="form-group col p-0 px-1 m-0">
+						<div className="form-group col-12 col-lg p-0 px-1 m-0">
 							<small className="font-weight-bold px-2">From Date</small>
 							<Picker
 								id="start_date"
@@ -180,7 +180,7 @@ export default class EnergyReport extends Component {
 					            handleDateModification={this.handleDateChange}
 							/>
 						</div>
-						<div className="form-group col p-0 px-1 m-0">
+						<div className="form-group col-12 col-lg p-0 px-1 m-0">
 							<small className="font-weight-bold px-2">End Date</small>
 							<Picker
 								id="end_date"

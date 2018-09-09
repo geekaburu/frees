@@ -4,6 +4,21 @@ import { NavLink } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip'
 
 export default class Sidebar extends Component {
+	constructor(props) {
+        super(props);
+        this.state = {
+            active: true,
+        }
+        this.toggleSidebar = this.toggleSidebar.bind(this);
+    }
+
+    // Toggle the sidebar
+    toggleSidebar() {
+		this.setState({ 
+			active: !this.state.active 
+		}); 
+    };
+
     render() {
     	const elements = this.props.elements.map((element) =>
     		element.collapse ? (
@@ -33,10 +48,12 @@ export default class Sidebar extends Component {
 	        )
     	)
     	return (
-    		<div>	
+    		<div className="side-container">	
     			<ReactTooltip id="sidebar" place="top" data-border={true} className="bg-success text-white font-weight-bold" effect="solid"/>
-				<nav id="sidebar" className={`text-white position-fixed h-100 ${this.props.active ? 'active' : ''}`}>
+				<nav id="sidebar" className={`text-white h-100 position-fixed ${this.state.active ? 'active' : ''}`}>
 		            <div className="sidebar-header px-2 py-3">
+		            	{!this.state.active && <FontAwesomeIcon icon='times-circle' size="lg" className="bar-toggle text-white mt-0 mb-3" onClick={this.toggleSidebar}/>}
+		            	{this.state.active && <FontAwesomeIcon icon='arrow-alt-circle-right' size="lg" className="bar-toggle text-white mt-0 mb-3" onClick={this.toggleSidebar}/>}		            		
 		                <h6 className="m-0 text-white font-weight-bold text-uppercase"><NavLink exact to='/'>{this.props.title}</NavLink></h6>
 		                <strong><NavLink exact to='/'>{this.props.shortname}</NavLink></strong>
 		            </div>

@@ -88,16 +88,16 @@ export default class Pricing extends Component {
 					<div className="row m-0">						
 						<div className="col-12 bg-dark-secondary text-white py-0">
 							<div className="row">
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Carbon Price Today: KES {parseFloat(this.state.upperBar.price).toFixed(2)}
 								</div>
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Carbon Rate Today: 1Cr/{this.state.upperBar.rate} kWh
 								</div>
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Average Price: KES {parseFloat(this.state.upperBar.avgPrice).toFixed(2)}
 								</div>
-								<div className="col border border-white py-2 font-weight-bold">
+								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
 									Average Rate: 1Cr/{parseFloat(this.state.upperBar.avgRate).toFixed(2)} kWh
 								</div>
 							</div> 

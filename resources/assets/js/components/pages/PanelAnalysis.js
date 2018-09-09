@@ -97,8 +97,8 @@ export default class PanelAnalysis extends Component {
     	return (
 			<div id="carbon-reports" className="row m-0">
 				<Loader load={this.state.loader} /> 
-				<div className="col-2 bg-dark-primary panel-nav-bar px-0" style={{ boxShadow: '1px 2px 2px rgba(0, 0, 0, 0.7)' }}>	
-					<div style={{height:'550px', overflowY:'auto', overflowX:'hidden'}} className="bg-dark-primary">
+				<div className="col-12 col-lg-2 bg-dark-primary panel-nav-bar px-0 mb-1" style={{ boxShadow: '1px 2px 2px rgba(0, 0, 0, 0.7)' }}>	
+					<div className="side-selector bg-dark-primary">
 						<div className="row">
 							<NavLink className="col-12 py-2 px-0 border-white border-bottom text-white" to={`/panel-analysis/panels/all`}>
 								<FontAwesomeIcon icon="qrcode" size="lg" className="mr-2" />
@@ -108,20 +108,20 @@ export default class PanelAnalysis extends Component {
 						{panels}					
 					</div>
 				</div>
-				<div className="col-10 p-0 pl-2">
+				<div className="col-12 col-lg-10 p-0 pl-lg-2">
 					<div className="row mx-0">
 						<div className="col-12 card-shadow">
 							<div className="row">
-								<div className="col-3 py-2 text-white bg-dark-secondary border border-white">
+								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
 									Energy Collected : {this.state.stats.energy} kWh
 								</div>
-								<div className="col-3 py-2 text-white bg-dark-secondary border border-white">
+								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
 									{ this.state.filter == 'all' ? (<span></span>) : (<span>Voltage : {this.state.activePanel.voltage}V</span>)}
 								</div>
-								<div className="col-3 py-2 text-white bg-dark-secondary border border-white">
+								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
 									{ this.state.filter == 'all' ? (<span></span>) : (<span>Power : {this.state.activePanel.power}w</span>)}
 								</div>
-								<div className="col-3 py-2 text-white bg-dark-secondary border border-white">
+								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
 									{ this.state.filter == 'all' ? (<span></span>) : (<span>Active From : {(new Date(this.state.activePanel.created_at)).toLocaleDateString('en-GB')}</span>)}
 								</div>
 							</div>

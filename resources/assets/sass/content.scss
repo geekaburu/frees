@@ -28,17 +28,10 @@ html::-webkit-scrollbar-thumb {
 }
 
 #content {
-    width: 80%;
-    position: relative;
-    left: 20%;
+    width: 100%;
     min-height: 100vh;
     transition: all 0.3s;
 
-    &.active {
-    	width: 95%;
-    	left: 60px;
-    }
-    
     .line {
         height: 1px;
         border-bottom: 1px dashed #ddd;
@@ -99,8 +92,14 @@ html::-webkit-scrollbar-thumb {
         }
     }
 
-     /*----------------Carbon Report page------------*/
+    
+    /*----------------Carbon Report page------------*/
     #carbon-reports {
+        .side-selector {
+            height:550px;
+            overflow-y:auto; 
+            overflow-x:hidden;
+        }
         .panel-nav-bar a:hover{
             text-decoration: none;
             background-color: #1f3946 !important;
@@ -185,6 +184,16 @@ html::-webkit-scrollbar-thumb {
     #content {
         width: 100%;
         left: 0px;
-        position: absolute;
+        #carbon-reports {
+            .side-selector {
+                height:150px !important;
+            }
+        }
+        /*----------------Chart JS------------*/
+        .chart-filters {
+            width: 250px;
+            overflow: auto;
+        }
+
     }
 }

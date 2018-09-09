@@ -33,13 +33,13 @@ export default class Chart extends Component {
     		</span>
     	))
     	return (
-			<div style={{height: '100%'}} className="row text-center justify-content-center px-3">		
-				<div className="col-12 text-right">	
-					<div className="btn-group btn-group-sm text-right mt-1 mb-2" role="group" aria-label="Filters">
+			<div style={{height: '100%'}} className="row text-center justify-content-center px-2">		
+				<div className="col-12 text-right px-0">	
+					<div className="btn-group btn-group-sm text-right mt-1 mb-2 chart-filters" role="group" aria-label="Filters">
 						{filters}
 					</div>
 				</div>	
-				<div className="col-12 my-0">
+				<div className="col-12 my-0 px-0">
 					<Bar
 						data={ this.props.data }
 						width={ 100 }
