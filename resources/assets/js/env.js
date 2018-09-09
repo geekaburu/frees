@@ -1,8 +1,8 @@
 // Application Name
-window.appName = document.head.querySelector('meta[name="app-name"]').content;
+window.appName = process.env.MIX_APP_NAME;
 
 // Application URL
-window.appUrl = document.head.querySelector('meta[name="app-url"]').content
+window.appUrl = process.env.MIX_APP_URL;
 
 // Application Initials 
 var initials = window.appName.match(/\b\w/g) || [];
