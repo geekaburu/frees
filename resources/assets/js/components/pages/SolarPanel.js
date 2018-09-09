@@ -264,10 +264,8 @@ class SolarPanel extends Component {
 			<div id="solar-panel" className="row m-0">
 				{/* Include loader and alert boxes */}
 				<Loader load={this.state.loader} />  
-				{ this.state.alert.display ? 
-					(
-    					<Alert backdrop ='static' keyboard={false} focus={true} show={true} title={this.state.alert.title} body={this.state.alert.body} type={this.state.alert.type} dismissModal={this.handleModalDismiss} />
-		    		) : null
+				{ this.state.alert.display && 
+    				<Alert backdrop ='static' keyboard={false} focus={true} show={true} title={this.state.alert.title} body={this.state.alert.body} type={this.state.alert.type} dismissModal={this.handleModalDismiss} />
     			}  		
     			{/* Begining of the page */}
 				<div className="col-12">
@@ -278,7 +276,7 @@ class SolarPanel extends Component {
 						<div className="col-12 col-lg-3 p-0 mt-1">
 							<Card header="Current Conditions" body={conditions}/>
 						</div>
-						<div className="col-12 mt-1">
+						<div className="col-12">
 							<div className="row">
 								<div className="col-12 col-lg-6 p-0 pr-lg-1 mt-1">
 									<Card header="Solar Panel Configurations Control" body={mode} />
@@ -288,7 +286,7 @@ class SolarPanel extends Component {
 								</div>
 							</div>
 						</div>
-						<div id="panels" className="col-12 mt-1">
+						<div id="panels" className="col-12">
 							<div className="row">
 								<div className="col-12 p-0 mt-1">
 									<Card header="Solar Panel Data this Month" body={ datatable }/>
