@@ -27,7 +27,8 @@ export default class DataTable extends Component {
 
 		// Create datatable elements
 		table = this.$el.DataTable({
-			scrollY: this.props.scrollY,
+			scrollY: this.props.scrollY ? this.props.scrollY : true,
+			scrollX: this.props.scrollX ? this.props.scrollX : true,
 			data: this.props.data,
 			columns: this.props.columns,
 			order:this.props.order,
