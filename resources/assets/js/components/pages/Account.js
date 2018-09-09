@@ -148,7 +148,7 @@ export default class Account extends Component {
     					<Alert backdrop ='static' keyboard={false} focus={true} show={true} title={this.state.alert.title} body={this.state.alert.body} type={this.state.alert.type} dismissModal={this.handleModalDismiss} />
 		    		) : null
     			}  	
-    			<div className="col-8 pt-3 card-shadow">
+    			<div className="col-12 col-lg-8 mb-2 pt-3 card-shadow">
     				<div className="row">
 						<form name="profile" className="col-12" onSubmit={this.handleSubmit} encType="multipart/form-data">	    
 					        <div className="row">
@@ -208,7 +208,7 @@ export default class Account extends Component {
 					    </form>		  			
     				</div>
     			</div>
-    			<div className="col-4 text-center mt-5">
+    			<div className="col-12 col-lg-4 text-center mt-5">
     				<div className="row mt-2 justify-content-center">	
     					<div className="col-11 profile-card card-shadow py-3 rounded">
     						<div className="row justify-content-center">
