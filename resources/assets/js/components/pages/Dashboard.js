@@ -68,16 +68,16 @@ export default class Dashboard extends Component {
 				<Loader load={this.state.loader} />  
 				<div className="col-12 px-4">
 					<div className="row justify-content-center">
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='qrcode' title='Number of Panels' text={this.state.cards ? this.state.cards.panels : 0}  iconStyle='rgb(90, 178, 94)' />				
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='burn' title='Energy this Year' text={`${parseFloat(this.state.cards ? this.state.cards.energy : 0.00).toFixed(2)} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='credit-card' title='Credits this Year' text={parseFloat(this.state.cards ? this.state.cards.credits : 0.00).toFixed(2)}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${parseFloat(this.state.cards ? this.state.cards.amount : 0.00).toFixed(2)}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>

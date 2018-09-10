@@ -91,16 +91,16 @@ export default class Dashboard extends Component {
 				<Loader load={this.state.loader} />  
 				<div className="col-12">
 					<div className="row justify-content-center">
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='users' title='Number of Customers' text={this.state.cards ? this.state.cards.customers : 0} iconStyle='rgb(90, 178, 94)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='burn' title='Energy this Year' text={`${parseFloat(this.state.cards ? this.state.cards.energy : 0.00).toFixed(2)} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='credit-card' title='Credits this Year' text={parseFloat(this.state.cards ? this.state.cards.credits : 0.00).toFixed(2)}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${parseFloat(this.state.cards ? this.state.cards.amount : 0.00).toFixed(2)}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>
@@ -108,10 +108,10 @@ export default class Dashboard extends Component {
 						<div className="col-12 card-shadow p-0 dashboard-card-side county-section">
 							<div className="overlay"></div>
 							<div className="row p-lg-5">
-								<div className="col-12 col-lg-6 d-none d-lg-block">
+								<div className="col-12 col-lg-3 d-none d-lg-block">
 									<KenyanMap />
 								</div>
-								<div style={{height:'420px', overflowY:'scroll'}} className="col-12 col-lg-6">
+								<div style={{height:'420px', overflowY:'scroll'}} className="col-12 col-lg-3">
 									<table className="dashboard-table table table-bordered table-striped table-hover table-sm">
 										<thead className="thead-dark">
 											<tr>
@@ -131,7 +131,7 @@ export default class Dashboard extends Component {
 						</div>
 					</div>
 					<div className="row justify-content-center">
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='building' title='Highest County' text={
 								<div>
 									{this.state.highestCards.county.name}
@@ -141,7 +141,7 @@ export default class Dashboard extends Component {
 								</div>
 							} iconStyle='rgb(254, 161, 29)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='trophy' title='Highest Customer' text={
 								<div>
 									{this.state.highestCards.customer.name}
@@ -151,10 +151,10 @@ export default class Dashboard extends Component {
 								</div>
 							}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon='calendar-plus' title='Highest Month' text={this.state.highestCards.month.month} iconStyle='rgb(90, 178, 94)' />
 						</div>
-						<div className="col-12 col-md-6 col-lg-6 px-1">
+						<div className="col-12 col-md-6 col-lg-3 px-1">
 							<DashboardCard icon={['fab', 'react']} title='Highest Month Energy' text={`${parseFloat(this.state.highestCards.month.energy).toFixed(2)} Kwh`} iconStyle='rgb(17, 183, 204)' />					
 						</div>
 					</div>
