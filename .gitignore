@@ -14,4 +14,3 @@ yarn-error.log
 env.h
 out.log
 /public/.htaccess
-/resources/assets/sass/_env.scss
