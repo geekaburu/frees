@@ -178,8 +178,8 @@ export default class CustomerAnalysis extends Component {
 					</div>
 				</div>
 				<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
-					<div className="row justify-content-center">
-						<div className="col-12 col-md-4 col-lg-3 text-center border py-3">
+					<div className="row justify-content-center align-items-center">
+						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
 							<div className="w-100" style={{
 							    height: '120px'
 							}}>
@@ -200,7 +200,7 @@ export default class CustomerAnalysis extends Component {
 							</div>
 							<div className="col-12 pt-2">Energy</div>
 						</div>
-						<div className="col-12 col-md-4 col-lg-3 text-center border py-3">
+						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
 							<div className="w-100" style={{
 							    height: '120px'
 							}}>
@@ -221,7 +221,7 @@ export default class CustomerAnalysis extends Component {
 							</div>
 							<div className="col-12 pt-2">Credits</div>
 						</div>
-						<div className="col-12 col-md-4 col-lg-3 text-center border py-3">
+						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
 							<div className="w-100" style={{
 							    height: '120px'
 							}}>
@@ -242,7 +242,7 @@ export default class CustomerAnalysis extends Component {
 							</div>
 							<div className="col-12 pt-2">Value</div>
 						</div>
-						<div className="col-12 col-md-4 col-lg-3 text-center border py-3">
+						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
 							{this.state.activeCustomer !='all' && 
 							<div>
 								<table className="table table-sm table-bordered table-hover w-100">
