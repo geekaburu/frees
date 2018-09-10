@@ -108,10 +108,10 @@ export default class Dashboard extends Component {
 						<div className="col-12 card-shadow p-0 dashboard-card-side county-section">
 							<div className="overlay"></div>
 							<div className="row p-lg-5">
-								<div className="col-12 col-lg-3 d-none d-lg-block">
+								<div className="col-12 col-lg-6 d-none d-lg-block">
 									<KenyanMap />
 								</div>
-								<div style={{height:'420px', overflowY:'scroll'}} className="col-12 col-lg-3">
+								<div style={{height:'420px', overflowY:'scroll'}} className="col-12 col-lg-6">
 									<table className="dashboard-table table table-bordered table-striped table-hover table-sm">
 										<thead className="thead-dark">
 											<tr>
