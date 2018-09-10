@@ -96,7 +96,7 @@ html::-webkit-scrollbar-thumb {
     /*----------------Carbon Report page------------*/
     #carbon-reports {
         .side-selector {
-            height:450px;
+            max-height:350px;
             overflow-y:auto; 
             overflow-x:hidden;
         }
