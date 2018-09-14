@@ -19,8 +19,7 @@ class PanelController extends Controller
         // Update the current angle of the panels
         PanelControl::where('user_id', $panelData->panel->user->id)->update([
             'angle' => $panelData->angle
-        ])
-
+        ]);
 
 		// Update location information for the user if latitude and longitude have been availed
 		if($request->has('latitude') && $request->has('longitude')){
