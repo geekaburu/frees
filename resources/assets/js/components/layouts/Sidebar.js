@@ -39,7 +39,7 @@ export default class Sidebar extends Component {
 	                </ul>
 	            </li>
 	        ) : (
-	        	<li data-for="sidebar" data-tip={element.title} key={element.title}>
+	        	<li onClick={() => !this.state.active ? this.setState({active:true}) : null } data-for="sidebar" data-tip={element.title} key={element.title}>
 	    			<NavLink exact to={element.link}>
 	                    <FontAwesomeIcon icon={element.icon} size="lg" className="mr-2 text-success" />
 	                    <span>{element.title}</span>
