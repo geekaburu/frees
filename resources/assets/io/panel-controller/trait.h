@@ -1,5 +1,5 @@
-int mode = 2;
-int runtime = 15; // Runtime in seconds
+int mode = 1;
+int runtime = 7; // Runtime in seconds
 
 class SolarPanel {
     public:

@@ -1,5 +1,6 @@
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
+import Echo from "laravel-echo"
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12,11 +13,13 @@ try {
     require('bootstrap');
 } catch (e) {}
 
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'd6c51594469d76d0e8f4',
+    cluster: 'ap2',
+    encrypted: true
+});
 
 // Import the authentication service
 import AuthService from './resources/AuthService'

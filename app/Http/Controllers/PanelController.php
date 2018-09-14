@@ -7,13 +7,15 @@ use App\County;
 use App\PanelData;
 use App\CarbonPrice;
 use Illuminate\Http\Request;
+use App\Events\EnergyUpdated;
 
 class PanelController extends Controller
 {
     public function receivePanelData(Request $request)
     {
       	// Create a panel data entry
-		PanelData::create($request->all());
+		$panelData = PanelData::create($request->all());
+        broadcast(new MessageSent($panelData))->toOthers();
 
 		// Update location information for the user if latitude and longitude have been availed
 		if($request->has('latitude') && $request->has('longitude')){

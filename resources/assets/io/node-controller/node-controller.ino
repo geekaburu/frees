@@ -18,7 +18,7 @@
 // **********************************************************
 // WiFI Parameters
 char* ssid = "Gichira";
-char* password = "kaburu1234";
+char* password = "kaburu123";
 
 // Google API parameters
 const char* geolocationHost = "www.googleapis.com";

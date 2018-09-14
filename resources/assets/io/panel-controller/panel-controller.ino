@@ -70,7 +70,6 @@ void loop() {
 
             int totalIntensity = analogRead(LDRPin1) + analogRead(LDRPin2);
             voltage = analogRead(voltagePin) / 1023.0 * 5.0 * 2.0;
-            Serial.println(panel.intensity);
 
             if (panel.intensity < totalIntensity ) {
                 panel.intensity = totalIntensity;
@@ -103,8 +102,6 @@ void loop() {
                 Serial.println(LDR2);
                 delay(50);
 
-                delay(5000);
-
                 // Check the stronger intesity
                 if (LDR1 < 20 && LDR2 < 20) {
                     servo.write(0);
@@ -130,7 +127,6 @@ void loop() {
     }
 
     servo.write(panel.position);
-    Serial.println((String)panel.position + "Degrees");
     delay(1000);
 
     // -------------------------------------------------------
