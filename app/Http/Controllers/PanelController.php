@@ -17,7 +17,7 @@ class PanelController extends Controller
 		$panelData = PanelData::create($request->all());
 
         // Update the current angle of the panels
-        PanelControl::where('user_id', $panelData->panel->user->id)->update([
+        PanelControl::where('user_id', $panelData->panel()->first()->user()->first()->id)->update([
             'angle' => $panelData->angle
         ]);
 
