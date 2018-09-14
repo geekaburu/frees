@@ -7,7 +7,6 @@ use App\County;
 use App\PanelData;
 use App\CarbonPrice;
 use Illuminate\Http\Request;
-use App\Events\EnergyUpdated;
 
 class PanelController extends Controller
 {
@@ -15,7 +14,6 @@ class PanelController extends Controller
     {
       	// Create a panel data entry
 		$panelData = PanelData::create($request->all());
-        broadcast(new EnergyUpdated($panelData));
 
 		// Update location information for the user if latitude and longitude have been availed
 		if($request->has('latitude') && $request->has('longitude')){

@@ -11,6 +11,6 @@
 |
 */
 
-Broadcast::channel('private-energy-data', function ($user) {
-  return Auth::check();
+Broadcast::channel('App.User.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
 });

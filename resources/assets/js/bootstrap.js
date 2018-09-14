@@ -13,13 +13,14 @@ try {
     require('bootstrap');
 } catch (e) {}
 
-
+/*
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'd6c51594469d76d0e8f4',
     cluster: 'ap2',
     encrypted: true
 });
+*/
 
 // Import the authentication service
 import AuthService from './resources/AuthService'
