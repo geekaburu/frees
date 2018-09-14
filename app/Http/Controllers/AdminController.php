@@ -240,8 +240,8 @@ class AdminController extends Controller
         ])->get();
 
         foreach ($data as $item) {
-            $item->county = PanelData::findOrFail($item->id)->panel->user->location->county;
-            $item->customer = PanelData::findOrFail($item->id)->panel->user->name;
+            $item->county = PanelData::findOrFail($item->id)->panel()->first()->user->first()->location()->first()->county;
+            $item->customer = PanelData::findOrFail($item->id)->panel()->first()->user->first()->name;
         }
 
         return response([
