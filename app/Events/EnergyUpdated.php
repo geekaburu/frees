@@ -15,16 +15,16 @@ class EnergyUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $data;
+    public $panelData;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(PanelData $data)
+    public function __construct(PanelData $panelData)
     {
-        $this->data = $data;
+        $this->panelData = $panelData;
     }
 
     /**
