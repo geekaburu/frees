@@ -9,7 +9,7 @@ var initials = window.appName.match(/\b\w/g) || []
 window.appInitials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase()
 
 // Fetch Duration
-window.fetchDuration = 3000
+window.fetchDuration = 5000
 
 // Declare axios defaults
 window.axios.defaults.baseURL = window.appUrl
