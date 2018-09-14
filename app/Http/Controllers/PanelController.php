@@ -15,7 +15,7 @@ class PanelController extends Controller
     {
       	// Create a panel data entry
 		$panelData = PanelData::create($request->all());
-        broadcast(new MessageSent($panelData));
+        broadcast(new EnergyUpdated($panelData));
 
 		// Update location information for the user if latitude and longitude have been availed
 		if($request->has('latitude') && $request->has('longitude')){
