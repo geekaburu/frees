@@ -54,7 +54,6 @@ export default class EnergyReport extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps)
 		this.setState({
 			filters: {
 				customer: {
