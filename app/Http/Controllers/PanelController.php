@@ -6,6 +6,7 @@ use App\Panel;
 use App\County;
 use App\PanelData;
 use App\CarbonPrice;
+use App\PanelControl;
 use Illuminate\Http\Request;
 
 class PanelController extends Controller
@@ -14,6 +15,12 @@ class PanelController extends Controller
     {
       	// Create a panel data entry
 		$panelData = PanelData::create($request->all());
+
+        // Update the current angle of the panels
+        PanelControl::where('user_id', $panelData->panel->user->id)->update([
+            'angle' => $panelData->angle
+        ])
+
 
 		// Update location information for the user if latitude and longitude have been availed
 		if($request->has('latitude') && $request->has('longitude')){
