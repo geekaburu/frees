@@ -10,3 +10,7 @@
 | used to check if an authenticated user can listen to the channel.
 |
 */
+
+Broadcast::channel('private-energy-data', function ($user) {
+  return Auth::check();
+});
