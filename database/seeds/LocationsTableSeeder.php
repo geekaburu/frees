@@ -21,15 +21,13 @@ class LocationsTableSeeder extends Seeder
                 'longitude' => $faker->longitude($min = 34, $max = 38),
             ];
 
-            dd($this->getCounty($coordinates));
+            // Get the county represented by the coordinates
+            $county = App\County::where('name', $this->getCounty($coordinates))->first();
 
-            // // Get the county represented by the coordinates
-            // $county = App\County::where('name', $this->getCounty($coordinates))->first();
-
-            // // Create a new location
-            // App\Location::create(array_merge([
-            //     'county_id'	=> $county ? $county->id : 0,
-            // ], $coordinates));
+            // Create a new location
+            App\Location::create(array_merge([
+                'county_id'	=> $county ? $county->id : 0,
+            ], $coordinates));
         }
     }
 }
