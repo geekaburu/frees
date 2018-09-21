@@ -18,7 +18,7 @@ class LocationsTableSeeder extends Seeder
             // Get coordinates
             $coordinates = [
                 'latitude' => $faker->latitude($min = -1, $max = 2),
-                'longitude' => $faker->longitude($min = 34, $max = 38),
+                'longitude' => $faker->longitude($min = 35, $max = 38),
             ];
 
             // Get the county represented by the coordinates
