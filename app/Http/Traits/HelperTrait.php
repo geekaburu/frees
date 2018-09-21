@@ -23,10 +23,9 @@ trait HelperTrait
 	    if($filter == 'live'){
 	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::today());
 	    	array_push($parameters, DB::raw('panel_data.created_at as label'));
-	    	return $chartData->orderBy('panel_data.created_at', 'desc')->select($parameters)->groupBy('label')->take(5)->get();
 	    } else if($filter == 'today'){
 	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::today());
-	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%H') as label"));
+	    	array_push($parameters, DB::raw("date_add(0, interval floor(to_seconds(timestamp) / (30 * 60)) second) as label"));
 	    } else if($filter == 'week'){
 	    	$chartData = $data->whereBetween('panel_data.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
 	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%D %M') as label"));
