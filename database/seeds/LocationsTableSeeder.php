@@ -14,6 +14,7 @@ class LocationsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        App\Location::truncate();
         foreach (App\User::all() as $user) {
             // Get coordinates
             $coordinates = [

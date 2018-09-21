@@ -17,7 +17,6 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->double('latitude');
             $table->double('longitude');
-            $table->string('town')->nullable();
             $table->integer('county_id')->default(0);
             $table->timestamps();
         });
