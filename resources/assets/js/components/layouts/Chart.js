@@ -70,7 +70,7 @@ export default class Chart extends Component {
 				                        parser: displayParser(this.state.active),
 				                        tooltipFormat: 'll',
 				                    },
-				                    ticks: this.setTickValue(this.state.active)
+				                    ticks: this.setTickValue(this.state.active),
 					            	scaleLabel: {
 							        	display: true,
 							        	labelString: this.props.axesLabels.xAxes,
