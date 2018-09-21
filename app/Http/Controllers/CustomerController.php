@@ -84,7 +84,7 @@ class CustomerController extends Controller
 	    // Return a json response with the data
     	return response()->json([
 			'locationData' => $locationData,
-			'controls' => $user->panelControls()->first(['mode', 'runtime', 'angle']),
+			'controls' => $user->panelControls()->first(['angle']),
 			'conditions' => $user->panelData()->orderBy('panel_data.created_at', 'desc')->first(['panel_data.voltage','panel_data.power','panel_data.energy']),
 			'chart' => [
 				'data' => $this->generateChartData($user->panelData(), $request->chart_filter),
