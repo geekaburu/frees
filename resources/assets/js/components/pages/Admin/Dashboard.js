@@ -172,7 +172,7 @@ export default class Dashboard extends Component {
 									activeFilter = 'live'
 									title = 'A Graph of Energy Against Time'
 									ticks = {{
-										autoSkip: true,
+										autoSkip: false,
 								        maxTicksLimit: 5
 								    }}
 									axesLabels = {{
