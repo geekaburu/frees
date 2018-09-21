@@ -13,8 +13,6 @@ class PanelControlsTableSeeder extends Seeder
     {
         App\PanelControl::create([
             'user_id' => 2,
-            'runtime' => 15,
-            'mode' => 'search',
             'angle' => 90,
         ]);
     }

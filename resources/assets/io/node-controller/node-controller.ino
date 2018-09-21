@@ -69,9 +69,8 @@ void loop() {
                 // -------------------------------------------------------
                 // Get the logitude and latitude if location is requested
                 // -------------------------------------------------------
-                if(location) {
+                if(location % 50 == 0) {
                     response = postRequest(geolocationHost, geolocationPage, geolocationKey, "{\n\n}");
-                    Serial.println(response);
                     delay(500);
                     JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
                     latitude = root["location"]["lat"];
@@ -94,6 +93,7 @@ void loop() {
                 Serial.println("Connection completed...");
                 Serial.println("---------------------------------------------\n");
                 buffer = "";
+                location ++;
             } else {
                 buffer += NodeSerial.readString();
             }

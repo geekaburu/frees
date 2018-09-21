@@ -9,7 +9,7 @@ class Location extends Model
     protected $table = 'locations';
     protected $appends = ['county']; 
     protected $fillable = [
-		'county_id','longitude','latitude','town'
+		'county_id','longitude','latitude'
     ];
 
     public function getCountyAttribute(){

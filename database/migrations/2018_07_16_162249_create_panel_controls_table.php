@@ -16,10 +16,7 @@ class CreatePanelControlsTable extends Migration
         Schema::create('panel_controls', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('mode');
-            $table->integer('runtime');
             $table->float('angle');
-            $table->boolean('location_request');
             $table->timestamps();
         });
     }

@@ -27,7 +27,6 @@ class LocationsTableSeeder extends Seeder
             // Create a new location
             App\Location::create(array_merge([
                 'county_id'	=> $county ? $county->id : 0,
-                'town'      => 'Random',
             ], $coordinates));
         }
     }

@@ -8,7 +8,7 @@ class PanelControl extends Model
 {
 	protected $table = 'panel_controls'; 
     protected $fillable = [
-		'user_id','runtime','location','mode'
+		'user_id','angle'
     ];
 
     // Find the user that owns a panel control

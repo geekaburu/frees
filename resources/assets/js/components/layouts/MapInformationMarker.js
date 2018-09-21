@@ -39,11 +39,7 @@ export default class MapInformationMarker extends Component {
 	                    			<td>{this.props.data.county}</td>	                    			
 	                    		</tr>
 	                    		<tr>
-	                    			<th>Town</th>
-	                    			<td>{this.props.data.town}</td>	                    			
-	                    		</tr>
-	                    		<tr>
-	                    			<th>Energy so Far</th>
+	                    			<th>Energy This Year</th>
 	                    			<td>{parseFloat(this.props.data.energy).toFixed(2)} Kwh</td>	                    			
 	                    		</tr>
 	                    	</tbody>	                    	

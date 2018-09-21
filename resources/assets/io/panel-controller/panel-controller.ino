@@ -47,7 +47,7 @@ void loop() {
     float voltage = 0.0;
     float totalVoltage = 0;
     int voltageCounter = 0;
-    int voltageLoops = runtime / 0.5;
+    int voltageLoops = runtime;
     
     int chk = dht.read11(dhtPin);
 
@@ -87,7 +87,7 @@ void loop() {
         Serial.println(voltage);
         totalVoltage += voltage;
         voltageCounter++;
-        delay(500);
+        delay(1000);
     }
 
     // -------------------------------------------------------
