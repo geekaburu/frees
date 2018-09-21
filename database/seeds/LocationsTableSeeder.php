@@ -14,7 +14,6 @@ class LocationsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        App\Location::truncate();
         foreach (App\User::all() as $user) {
             // Get coordinates
             $coordinates = [
@@ -22,13 +21,15 @@ class LocationsTableSeeder extends Seeder
                 'longitude' => $faker->longitude($min = 34, $max = 38),
             ];
 
-            // Get the county represented by the coordinates
-            $county = App\County::where('name',$this->getCounty($coordinates))->first();
+            dd($this->getCounty($coordinates));
 
-            // Create a new location
-            App\Location::create(array_merge([
-                'county_id'	=> $county ? $county->id : 0,
-            ], $coordinates));
+            // // Get the county represented by the coordinates
+            // $county = App\County::where('name', $this->getCounty($coordinates))->first();
+
+            // // Create a new location
+            // App\Location::create(array_merge([
+            //     'county_id'	=> $county ? $county->id : 0,
+            // ], $coordinates));
         }
     }
 }
