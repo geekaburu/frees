@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Line,Bar } from 'react-chartjs-2'
 import { NavLink } from 'react-router-dom';
-import { displayUnit, displayParser } from '../../resources/ChartHelper'
+import { displayUnit, displayParser, setTickValue } from '../../resources/ChartHelper'
 
 export default class Chart extends Component {
 	constructor(props) {
@@ -70,7 +70,7 @@ export default class Chart extends Component {
 				                        parser: displayParser(this.state.active),
 				                        tooltipFormat: 'll',
 				                    },
-				                    ticks: this.props.ticks,
+				                    ticks: this.setTickValue(this.state.active)
 					            	scaleLabel: {
 							        	display: true,
 							        	labelString: this.props.axesLabels.xAxes,

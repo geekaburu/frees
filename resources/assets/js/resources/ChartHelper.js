@@ -59,3 +59,12 @@ export function displayParser(filter){
 	}
 	return formats[filter]
 }
+
+export function setTickValue(filter){
+	return filter == 'live' ? {
+		autoSkip: true,
+		maxTicksLimit: 5
+	} :  {
+		autoSkip: false,
+	}  
+}
