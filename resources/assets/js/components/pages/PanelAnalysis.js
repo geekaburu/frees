@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ReactSpeedometer from 'react-d3-speedometer'
 import { NavLink, Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Chart from '../layouts/Chart'
 import Loader from '../layouts/Loader';
@@ -144,7 +143,7 @@ export default class PanelAnalysis extends Component {
 							<Chart
 								data={ this.state.chart }
 								width={ 100 }
-								height={ 350 }
+								height={ 370 }
 								title='Energy Collection against Time'
 								axesLabels = {{
 									yAxes:'Energy in kWh',
@@ -160,109 +159,24 @@ export default class PanelAnalysis extends Component {
 						<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
 							<div className="row">
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
-									<div className="w-100" style={{
-									    height: '120px'
-									}}>
-										<ReactSpeedometer
-											fluidWidth={true}
-											maxValue={6}
-										  	value={parseFloat(this.state.stats.voltage)}
-										  	width={200}
-										  	height={250}
-										  	needleColor="rgb(220, 53, 69)"
-										  	segments={5}
-										  	textColor="#fff"
-										  	needleTransitionDuration={4000}
-										  	needleTransition="easeElastic"
-										  	currentValueText={String(this.state.stats.voltage)}
-										  	ringWidth={40}
-										/>
-									</div>
-									<div className="col-12">Avg Voltage</div>
+									<h3 className="font-weight-bold text-success"> {this.state.stats.voltage} <small style={{fontSize:'9pt'}}>v</small></h3>
+									<div className="col-12 font-weight-bold">Avg Voltage</div>
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
-									<div className="w-100" style={{
-									    height: '120px'
-									}}>
-										<ReactSpeedometer
-											fluidWidth={true}
-											maxValue={1.5}
-										  	value={parseFloat(this.state.stats.power)}
-										  	width={200}
-										  	height={250}
-										  	needleColor="rgb(23, 162, 184)"
-										  	segments={5}
-										  	textColor="#fff"
-										  	needleTransitionDuration={4000}
-										  	needleTransition="easeElastic"
-										  	currentValueText={String(this.state.stats.power)}
-										  	ringWidth={40}
-										/>
-									</div>
-									<div className="col-12">Avg Power</div>
+									<h3 className="font-weight-bold text-success"> {this.state.stats.power} <small style={{fontSize:'9pt'}}>w</small></h3>
+									<div className="col-12 font-weight-bold">Avg Power</div>
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
-									<div className="w-100" style={{
-									    height: '120px'
-									}}>
-										<ReactSpeedometer
-											fluidWidth={true}
-											maxValue={5000}
-										  	value={parseFloat(this.state.stats.energy)}
-										  	width={200}
-										  	height={250}
-										  	needleColor="purple"
-										  	segments={5}
-										  	textColor="#fff"
-										  	needleTransitionDuration={4000}
-										  	needleTransition="easeElastic"
-										  	currentValueText={String(this.state.stats.energy)}
-										  	ringWidth={40}
-										/>
-									</div>
-									<div className="col-12">Energy</div>
+									<h3 className="font-weight-bold text-success"> {this.state.stats.energy} <small style={{fontSize:'9pt'}}>kWh</small></h3>
+									<div className="col-12 font-weight-bold">Energy</div>
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
-									<div className="w-100" style={{
-									    height: '120px'
-									}}>
-										<ReactSpeedometer
-											fluidWidth={true}
-											maxValue={5}
-										  	value={parseFloat(this.state.stats.credits)}
-										  	width={200}
-										  	height={250}
-										  	needleColor="green"
-										  	segments={5}
-										  	textColor="#fff"
-										  	needleTransitionDuration={4000}
-										  	needleTransition="easeElastic"
-										  	currentValueText={String(this.state.stats.credits)}
-										  	ringWidth={40}
-										/>
-									</div>
-									<div className="col-12">Credits</div>
+									<h3 className="font-weight-bold text-success"> {this.state.stats.credits} </h3>
+									<div className="col-12 font-weight-bold">Credits</div>
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
-									<div className="w-100" style={{
-									    height: '120px'
-									}}>
-										<ReactSpeedometer
-											fluidWidth={true}
-											maxValue={12000}
-										  	value={parseFloat(this.state.stats.amount)}
-										  	width={200}
-										  	height={250}
-										  	needleColor="blue"
-										  	segments={5}
-										  	textColor="#fff"
-										  	needleTransitionDuration={4000}
-										  	needleTransition="easeElastic"
-										  	currentValueText={String(this.state.stats.amount)}
-										  	ringWidth={40}
-										/>
-									</div>
-									<div className="col-12">Value</div>
+									<h3 className="font-weight-bold text-success"> {this.state.stats.amount} <small style={{fontSize:'9pt'}}>KES</small></h3>
+									<div className="col-12 font-weight-bold">Value</div>
 								</div>
 							</div>
 						</div>

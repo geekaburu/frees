@@ -162,7 +162,7 @@ export default class CustomerAnalysis extends Component {
 								<Chart
 									data={ this.state.chart }
 									width={ 100 }
-									height={ 287 }
+									height={ 370 }
 									filters={[{label: 'Live', value:'live'},{label: 'Today', value:'today'}, {label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 									activeFilter='month'
 									handleFilterValue={this.handleFilterValue}
@@ -177,100 +177,65 @@ export default class CustomerAnalysis extends Component {
 					</div>
 				</div>
 				<div className="col-12 mt-1 bg-dark-secondary text-white card-shadow">
-					<div className="row justify-content-center align-items-center">
-						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={10000}
-								  	value={parseInt(this.state.stats.energy)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="purple"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.energy.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={45}
-								/>
+					<div className="row align-items-center">
+						<div className="col-12 col-md-4 col-lg text-center p-0">
+							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
+								<div className="col-12 py-0">
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.energy).toFixed(2)} <small style={{fontSize:'9pt'}}>kWh</small></h3>
+									<div className="col-12 font-weight-bold">Energy</div>
+								</div>
 							</div>
-							<div className="col-12 pt-2">Energy</div>
 						</div>
-						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={20}
-								  	value={parseInt(this.state.stats.credits)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="green"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.credits.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={45}
-								/>
+						<div className="col-12 col-md-4 col-lg text-center border-left p-0">
+							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
+								<div className="col-12 py-0">
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.credits).toFixed(2)} </h3>
+									<div className="col-12 font-weight-bold">Credits</div>
+								</div>
 							</div>
-							<div className="col-12 pt-2">Credits</div>
 						</div>
-						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
-							<div className="w-100" style={{
-							    height: '120px'
-							}}>
-								<ReactSpeedometer
-									fluidWidth={true}
-									maxValue={30000}
-								  	value={parseInt(this.state.stats.amount)}
-								  	width={200}
-								  	height={250}
-								  	needleColor="blue"
-								  	segments={5}
-								  	textColor="#fff"
-								  	needleTransitionDuration={4000}
-								  	needleTransition="easeElastic"
-								  	currentValueText={String(this.state.stats.amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits:2 }))}
-								  	ringWidth={45}
-								/>
+						<div className="col-12 col-md-4 col-lg text-center border-left p-0">
+							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
+								<div className="col-12 py-0">
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.amount).toFixed(2)} <small style={{fontSize:'9pt'}}>KES</small></h3>
+									<div className="col-12 font-weight-bold">Value</div>
+								</div>
 							</div>
-							<div className="col-12 pt-2">Value</div>
 						</div>
-						<div className="col-12 col-md-4 col-lg-3 text-center border-left border-right py-3">
-							{this.state.activeCustomer !='all' && 
-							<div>
-								<table className="table table-sm table-bordered table-hover w-100">
-								    <tbody>
-								    	<tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Name</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.name}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Email</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.email}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Phone Number</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.phone_number}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">County</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.location.county}</td>
-								        </tr>
-								    </tbody>
-								</table>
+						<div className="col-12 col-md-4 col-lg text-center border-left p-0">
+							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
+								<div className="col-12 py-0">
+									{this.state.activeCustomer !='all' && 
+									<div>
+										<table className="table table-sm table-hover w-100 m-0 p-0">
+										    <tbody>
+										    	<tr>
+										            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Name</th>
+										            <td className="text-left pl-2">{this.state.activeCustomer.name}</td>
+										        </tr>
+										        <tr>
+										            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Email</th>
+										            <td className="text-left pl-2">{this.state.activeCustomer.email}</td>
+										        </tr>
+										        <tr>
+										            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Phone Number</th>
+										            <td className="text-left pl-2">{this.state.activeCustomer.phone_number}</td>
+										        </tr>
+										        <tr>
+										            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">County</th>
+										            <td className="text-left pl-2">{this.state.activeCustomer.location.county}</td>
+										        </tr>
+										    </tbody>
+										</table>
+									</div>
+									}
+									{this.state.activeCustomer =='all' && 
+										<div className="text-center">
+											<h4>Click on Customer Name to View More</h4>
+										</div>	
+									}
+								</div>
 							</div>
-							}
-							{this.state.activeCustomer =='all' && 
-								<div className="text-center">
-									<h4>Click on Customer Name to View More</h4>
-								</div>	
-							}
 						</div>
 					</div>
 				</div>
