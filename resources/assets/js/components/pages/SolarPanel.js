@@ -19,7 +19,7 @@ class SolarPanel extends Component {
             alert:{ display:false, type:'', title:'' ,body:'' },
             conditions:'',
             controls:{
-            	angle:0
+            	angle: 0
             },
             chart: { datasets:[], labels:[], filter:'month' },
             panels: '',

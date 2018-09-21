@@ -23,6 +23,7 @@ trait HelperTrait
 	    if($filter == 'live'){
 	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::today());
 	    	array_push($parameters, DB::raw('panel_data.created_at as label'));
+	    	return $chartData->orderBy('panel_data.created_at', 'asc')->select($parameters)->groupBy('label')->take(5)->get();
 	    } else if($filter == 'today'){
 	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::today());
 	    	array_push($parameters, DB::raw("FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(panel_data.created_at) / (15*60)) * (15*60)) as label"));
