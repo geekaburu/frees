@@ -162,12 +162,16 @@ export default class Dashboard extends Component {
 						<div className="col-12 col-lg-8 px-2 mt-2 mt-lg-0">
 							<div className="p-3" style={{boxShadow:'1px 1px 3px rgba(0, 0, 0, 0.4)'}}>
 								<Chart
-									data={ this.state.chart }
-									height={ 300 }
-									handleFilterValue={this.handleFilterValue}
-									filters={[{label: 'Live', value:'live'}]}
-									activeFilter='live'
-									title='A Graph of Energy Against Time'
+									data = { this.state.chart }
+									height = { 300 }
+									handleFilterValue = {this.handleFilterValue}
+									filters = {[{label: 'Live', value:'live'}]}
+									activeFilter = 'live'
+									title = 'A Graph of Energy Against Time'
+									ticks = {
+								        autoSkip: true,
+								        maxTicksLimit: 5
+								    }
 									axesLabels = {{
 										yAxes:'Energy in kWh',
 										'xAxes': 'Time'
