@@ -18,7 +18,6 @@ export default class CustomerAnalysis extends Component {
             activeCustomer:{
             	location:{
             		county:'',
-            		town:'',
             	}
             },
             filter: this.props.match.params.number,
@@ -262,10 +261,6 @@ export default class CustomerAnalysis extends Component {
 								        <tr>
 								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">County</th>
 								            <td className="text-left pl-2">{this.state.activeCustomer.location.county}</td>
-								        </tr>
-								        <tr>
-								            <th scope="row" className="bg-dark-primary text-white pl-2 font-weight-normal">Town</th>
-								            <td className="text-left pl-2">{this.state.activeCustomer.location.town}</td>
 								        </tr>
 								    </tbody>
 								</table>
