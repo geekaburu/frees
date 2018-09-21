@@ -22,6 +22,7 @@ SoftwareSerial ArduinoSerial(RXPin, TXPin);
 // **********************************************************
 dht dht;
 Servo servo;
+int runtime = 15;
 SolarPanel panel;
 
 // **********************************************************
@@ -30,7 +31,6 @@ SolarPanel panel;
 void setup() {
     Serial.begin(115200);
     ArduinoSerial.begin(9600);
-
     servo.attach(servoPin);
     pinMode(LDRPin1, INPUT);
     pinMode(LDRPin2, INPUT);
@@ -50,9 +50,6 @@ void loop() {
     int voltageLoops = runtime / 0.5;
     
     int chk = dht.read11(dhtPin);
-    int position = 0;
-    int eastAngle = 0;
-    int nightIntensity = 150;
 
     panel.position = 0.00;
     panel.power = 0.00;
@@ -63,71 +60,23 @@ void loop() {
     // -------------------------------------------------------
     // Handle versatile mode of the panel
     // -------------------------------------------------------
-    if (mode == 1) {
-        for (int angle = 0; angle <= 180; angle += 18) {
-            servo.write(angle);
-            delay(500);
+    for (int angle = 0; angle <= 180; angle += 18) {
+        servo.write(angle);
+        delay(500);
 
-            int totalIntensity = analogRead(LDRPin1) + analogRead(LDRPin2);
-            voltage = analogRead(voltagePin) / 1023.0 * 5.0 * 2.0;
+        int totalIntensity = analogRead(LDRPin1) + analogRead(LDRPin2);
+        voltage = analogRead(voltagePin) / 1023.0 * 5.0 * 2.0;
 
-            if (panel.intensity < totalIntensity ) {
-                panel.intensity = totalIntensity;
-                panel.position = angle;
-                panel.voltage = voltage;
-            }
-            Serial.println("Current Angle: " + (String) angle + " | Current Intensity: " +  (String)totalIntensity + " | Current Voltage: " + (String)voltage);
+        if (panel.intensity < totalIntensity ) {
+            panel.intensity = totalIntensity;
+            panel.position = angle;
+            panel.voltage = voltage;
         }
+        Serial.println("Current Angle: " + (String) angle + " | Current Intensity: " +  (String)totalIntensity + " | Current Voltage: " + (String)voltage);
     }
 
-    // -------------------------------------------------------
-    // Handle search mode of the panel
-    // -------------------------------------------------------
-    if (mode == 2) {
-        servo.write(90);
-        int counter = 0;
-        int previousPosition = 0;
-
-        while (true) {
-            if (counter == 100) {
-                panel.intensity = analogRead(LDRPin1) + analogRead(LDRPin2) ;
-                panel.position = position;
-                break;
-            } else {
-                int LDR1 = analogRead(LDRPin1);
-                Serial.println(LDR1);
-                delay(50);
-
-                int LDR2 = analogRead(LDRPin2);
-                Serial.println(LDR2);
-                delay(50);
-
-                // Check the stronger intesity
-                if (LDR1 < 20 && LDR2 < 20) {
-                    servo.write(0);
-                    delay(50);
-                } else {
-                    int diff = LDR1 - LDR2;
-                    if (diff > 50) position--; else if (diff < (-1) * 50) position++;
-                }
-
-                // Handle extreme angle increases or decreases
-                if (position >= 170) position = 170; else if (position <= 10) position = 10;
-                if (previousPosition == position) {
-                    if (counter < 0) counter = 0;
-                    counter++;
-                }
-
-                // Write new positions to the servo
-                previousPosition = position;
-                servo.write(position);
-                Serial.println("Position: " + (String)position);
-            }
-        }
-    }
-
+    // Write the current position 
     servo.write(panel.position);
-    delay(1000);
 
     // -------------------------------------------------------
     // Collect voltage readings...

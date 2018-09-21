@@ -1,6 +1,3 @@
-int mode = 1;
-int runtime = 7; // Runtime in seconds
-
 class SolarPanel {
     public:
         float power = 0.00;
@@ -60,46 +57,46 @@ JsonObject& getConfigurations() {
 // **********************************************************
 //  Receive settings
 // **********************************************************
-void set() {
-    mode = 0;
-    runtime = 0;
-    while (mode == 0 || runtime == 0) {
-        JsonObject& root = getConfigurations();
-        mode = root["m"];
-        runtime = root["r"];
-        Serial.println(mode);
-        Serial.println(runtime);
-        delay(1000);
-    }
-}
+// void set() {
+//     mode = 0;
+//     runtime = 0;
+//     while (mode == 0 || runtime == 0) {
+//         JsonObject& root = getConfigurations();
+//         mode = root["m"];
+//         runtime = root["r"];
+//         Serial.println(mode);
+//         Serial.println(runtime);
+//         delay(1000);
+//     }
+// }
 
 // **********************************************************
 //  Check for serial request
 // **********************************************************
-int checkSerial() {
-    Serial.println("Checking Serial for incoming connection....");
-    String buffer = "";
-    while (ArduinoSerial.available() > 0) {
-        if (ArduinoSerial.read() == '\n') {
-            Serial.print(buffer);
-        } else {
-            int oldMode = mode;
-            int oldRuntime = runtime;
-            buffer += ArduinoSerial.readString();
-            JsonObject& root = parseJson(JSON_OBJECT_SIZE(2) + 10 + 10, buffer);
-            mode = root["m"];
-            runtime = root["r"];
-            if(mode == 0 || runtime == 0) {
-                mode = oldMode;
-                runtime = oldRuntime;
-                return 0;
-            } else if(mode == oldMode || runtime == oldRuntime ) return 0; 
-            Serial.println((String) mode + " " + (String) runtime);
-            return 1;
-        }
-    }
-    return 0;
-}
+// int checkSerial() {
+//     Serial.println("Checking Serial for incoming connection....");
+//     String buffer = "";
+//     while (ArduinoSerial.available() > 0) {
+//         if (ArduinoSerial.read() == '\n') {
+//             Serial.print(buffer);
+//         } else {
+//             int oldMode = mode;
+//             int oldRuntime = runtime;
+//             buffer += ArduinoSerial.readString();
+//             JsonObject& root = parseJson(JSON_OBJECT_SIZE(2) + 10 + 10, buffer);
+//             mode = root["m"];
+//             runtime = root["r"];
+//             if(mode == 0 || runtime == 0) {
+//                 mode = oldMode;
+//                 runtime = oldRuntime;
+//                 return 0;
+//             } else if(mode == oldMode || runtime == oldRuntime ) return 0; 
+//             Serial.println((String) mode + " " + (String) runtime);
+//             return 1;
+//         }
+//     }
+//     return 0;
+// }
 
 // **********************************************************
 //  Generate JSON for Serial

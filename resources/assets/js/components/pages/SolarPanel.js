@@ -122,7 +122,6 @@ class SolarPanel extends Component {
     handleModeUpdate(){
     	this.setState({loader:true})
     	axios.post('api/customers/update-controls', {	
-    		mode:this.state.controls.mode,
     		runtime:this.state.controls.runtime,
     	})
     	.then((response) => {
@@ -175,16 +174,10 @@ class SolarPanel extends Component {
 
     	// Creating the mode control section
 		const mode = (
-			<div style={{height:'450px'}} className="row text-center justify-content-center py-4">				
-				<div className="col-12 mb-3">
-					<div onChange={this.handleRadioChange}>						
-						<span className="mx-2"><input type="radio" value="search" name="mode" defaultChecked={this.state.controls.mode == 'search' ? true : false} /> Seach</span> 						
-						<span className="mx-2"><input type="radio" value="versatile" name="mode" defaultChecked={this.state.controls.mode == 'versatile' ? true : false} /> Versatile</span>						
-					</div>
-				</div>
-				<div className="col-12 col-md-7">
+			<div style={{height:'450px'}} className="row text-center justify-content-center py-4 align-items-center">				
+				<div className="col-11 col-md-9">
 					<div className="w-100" style={{
-					    height: '220px'
+					    height: '300px'
 					}}>
 						<ReactSpeedometer
 							fluidWidth={true}
@@ -197,19 +190,11 @@ class SolarPanel extends Component {
 						  	textColor="black"
 						  	needleTransitionDuration={4000}
 						  	needleTransition="easeElastic"
-						  	currentValueText={`Position: ${this.state.controls.angle} Deg`}
+						  	currentValueText=''
 						  	ringWidth={40}
 						/>
 					</div>
-				</div>
-				<div className="col-8 m-0">
-					<p className="font-weight-bold" style={{marginBottom:'-10px'}}>Runtime in Minutes</p>
-				  	<input type="number" defaultValue={this.state.controls.runtime} onChange={this.handleRuntimeChange} className="my-3 form-control" />
-				</div>
-				<div className="col-12">
-					<button className="btn btn-success" onClick={this.handleModeUpdate}>
-						Update Controls
-					</button>
+					<h4 className="font-weight-bold">Current Position : <span className="text-success">{this.state.controls.angle} Degrees</span> </h4>
 				</div>
 			</div>
 		)
@@ -279,7 +264,7 @@ class SolarPanel extends Component {
 						<div className="col-12">
 							<div className="row">
 								<div className="col-12 col-lg-6 p-0 pr-lg-1 mt-1">
-									<Card header="Solar Panel Configurations Control" body={mode} />
+									<Card header="Solar Panel Angle" body={mode} />
 								</div>
 								<div className="col-12 col-lg-6 p-0 mt-1">
 									<Card header="Energy Readings" body={chart}  />
