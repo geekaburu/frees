@@ -212,7 +212,7 @@ export default class EnergyReport extends Component {
 								footer: true,
 			        			pageSize: 'A4',
 			        			orientation: 'landscape',
-			        			title: 'Bruuuuh',
+			        			title: `Panel Energy Data Analysis as at ${moment().format('dddd, MMMM Do YYYY')}`,
 			        			columns: ':visible',
 			        			image: App.asset(`img/icon/icon.png`),
 							}}
