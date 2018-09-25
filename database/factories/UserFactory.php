@@ -31,7 +31,7 @@ $factory->define(App\PanelData::class, function (Faker $faker) {
         'power' => ($faker->numberBetween($min = 1, $max = 12))/10, 
         'energy' => ($faker->numberBetween($min = 1, $min = 200))/10, 
         'runtime' => $faker->numberBetween($min = 10, $max = 20), 
-        'created_at' => $faker->dateTimeBetween($startDate = '2018-07-01 00:00:00', $endDate = 'now', $timezone = null),
+        'created_at' => $faker->dateTimeBetween($startDate = '2017-07-01 00:00:00', $endDate = '2017-12-01 00:00:00', $timezone = null),
     ];
 });
 
