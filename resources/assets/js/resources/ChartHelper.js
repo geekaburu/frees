@@ -65,6 +65,7 @@ export function setTickValue(filter){
 		autoSkip: true,
 		maxTicksLimit: 5
 	} :  {
-		autoSkip: false,
+		autoSkip: true,
+		maxTicksLimit: 20,
 	}  
 }
