@@ -117,8 +117,17 @@ export default class Customers extends Component {
 						? <DataTable 
 							data={this.state.panels.data}
 							columns={this.state.panels.columns}
-							searching={false} 
-							withFooter={true} 
+							searching={ false } 
+							withFooter={ true } 
+							print = {{
+								footer: true,
+			        			pageSize: 'A4',
+			        			orientation: 'landscape',
+			        			title: 'Customer Credit Data this Month',
+			        			columns: ':visible',
+			        			image: App.asset(`img/icon/icon.png`),
+							}}
+							columnVisibility = { true } 
 							defs={[
 								{
 					                'render': function ( data, type, row ) {

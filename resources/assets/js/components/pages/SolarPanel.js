@@ -208,7 +208,16 @@ class SolarPanel extends Component {
 							data={this.state.panels.data}
 							columns={this.state.panels.columns}
 							order = {[[ 1, 'desc' ]]}
-							searching={false} 
+							searching={ false }
+							print = {{
+								footer: true,
+			        			pageSize: 'A4',
+			        			orientation: 'landscape',
+			        			title: 'Solar Panel Data this Month',
+			        			columns: ':visible',
+			        			image: App.asset(`img/icon/icon.png`),
+							}}
+							columnVisibility = { true } 
 							defs={[{
 				                'render': function ( data, type, row ) {
 				                    return parseFloat(data).toFixed(2);

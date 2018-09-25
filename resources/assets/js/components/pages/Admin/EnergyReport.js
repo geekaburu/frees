@@ -263,7 +263,16 @@ export default class EnergyReport extends Component {
 							sumColumns={[3,5,6]}
 							searchSelect={[7]}
 							order={[[ 0, 'desc' ]]}
-							withFooter={true}
+							withFooter={ true }
+							print = {{
+								footer: true,
+			        			pageSize: 'A4',
+			        			orientation: 'landscape',
+			        			title: `Customer Energy Data Analysis as at ${moment().format('dddd, MMMM Do YYYY')}`,
+			        			columns: ':visible',
+			        			image: App.asset(`img/icon/icon.png`),
+							}}
+							columnVisibility = { true } 
 							defs={[{
 				                'render': function ( data, type, row ) {
 					                    return parseFloat(data).toFixed(2);

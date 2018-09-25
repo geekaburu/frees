@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import {renderRow , createDatatable , destroyDatatable, createFooter, sumFooterColumns, addSelectSearching } from '../../resources/DatatablesHelper'
+import {renderRow , createDatatable , destroyDatatable, createFooter, sumFooterColumns, addSelectSearching, renderButton } from '../../resources/DatatablesHelper'
 
-$.DataTable = require('datatables.net' )
-require('datatables.net-bs4')
+// require( 'jszip' );
+// require( 'pdfmake' );
+require( 'datatables.net-bs4' )
+require( 'datatables.net-buttons-bs4' )
+require( 'datatables.net-buttons/js/buttons.print' )
+require( 'datatables.net-buttons/js/buttons.colVis' );
+
 let table = ''
 
 export default class DataTable extends Component {
@@ -35,6 +40,11 @@ export default class DataTable extends Component {
 			columnDefs:this.props.defs,
 			searching:this.props.searching,
 			lengthChange:this.props.lengthChange,
+			dom: 'Bfrtip',
+			buttons: renderButton({
+				columnVisibility: this.props.columnVisibility,
+				print: this.props.print,
+			}),
 			footerCallback:function(){
 				if(sumColumns){
 					var newArguments = Array.prototype.slice.call(arguments)

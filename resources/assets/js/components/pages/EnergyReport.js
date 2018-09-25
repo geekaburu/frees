@@ -207,7 +207,16 @@ export default class EnergyReport extends Component {
 							columns={this.state.transactions.columns}
 							sumColumns={[2,4,5]}
 							order={[[ 0, 'desc' ]]}
-							withFooter={true}
+							withFooter={ true }
+							print = {{
+								footer: true,
+			        			pageSize: 'A4',
+			        			orientation: 'landscape',
+			        			title: 'Bruuuuh',
+			        			columns: ':visible',
+			        			image: App.asset(`img/icon/icon.png`),
+							}}
+							columnVisibility = { true }
 							defs={[{
 				                'render': function ( data, type, row ) {
 					                    return parseFloat(data).toFixed(2);

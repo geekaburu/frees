@@ -93,13 +93,53 @@ export function createDatatable (table, parameters) {
         }
 	})
 }
+
 export function createFooter(table, columsLength) {
 	var elements = ''
 	for(var i = 0; i< columsLength; i++)
 		elements+='<th></th>'
 	table.append(`<tfoot><tr>${elements}</tr></tfoot>`)
 }
+
 export function destroyDatatable (table) {
 	// Destroy datatable
 	$(table).DataTable().destroy(true)
+}
+
+export function renderButton (options) {
+	var buttonOptions = []
+
+	// Add the print button
+	options.print && buttonOptions.push({
+        extend: 'print',
+        footer: options.print.footer,
+        pageSize: options.print.pageSize,
+        orientation: options.print.orientation,
+        title: 	`<h3 class="my-4 text-center text-success font-weight-bold">${options.print.title}</h3>`,
+        exportOptions: {
+            columns: options.print.columns
+        },
+        customize: function ( win ) {
+            $(win.document.body)
+                .css( 'font-size', '10pt' )
+                .prepend(
+                    `
+                    	<div class="row my-3">
+                        	<div class="col-12 text-center">
+                            	<img style="width:150px;" class="img-fluid mx-auto d-block" src="${options.print.image}"/>
+                        	</div>
+                    	</div>
+                    `
+                );
+
+            $(win.document.body).find( 'table' )
+                .addClass( 'compact' )
+                .css( 'font-size', 'inherit' );
+        }
+    })
+
+    // Add column visibility
+    options.columnVisibility && buttonOptions.push('colvis')
+    
+    return buttonOptions
 }

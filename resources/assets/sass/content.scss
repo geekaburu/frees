@@ -180,6 +180,10 @@ html::-webkit-scrollbar-thumb {
     background-color: rgba(0,0,0,.5);
 }
 
+.btn-group button.btn.btn-secondary {
+    border: 1px solid #fff;
+}
+
 @media (max-width: 992px) {
      #content {
         #carbon-reports {
