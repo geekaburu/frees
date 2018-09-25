@@ -185,6 +185,8 @@ export default class EnergyReport extends Component {
 		})
 	}
     render() {
+		console.log(App.asset(`img/icon/icon.png`))
+
     	return (
 			<div id="energy-reports" className="row align-items-center justify-content-center m-0">
 				<Loader load={this.state.loader} />  
