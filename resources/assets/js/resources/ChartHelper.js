@@ -61,11 +61,11 @@ export function displayParser(filter){
 }
 
 export function setTickValue(filter){
-	return filter == 'live' ? {
-		autoSkip: true,
-		maxTicksLimit: 5
-	} :  {
-		autoSkip: true,
-		maxTicksLimit: 20,
-	}  
+	return {
+        maxRotation: 0,
+        minRotation: 0,		
+		autoSkip:false,
+		maxTicksLimit: filter == 'live' ? 5 : 20,
+		source:'data'
+	}
 }

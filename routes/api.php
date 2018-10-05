@@ -60,14 +60,14 @@ Route::prefix('test')->group(function(){
 	Route::get('/populate/{frequency}', function($frequency){
 		for ($i=0; $i < $frequency ; $i++) { 
 			App\PanelData::create([
-				'panel_id' => 6,
+				'panel_id' => 1,
 				'angle' => rand(0,100),
 				'voltage' => rand(1,5),
 				'power' => rand(0,100)/100,
-				'energy' => rand(1,5),
+				'energy' => rand(10,20),
 				'runtime' => rand(1,15),
 			]);
-			sleep(3);
+			sleep(10);
 		}
 		return 'Done...';
 	});	
