@@ -32,14 +32,14 @@ export default class DataTable extends Component {
 
 		// Create datatable elements
 		table = this.$el.DataTable({
-			scrollY: this.props.scrollY ? this.props.scrollY : true,
-			scrollX: this.props.scrollX ? this.props.scrollX : true,
 			data: this.props.data,
-			columns: this.props.columns,
 			order:this.props.order,
 			columnDefs:this.props.defs,
+			columns: this.props.columns,
 			searching:this.props.searching,
 			lengthChange:this.props.lengthChange,
+			scrollY: this.props.scrollY ? this.props.scrollY : true,
+			scrollX: this.props.scrollX ? this.props.scrollX : true,
 			dom: 'Bfrtip',
 			buttons: renderButton({
 				columnVisibility: this.props.columnVisibility,
@@ -72,8 +72,15 @@ export default class DataTable extends Component {
 	        } else {
 	            row.child(renderRow(row.data().id, row.data().data)).show();
 	            createDatatable('table#details' + row.data().id, {
-	            	sumColumns:[2,3,4,5],
-	            	selectSearchColumns: [0,1,6,7],
+	            	sumColumns:[ 2, 3, 4],
+	            	selectSearchColumns: [ 0, 1],
+	            	columnDefs: [{
+				        'render': function ( data, type, row ) {
+				                return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+				            },
+				            'targets': [ 2, 3, 4 ]
+				        }
+			        ]
 	            })
 	            tr.addClass('shown');
 	        }

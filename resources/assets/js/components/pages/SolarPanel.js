@@ -220,7 +220,7 @@ class SolarPanel extends Component {
 							columnVisibility = { true } 
 							defs={[{
 				                'render': function ( data, type, row ) {
-				                    return parseFloat(data).toFixed(2);
+				                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 				                },
 					                'targets': [1,3,4]
 					            },{

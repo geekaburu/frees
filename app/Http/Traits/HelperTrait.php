@@ -47,23 +47,20 @@ trait HelperTrait
 
 	public function getTransactionData($data, $admin = false)
 	{
-		// Get the current rates
-        $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
-        $price = $record->value;
-        $rate = $record->credit_rate;
-
-        // Populate empty options
+		// Populate empty options
         $transactions = [];
         foreach ($data as $element) {
             if(Carbon::createFromFormat('Y-m-d H:i:s', $element->date)->year  == date('Y')){
-                $element->credits = number_format((float) $element->energy/ $rate,5,'.','');
-                $element->amount = number_format((float) $element->energy / $rate * $price,2,'.','');
-                $element->price = $price;
-                $element->rate = $rate;
+				// Get the current rates
+		        $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
+                $element->credits = $element->energy / $record->credit_rate;
+                $element->amount = $element->energy / $record->credit_rate * $record->value;
+                $element->price = $record->value;
+                $element->rate = $record->credit_rate;
                 $element->status = 'Unavailable';
             } else{
-                $element->credits = number_format((float) $element->energy/ $element->rate,5,'.','');
-                $element->amount = number_format((float) $element->energy / $element->rate * $element->price,2,'.','');
+                $element->credits = $element->energy / $element->rate;
+                $element->amount = $element->energy / $element->rate * $element->price;
                 if($element->receipt_date && $element->sale_date) $element->status = 'Received'; 
                 if(!$element->sale_date) $element->status = 'Processing'; 
             }
@@ -72,17 +69,19 @@ trait HelperTrait
             if($admin){
             	$element->sale_status = $element->sale_date ? 'Sold' : null; 
             	$element->dispatch_status = $element->receipt_date ? 'Dispatched' : null; 
+            	$rate = $element->rate;
+            	$price = $element->price;
             	$element->data = User::ofType('customer')->withCount([
 					'panelData as energy' => function($query) use ($element) {
 		                $query->select(DB::raw('sum(energy) as energy'))
 		                    ->whereYear('panel_data.created_at', $element->year);
 		            }, 
 		            'panelData as credits' => function($query) use ($rate, $element) {
-		                $query->select(DB::raw('round(sum(energy)/'.$rate.', 2) as credits'))
+		                $query->select(DB::raw('sum(energy)/'.$rate.' as credits'))
 		                    ->whereYear('panel_data.created_at', $element->year);
 		            },
 		            'panelData as amount' => function($query) use ($rate, $price, $element) {
-		                $query->select(DB::raw('round(sum(energy)/'.$rate.'*'.$price.', 2) as amount'))
+		                $query->select(DB::raw('sum(energy)/'.$rate.'*'.$price.' as amount'))
 		                    ->whereYear('panel_data.created_at', $element->year);
 		            },
             	])->withCount([

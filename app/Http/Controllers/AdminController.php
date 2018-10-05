@@ -60,7 +60,7 @@ class AdminController extends Controller
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%M") as month') 
             )->groupBy('month')->orderBy('energy', 'desc')->first();
 
-  // Get chart data
+        // Get chart data
        $chartData = PanelData::orderBy('panel_data.created_at', 'asc');
 
        // Return response 
@@ -69,6 +69,7 @@ class AdminController extends Controller
                 'county' => $countyData[0],
                 'customer' => $customerData[0],
                 'month' => $monthData,
+                'monthAmount' => $monthData->energy/$creditRate*$carbonPrice,
             ],
             'cards' => $cardData,
             'chart' => $this->generateChartData($chartData, 'live'),
@@ -186,7 +187,7 @@ class AdminController extends Controller
             DB::raw('(select dispatched_on from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as receipt_date'),
             DB::raw('(select sold_on from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as sale_date')
         )->groupBy('year')->get();
-
+        
         return response([
             'transactions' => $this->getTransactionData($data, true),
         ], 200);

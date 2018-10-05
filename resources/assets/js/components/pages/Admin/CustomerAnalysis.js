@@ -181,7 +181,7 @@ export default class CustomerAnalysis extends Component {
 						<div className="col-12 col-md-4 col-lg text-center p-0">
 							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
 								<div className="col-12 py-0">
-									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.energy).toFixed(2)} <small style={{fontSize:'9pt'}}>kWh</small></h3>
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <small style={{fontSize:'9pt'}}>kWh</small></h3>
 									<div className="col-12 font-weight-bold">Energy</div>
 								</div>
 							</div>
@@ -189,7 +189,7 @@ export default class CustomerAnalysis extends Component {
 						<div className="col-12 col-md-4 col-lg text-center border-left p-0">
 							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
 								<div className="col-12 py-0">
-									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.credits).toFixed(2)} </h3>
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.credits).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} </h3>
 									<div className="col-12 font-weight-bold">Credits</div>
 								</div>
 							</div>
@@ -197,13 +197,13 @@ export default class CustomerAnalysis extends Component {
 						<div className="col-12 col-md-4 col-lg text-center border-left p-0">
 							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
 								<div className="col-12 py-0">
-									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.amount).toFixed(2)} <small style={{fontSize:'9pt'}}>KES</small></h3>
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <small style={{fontSize:'9pt'}}>KES</small></h3>
 									<div className="col-12 font-weight-bold">Value</div>
 								</div>
 							</div>
 						</div>
 						<div className="col-12 col-md-4 col-lg text-center border-left p-0">
-							<div className="row align-items-center py-0" style={{minHeight:'80px'}}>
+							<div className="row align-items-center py-0" style={{minHeight:'120px'}}>
 								<div className="col-12 py-0">
 									{this.state.activeCustomer !='all' && 
 									<div>

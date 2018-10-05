@@ -77,8 +77,8 @@ export default class Dashboard extends Component {
     	const counties = this.state.counties.map((county, i) => (
     		<tr key={county.id}>
     			<td className="text-success font-weight-bold">{i+1}</td><td>{county.name}</td>
-				<td>{parseFloat(!county.energy ? 0.00 : county.energy).toFixed(2)}</td>					
-				<td>{parseFloat(!county.amount ? 0.00 : county.amount).toFixed(2)}</td>
+				<td>{parseFloat(!county.energy ? 0.00 : county.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>					
+				<td>{parseFloat(!county.amount ? 0.00 : county.amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
 				<td className="text-center">
 					<NavLink to={`/admin/energy-reports/customers/all?county=${county.id}`}>
 						<FontAwesomeIcon icon="eye" size="lg" className="mr-2 text-success" />
@@ -95,13 +95,13 @@ export default class Dashboard extends Component {
 							<DashboardCard icon='users' title='Number of Customers' text={this.state.cards ? this.state.cards.customers : 0} iconStyle='rgb(90, 178, 94)' />					
 						</div>
 						<div className="col-12 col-md-6 col-lg-3 px-1">
-							<DashboardCard icon='burn' title='Energy this Year' text={`${parseFloat(this.state.cards ? this.state.cards.energy : 0.00).toFixed(2)} kWh`}  iconStyle='rgb(254, 161, 29)' />					
+							<DashboardCard icon='burn' title='Energy this Year' text={`${parseFloat(this.state.cards ? this.state.cards.energy : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} kWh`}  iconStyle='rgb(254, 161, 29)' />					
 						</div>
 						<div className="col-12 col-md-6 col-lg-3 px-1">
-							<DashboardCard icon='credit-card' title='Credits this Year' text={parseFloat(this.state.cards ? this.state.cards.credits : 0.00).toFixed(2)}  iconStyle='rgb(231, 55, 115)' />					
+							<DashboardCard icon='credit-card' title='Credits this Year' text={parseFloat(this.state.cards ? this.state.cards.credits : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
 						<div className="col-12 col-md-6 col-lg-3 px-1">
-							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${parseFloat(this.state.cards ? this.state.cards.amount : 0.00).toFixed(2)}`}  iconStyle='rgb(17, 183, 204)' />
+							<DashboardCard icon='hand-holding-usd' title='Amount Earned this Year' text={`KES ${parseFloat(this.state.cards ? this.state.cards.amount : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}  iconStyle='rgb(17, 183, 204)' />
 						</div>
 					</div>
 					<div className="row mt-2">
@@ -131,7 +131,7 @@ export default class Dashboard extends Component {
 						</div>
 					</div>
 					<div className="row justify-content-center">
-						<div className="col-12 col-md-6 col-lg-3 px-1">
+						<div className="col-12 col-md-6 col-lg px-1">
 							<DashboardCard icon='building' title='Highest County' text={
 								<div>
 									{this.state.highestCards.county.name}
@@ -141,7 +141,7 @@ export default class Dashboard extends Component {
 								</div>
 							} iconStyle='rgb(254, 161, 29)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-3 px-1">
+						<div className="col-12 col-md-6 col-lg px-1">
 							<DashboardCard icon='trophy' title='Highest Customer' text={
 								<div>
 									{this.state.highestCards.customer.name}
@@ -151,11 +151,14 @@ export default class Dashboard extends Component {
 								</div>
 							}  iconStyle='rgb(231, 55, 115)' />					
 						</div>
-						<div className="col-12 col-md-6 col-lg-3 px-1">
+						<div className="col-12 col-md-6 col-lg px-1">
 							<DashboardCard icon='calendar-plus' title='Highest Month' text={this.state.highestCards.month.month} iconStyle='rgb(90, 178, 94)' />
 						</div>
-						<div className="col-12 col-md-6 col-lg-3 px-1">
-							<DashboardCard icon={['fab', 'react']} title='Highest Month Energy' text={`${parseFloat(this.state.highestCards.month.energy).toFixed(2)} Kwh`} iconStyle='rgb(17, 183, 204)' />					
+						<div className="col-12 col-md-6 col-lg px-1">
+							<DashboardCard icon={['fab', 'react']} title='Highest Month Energy' text={`${parseFloat(this.state.highestCards.month.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Kwh`} iconStyle='rgb(17, 183, 204)' />					
+						</div>
+						<div className="col-12 col-md-6 col-lg px-1">
+							<DashboardCard icon='hand-holding-usd' title='Highest Month Amount' text={`KES ${parseFloat(this.state.highestCards.monthAmount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} iconStyle='rgb(184, 17, 204)' />					
 						</div>
 					</div>
 					<div className="row justify-content-center my-2">
@@ -187,7 +190,7 @@ export default class Dashboard extends Component {
 										<div className="row">
 											<div className="col">
 												<h6 className="text-success font-weight-bold">Carbon Price</h6>
-												<h5 style={{backgroundColor:'rgb(231, 55, 115)'}} className="p-3 text-white font-weight-bold">KES {parseFloat(this.state.rates.value).toFixed(2)}</h5>
+												<h5 style={{backgroundColor:'rgb(231, 55, 115)'}} className="p-3 text-white font-weight-bold">KES {parseFloat(this.state.rates.value).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h5>
 											</div>
 											<div className="col">
 												<h6 className="text-success font-weight-bold">Conversion Rate</h6>

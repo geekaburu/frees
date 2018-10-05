@@ -124,7 +124,7 @@ export default class PanelAnalysis extends Component {
 						<div className="col-12 card-shadow">
 							<div className="row">
 								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
-									Energy Collected : {this.state.stats.energy} kWh
+									Energy Collected : {parseFloat(this.state.stats.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} kWh
 								</div>
 								<div className="col-12 col-md-3 py-2 text-white bg-dark-secondary border border-white">
 									{ this.state.filter == 'all' ? (<span>N/A</span>) : (<span>Voltage : {this.state.activePanel.voltage}V</span>)}
@@ -167,7 +167,7 @@ export default class PanelAnalysis extends Component {
 									<div className="col-12 font-weight-bold">Avg Power</div>
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
-									<h3 className="font-weight-bold text-success"> {this.state.stats.energy} <small style={{fontSize:'9pt'}}>kWh</small></h3>
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <small style={{fontSize:'9pt'}}>kWh</small></h3>
 									<div className="col-12 font-weight-bold">Energy</div>
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
@@ -175,7 +175,7 @@ export default class PanelAnalysis extends Component {
 									<div className="col-12 font-weight-bold">Credits</div>
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
-									<h3 className="font-weight-bold text-success"> {this.state.stats.amount} <small style={{fontSize:'9pt'}}>KES</small></h3>
+									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <small style={{fontSize:'9pt'}}>KES</small></h3>
 									<div className="col-12 font-weight-bold">Value</div>
 								</div>
 							</div>

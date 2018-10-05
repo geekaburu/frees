@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import moment from 'moment'
 import { Bar } from 'react-chartjs-2'
 import Loader from '../../layouts/Loader';
 import DataTable from '../../layouts/DataTable'
@@ -81,16 +83,16 @@ export default class CarbonTransactions extends Component {
 						<div className="col-12 bg-dark-secondary text-white py-0">
 							<div className="row">
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Carbon Price: KES {parseFloat(this.state.upperBar.price).toFixed(2)}
+									Carbon Price: KES {parseFloat(this.state.upperBar.price).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Energy: {parseFloat(this.state.upperBar.energy).toFixed(2)} KWh
+									Energy: {parseFloat(this.state.upperBar.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} KWh
 								</div>
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Credits: {parseFloat(this.state.upperBar.credits).toFixed(2)}
+									Credits: {parseFloat(this.state.upperBar.credits).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Amount: KES {parseFloat(this.state.upperBar.amount).toFixed(2)}
+									Amount: KES {parseFloat(this.state.upperBar.amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 							</div> 
 						</div>				
@@ -104,13 +106,13 @@ export default class CarbonTransactions extends Component {
 							defs={[
 								{
 				                	render: function ( data, type, row ) {
-				                    	return parseFloat(data).toFixed(2);
+				                    	return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 				                	},
 					            	targets: [2,3,4,5]
 					            },
 					            {
 				                	render: function ( data, type, row ) {
-				                    	if(!data) return 'Not Available'
+				                    	return data ? data : `Available on ${moment().endOf('year').format('DD-MM-YYYY')}` 
 				                	},
 					            	targets: [6,7,8,9]
 					            },

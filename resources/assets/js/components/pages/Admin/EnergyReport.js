@@ -86,9 +86,6 @@ export default class EnergyReport extends Component {
 
     		let customerOptions = response.data.customers.map(function(e) { return {label:`${e.name}`, value:e.id}})
     		customerOptions.unshift({label:'All Customers', value:'all'})
-
-    		// let defaultCounty = countyOptions.find(object => object.value == this.parameters.get('county'))
-    		// let defaultCustomer = customerOptions.find(object => object.value == this.props.match.params.id)
     
     		this.setState({
     			loader:false,
@@ -275,7 +272,7 @@ export default class EnergyReport extends Component {
 							columnVisibility = { true } 
 							defs={[{
 				                'render': function ( data, type, row ) {
-					                    return parseFloat(data).toFixed(2);
+					                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 					                },
 					                'targets': [3,4,6]
 					            },

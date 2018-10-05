@@ -7,9 +7,9 @@ export function renderRow (id, data) {
 			<tr>
 				<td>${element.name}</td>
 				<td>${element.county}</td>
-				<td>${parseFloat(element.energy).toFixed(2)}</td>
-				<td>${parseFloat(element.credits).toFixed(2)}</td>
-				<td>${parseFloat(element.amount).toFixed(2)}</td>
+				<td>${parseFloat(element.energy)}</td>
+				<td>${parseFloat(element.credits)}</td>
+				<td>${parseFloat(element.amount)}</td>
 			</tr>`					
     	)
     )
@@ -48,10 +48,10 @@ export function sumFooterColumns (type, row, data, start, end, display){
 	this.api().columns(columns, {filter:'applied'}).every( function () {
 		var column = this
 		$(column.footer()).html(
-			column.data().reduce( function(a,b) {
-				return (parseFloat(a ? a : 0 ) + parseFloat(b? b : 0)).toFixed(2)
-			}, 0)
-		)		
+			column.data().reduce( function( a , b ) {
+				return ( parseFloat( b ? b : 0 ) + parseFloat( a ? a : 0 ) )
+			}, 0).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+		)	
 	})	
 }
 export function addSelectSearching (type, row, data, start, end, display){
@@ -77,6 +77,7 @@ export function addSelectSearching (type, row, data, start, end, display){
 export function createDatatable (table, parameters) {
 	// Create a datatable
 	$(table).DataTable({
+		columnDefs: parameters.columnDefs,
 		footerCallback: function (){
 			if(parameters.sumColumns){
 				var newArguments = Array.prototype.slice.call(arguments)

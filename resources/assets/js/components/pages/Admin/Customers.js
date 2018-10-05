@@ -131,7 +131,7 @@ export default class Customers extends Component {
 							defs={[
 								{
 					                'render': function ( data, type, row ) {
-					                    return parseFloat(data ? data : 0).toFixed(2)
+					                    return parseFloat(data ? data : 0).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 					                },
 					                'targets': [2,3,4]
 						        }

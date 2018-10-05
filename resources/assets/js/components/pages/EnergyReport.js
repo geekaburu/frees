@@ -219,9 +219,15 @@ export default class EnergyReport extends Component {
 							columnVisibility = { true }
 							defs={[{
 				                'render': function ( data, type, row ) {
-					                    return parseFloat(data).toFixed(2);
+					                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 					                },
-					                'targets': [2]
+					                'targets': [ 2,3,5 ]
+					            },
+					            {
+				                'render': function ( data, type, row ) {
+					                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 4, maximumFractionDigits: 4 })
+					                },
+					                'targets': [ 4 ]
 					            },
 					            {
 					                'render': $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'DD/MM/YYYY'),
