@@ -12,7 +12,7 @@ export function chartData (chart, dataSets, filter) {
 		}
 		if(dataSet == 'rate'){
 			datasets.push({
-				type:'bar',
+				type:'line',
 		        label: 'Carbon Price',
 		        backgroundColor: 'rgba(40, 167, 69, 0.7)',
 		        borderColor: 'rgba(40, 167, 69, 0.2)',
