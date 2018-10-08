@@ -271,7 +271,7 @@ class AdminController extends Controller
                 'value as price',
                 'credit_rate as rate'
             ])->where('active', 1)->orderBy('created_at', 'desc')->first() 
-            : carbonTransaction::whereYear('sold_on', $request->year)->first(['price','rate']));
+            : CarbonTransaction::whereYear('sold_on', $request->year)->first(['price','rate']));
 
         // Get the number of customers, Income and Remission
         $customers = User::ofType('customers')->count();
