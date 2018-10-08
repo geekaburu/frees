@@ -176,7 +176,7 @@ export default class PanelAnalysis extends Component {
 								</div>
 								<div className="col-12 col-md-4 col-lg text-center border py-3">
 									<h3 className="font-weight-bold text-success"> {parseFloat(this.state.stats.amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <small style={{fontSize:'9pt'}}>KES</small></h3>
-									<div className="col-12 font-weight-bold">Value</div>
+									<div className="col-12 font-weight-bold">Net Amount</div>
 								</div>
 							</div>
 						</div>

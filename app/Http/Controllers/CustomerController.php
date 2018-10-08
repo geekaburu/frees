@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-use Validator;
 use Hash;
+use Validator;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -26,8 +26,8 @@ class CustomerController extends Controller
 
         // Get the current carbon cost
         $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
-        $creditRate = $record->credit_rate;
-        $carbonPrice = $record->value;
+        $rate = $record->credit_rate;
+        $price = $record->value * (1 - ($user->role->commission_rate));
 
         $cardData = $user->panelData()
             ->whereYear('panel_data.created_at', date('Y'))
@@ -35,8 +35,8 @@ class CustomerController extends Controller
             ->select(
                 DB::raw(count($user->panels()->get()).' as panels'), 
                 DB::raw('sum(energy) as energy'), 
-                DB::raw('sum(energy)/'.$creditRate.' as credits'),
-                DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount'),
+                DB::raw('sum(energy)/'.$rate.' as credits'),
+                DB::raw('sum(energy)/'.$rate.'*'.$price.' as amount'),
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year') 
             )->groupBy('year')->first();
 
@@ -58,8 +58,10 @@ class CustomerController extends Controller
 
     	// Get the current carbon cost
     	$record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
-    	$creditRate = $record->credit_rate;
-    	$carbonPrice = $record->value;
+        $rate = $record->credit_rate;
+        $grossPrice = $price = $record->value;
+        $commission = $user->role->commission_rate * $price;
+        $price = $price - $commission;
 
         // location Data
         $locationData = $user;
@@ -77,8 +79,10 @@ class CustomerController extends Controller
 	    	->select(
 	            DB::raw('panel_id'),
 	            DB::raw('sum(energy) as energy'), 
-	            DB::raw('sum(energy)/'.$creditRate.' as credits'),
-	            DB::raw('sum(energy)/'.$creditRate.'*'.$carbonPrice.' as amount') 
+                DB::raw('sum(energy)/'.$rate.' as credits'),
+                DB::raw('sum(energy)/'.$rate.'*'.$grossPrice.' as gross_amount'),
+	            DB::raw('sum(energy)/'.$rate.'*'.$commission.' as commission'),
+	            DB::raw('sum(energy)/'.$rate.'*'.$price.' as amount') 
 	    	)->groupBy('panel_id')->get();
 		
 	    // Return a json response with the data
@@ -93,8 +97,8 @@ class CustomerController extends Controller
 				'data' => $panelData,
 			],
 			'market' => [
-				'price' => $carbonPrice,
-				'credit_rate' => $creditRate,
+				'price' => $price,
+				'credit_rate' => $rate,
 			]
     	]);		
     }
@@ -134,7 +138,7 @@ class CustomerController extends Controller
 
         // Get the current carbon cost
         $record = CarbonPrice::where('active', 1)->orderBy('created_at', 'desc')->first();
-        $carbonPrice = $record->value;
+        $price = $record->value * (1 - ($user->role->commission_rate));
         $energy = $data->sum('panel_data.energy');
         $credits = $energy/($record->credit_rate);
 
@@ -143,7 +147,7 @@ class CustomerController extends Controller
             'power' => number_format((float) $data->avg('panel_data.power') ,2,'.',''),
             'energy' => number_format((float) $energy,2,'.',''),
             'credits' => number_format((float) $credits,2,'.',''),
-            'amount' => number_format((float) $credits * $carbonPrice,2,'.',''),
+            'amount' => number_format((float) $credits * $price,2,'.',''),
         ];
 
     	// Return response data
@@ -176,7 +180,7 @@ class CustomerController extends Controller
             DB::raw('(select dispatched_on from carbon_transactions where DATE_FORMAT(panel_data.created_at,"%Y") = DATE_FORMAT(carbon_transactions.sold_on,"%Y")) as receipt_date')
         )->groupBy('year')->get();
 
-        return response()->json($this->getTransactionData($data, true));
+        return response()->json($this->getTransactionData($data, false));
     }
 
     /**
@@ -209,7 +213,7 @@ class CustomerController extends Controller
         ])->get();
 
         return response()->json([
-            'transactions' =>  $this->getTransactionData($data),
+            'transactions' =>  $this->getTransactionData($data, false),
             'panels' =>  $user->panels()->get(),
         ]);
     }

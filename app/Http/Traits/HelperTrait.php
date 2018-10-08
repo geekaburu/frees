@@ -3,6 +3,7 @@
 namespace App\Http\Traits;
 
 use DB;
+use Auth;
 use App\User;
 use Carbon\Carbon;
 use App\PanelData;
@@ -64,6 +65,9 @@ trait HelperTrait
                 if($element->receipt_date && $element->sale_date) $element->status = 'Received'; 
                 if(!$element->sale_date) $element->status = 'Processing'; 
             }
+
+            $element->commission = $element->amount * Auth::user()->role->commission_rate;
+            $element->net_amount = $element->amount - $element->commission;
 
             // Add sale and dispatch status
             if($admin){

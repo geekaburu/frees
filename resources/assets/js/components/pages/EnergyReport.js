@@ -82,7 +82,9 @@ export default class EnergyReport extends Component {
 	            		{ title: 'Energy (Kwh)', data: 'energy' },
 	            		{ title: 'Price', data: 'price' },
 	            		{ title: 'Credits', data: 'credits' },
-	            		{ title: 'Amount (Ksh)', data: 'amount' },
+	            		{ title: 'Gross Amount (Ksh)', data: 'amount' },
+	            		{ title: 'Commission (Ksh)', data: 'commission' },
+	            		{ title: 'Net Amount (Ksh)', data: 'net_amount' },
 	            		{ title: 'Status', data: 'status' },
 	    			]
     			},
@@ -202,10 +204,11 @@ export default class EnergyReport extends Component {
 				</form>
 				<div className="col-12 py-3 card-shadow mt-1">
 					{ this.state.transactions.columns 
-						? <DataTable 
+						&& <DataTable 
 							data={this.state.transactions.data}
 							columns={this.state.transactions.columns}
-							sumColumns={[2,4,5]}
+							sumColumns={ [ 2, 4, 5, 6, 7] }
+							searchSelect={ [ 8 ] }
 							order={[[ 0, 'desc' ]]}
 							withFooter={ true }
 							print = {{
@@ -221,7 +224,7 @@ export default class EnergyReport extends Component {
 				                'render': function ( data, type, row ) {
 					                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 					                },
-					                'targets': [ 2,3,5 ]
+					                'targets': [ 2, 3, 5, 6, 7 ]
 					            },
 					            {
 				                'render': function ( data, type, row ) {
@@ -231,11 +234,10 @@ export default class EnergyReport extends Component {
 					            },
 					            {
 					                'render': $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'DD/MM/YYYY'),
-						            'targets': [0]
+						            'targets': [ 0 ]
 					            }
 					        ]}
 						/>
-						: '' 
 					}
 				</div>
 		    </div>

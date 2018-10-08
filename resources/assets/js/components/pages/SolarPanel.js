@@ -63,7 +63,9 @@ class SolarPanel extends Component {
             		{ title: 'Energy (Kwh)', data: 'energy' },
             		{ title: 'User', data: 'user_id' },
             		{ title: 'Credits Earned', data: 'credits' },
-            		{ title: 'Amount Earned', data: 'amount' },
+            		{ title: 'Gross Amount', data: 'gross_amount' },
+            		{ title: 'Commission Payment', data: 'commission' },
+            		{ title: 'Net Amount', data: 'amount' },
     			]
     		}
     		this.setState({
@@ -222,15 +224,15 @@ class SolarPanel extends Component {
 				                'render': function ( data, type, row ) {
 				                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 				                },
-					                'targets': [1,3,4]
+					                'targets': [ 1, 3, 4, 5, 6]
 					            },{
 						            "targets": [ 2 ],
 						            "visible": false,
 						            "searchable": false
 						        }
 					        ]}
-							sumColumns={[1,3,4]}
-							withFooter={true} 
+							sumColumns = {[ 1, 3, 4, 5, 6]}
+							withFooter = { true } 
 						/>
 						: '' 
 					}

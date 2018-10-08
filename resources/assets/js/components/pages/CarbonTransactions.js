@@ -47,7 +47,9 @@ export default class CarbonTransactions extends Component {
 	            		{ title: 'Energy (Kwh)', data: 'energy' },
 	            		{ title: 'Price', data: 'price' },
 	            		{ title: 'Credits', data: 'credits' },
-	            		{ title: 'Amount (Ksh)', data: 'amount' },
+	            		{ title: 'Gross Amount (Ksh)', data: 'amount' },
+	            		{ title: 'Commission (Ksh)', data: 'commission' },
+	            		{ title: 'Net Amount (Ksh)', data: 'net_amount' },
 	            		{ title: 'Status', data: 'status' },
 	            		{ title: 'Receipt Date', data: 'receipt_date' },
 	    			]
@@ -57,7 +59,7 @@ export default class CarbonTransactions extends Component {
     				labels:response.data.map(function(e) { return e.year}),
     			},
             	amountChart: { 
-            		datasets:response.data.map(function(e) { return e.amount}), 
+            		datasets:response.data.map(function(e) { return e.net_amount}), 
             		labels:response.data.map(function(e) { return e.year}),
             	},	
             	upperBar: response.data.slice(-1)[0] 		
@@ -88,7 +90,7 @@ export default class CarbonTransactions extends Component {
 									Credits: {parseFloat(this.state.upperBar.credits).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Amount: KES {parseFloat(this.state.upperBar.amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+									Amount: KES {parseFloat(this.state.upperBar.net_amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 							</div> 
 						</div>				
@@ -103,17 +105,17 @@ export default class CarbonTransactions extends Component {
 				                'render': function ( data, type, row ) {
 				                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 				                },
-					                'targets': [1,2,3,4]
+					                'targets': [ 1, 2, 3, 4, 5, 6]
 					            },
 					            {
 				                'render': function ( data, type, row ) {
 				                    return data ? moment( data , 'YYYY-MM-DD HH:mm:ss').format('DD-MM-YYYY') : `Will be available on ${moment().endOf('year').format('DD-MM-YYYY')}`
 				                },
-					                'targets': [ 6 ]
+					                'targets': [ 8 ]
 					            }
 					        ]}
 							order={[[ 0, 'desc' ]]}
-							sumColumns={[1,2,4]}
+							sumColumns={[ 1, 3, 4, 5, 6]}
 							withFooter={true} 
 						/>
 						: '' 

@@ -254,7 +254,7 @@ export default class EnergyReport extends Component {
 				</form>
 				<div className="col-12 py-3 card-shadow mt-1">
 					{ this.state.transactions.columns 
-						? <DataTable 
+						&& <DataTable 
 							data={this.state.transactions.data}
 							columns={this.state.transactions.columns}
 							sumColumns={[ 3, 5, 6]}
@@ -282,7 +282,6 @@ export default class EnergyReport extends Component {
 					            }
 					        ]}
 						/>
-						: '' 
 					}
 				</div>
 		    </div>
