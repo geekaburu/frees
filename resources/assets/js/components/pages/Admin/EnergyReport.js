@@ -257,7 +257,7 @@ export default class EnergyReport extends Component {
 						? <DataTable 
 							data={this.state.transactions.data}
 							columns={this.state.transactions.columns}
-							sumColumns={[3,5,6]}
+							sumColumns={[ 3, 5, 6]}
 							searchSelect={[7]}
 							order={[[ 0, 'desc' ]]}
 							withFooter={ true }
@@ -274,7 +274,7 @@ export default class EnergyReport extends Component {
 				                'render': function ( data, type, row ) {
 					                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 					                },
-					                'targets': [3,4,6]
+					                'targets': [ 3, 4, 5, 6]
 					            },
 					            {
 					                'render': $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'DD/MM/YYYY'),

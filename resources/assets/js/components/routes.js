@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 // Import Page Components
+import Account from './pages/Account'
 import Dashboard from './pages/Dashboard'
 import SolarPanel from './pages/SolarPanel'
-import PanelAnalysis from './pages/PanelAnalysis'
 import EnergyReport from './pages/EnergyReport'
+import PanelAnalysis from './pages/PanelAnalysis'
 import CarbonTransactions from './pages/CarbonTransactions'
-import Account from './pages/Account'
 
 // Import Admin Components
 import AdminDashboard from './pages/Admin/Dashboard'
 import AdminCustomers from './pages/Admin/Customers'
-import AdminCustomerAnalysis from './pages/Admin/CustomerAnalysis'
 import AdminEnergyReport from './pages/Admin/EnergyReport'
+import AdminCustomerAnalysis from './pages/Admin/CustomerAnalysis'
 import AdminCarbonTransactions from './pages/Admin/CarbonTransactions'
+import AdminFinancialStatement from './pages/Admin/FinancialStatement'
 
 // Import global components
 import Pricing from './pages/Global/Pricing'
@@ -72,12 +73,13 @@ export class AdminRoutes extends Component {
 					? <Redirect to='/' />
 					: (
 						<div>
-					        <Route exact path='/admin' name='admin.home' component={AdminDashboard}></Route>
-					        <Route path='/admin/customers' name='admin.solarpanel' component={AdminCustomers}></Route>
-					        <Route path='/admin/customer-analysis/customers/:number' name='admin.customer-analysis' component={AdminCustomerAnalysis}></Route>
-					        <Route path='/admin/energy-reports/customers/:id' name='admin.energy-reports' component={AdminEnergyReport}></Route>
-                            <Route path='/admin/carbon-pricing' name='global.pricing' component={Pricing}></Route>
-					        <Route path='/admin/carbon-transactions' name='admin.carbon-transactions' component={AdminCarbonTransactions}></Route>
+					        <Route exact path='/admin' name='admin.home' component={ AdminDashboard }></Route>
+					        <Route path='/admin/customers' name='admin.solarpanel' component={ AdminCustomers }></Route>
+					        <Route path='/admin/customer-analysis/customers/:number' name='admin.customer-analysis' component={ AdminCustomerAnalysis }></Route>
+					        <Route path='/admin/energy-reports/customers/:id' name='admin.energy-reports' component={ AdminEnergyReport }></Route>
+                            <Route path='/admin/carbon-pricing' name='global.pricing' component={ Pricing }></Route>
+                            <Route path='/admin/carbon-transactions' name='admin.carbon-transactions' component={ AdminCarbonTransactions }></Route>
+					        <Route path='/admin/finance-statement' name='admin.finance-statement' component={ AdminFinancialStatement }></Route>
 		    			</div>    				
 					)}
 			</div>

@@ -10,6 +10,7 @@ use App\User;
 use App\County;
 use App\PanelData;
 use App\CarbonPrice;
+use App\carbonTransaction;
 
 class AdminController extends Controller
 {
@@ -250,6 +251,52 @@ class AdminController extends Controller
             'transactions' =>  $this->getTransactionData($data),
             'customers' =>  User::ofType('customers')->get(['id','name']),
             'counties' => County::all(['id','name']),
+        ], 200);
+    }
+    
+    /**
+     * Get finance report.
+     *
+     * @return \Illuminate\Http\JsonResponse
+    */
+    public function financeReport(Request $request)
+    {
+        // Return cumulative energy for a particular year
+        $data = PanelData::whereYear('created_at', $request->year);
+        $energy = $data->sum('energy');
+
+        // Check the carbon Price at a particular year
+        $record = ($request->year == date('Y') ? 
+            CarbonPrice::select([
+                'value as price',
+                'credit_rate as rate'
+            ])->where('active', 1)->orderBy('created_at', 'desc')->first() 
+            : carbonTransaction::whereYear('sold_on', $request->year)->first(['price','rate']));
+
+        // Get the number of customers, Income and Remission
+        $customers = User::ofType('customers')->count();
+        $income = $energy/$record->rate*$record->price;
+        $remission = $income * 0.85;
+
+        return response ([
+            'statement' => [
+                'year' => $request->year,
+                'energy' => $energy,
+                'credits' => $energy/$record->rate,
+                'price' => $record->price,
+                'income' => $income,
+                'customers' => $customers,
+                'avgRemission' => $remission/$customers,
+                'totalRemission' => $remission,
+                'netIncome' => $income - $remission,
+            ],
+            'chart' => $data->orderBy('created_at', 'asc')->select([
+                        DB::raw('sum(energy) as energy'),
+                        DB::raw('DATE_FORMAT(panel_data.created_at,"%b") as month'),
+                    ])->groupBy('month')->get(),
+            'financialYears' => PanelData::orderBy('created_at', 'asc')->select([
+                        DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year'),
+                    ])->groupBy('year')->get(['year']),
         ], 200);
     }
 }
