@@ -10,7 +10,7 @@ use App\User;
 use App\County;
 use App\PanelData;
 use App\CarbonPrice;
-use App\carbonTransaction;
+use App\CarbonTransaction;
 
 class AdminController extends Controller
 {
