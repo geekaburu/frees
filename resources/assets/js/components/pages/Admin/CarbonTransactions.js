@@ -51,8 +51,8 @@ export default class CarbonTransactions extends Component {
 	            		{ title: 'Amount (Ksh)', data: 'amount' },
 	            		{ title: 'Sale Status', data: 'sale_status' },
 	            		{ title: 'Sale Date', data: 'sale_date' },
-	            		{ title: 'Dispatch Status', data: 'dispatch_status' },
-	            		{ title: 'Dispatch Date', data: 'receipt_date' },
+	            		{ title: 'Remission Status', data: 'dispatch_status' },
+	            		{ title: 'Remission Date', data: 'receipt_date' },
 	    			]
     			},
     			energyChart: { 

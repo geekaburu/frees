@@ -68,7 +68,7 @@ trait HelperTrait
             // Add sale and dispatch status
             if($admin){
             	$element->sale_status = $element->sale_date ? 'Sold' : null; 
-            	$element->dispatch_status = $element->receipt_date ? 'Dispatched' : null; 
+            	$element->dispatch_status = $element->receipt_date ? 'Remitted' : null; 
             	$rate = $element->rate;
             	$price = $element->price;
             	$element->data = User::ofType('customer')->withCount([
