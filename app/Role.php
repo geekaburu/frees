@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     protected $table = 'roles'; 
-    protected $fillable = ['name', 'display_name'];
+    protected $fillable = ['name', 'display_name', 'commission_rate'];
 
     // Get the users with a particular role 
     public function users() {
