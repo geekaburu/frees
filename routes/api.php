@@ -41,6 +41,7 @@ Route::prefix('admin')->middleware('jwt.auth')->group(function(){
 	Route::post('/carbon-transactions', 'AdminController@carbonTransactions')->name('admin.carbon.transactions');	
 	Route::post('/energy-reports', 'AdminController@energyReports')->name('admin.energy.reports');	
 	Route::post('/finance-report', 'AdminController@financeReport')->name('admin.finance.reports');	
+	Route::post('/register-customer', 'AdminController@registerCustomer')->name('admin.register.customer');	
 });
 
 // Application Routes

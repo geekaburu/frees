@@ -81,16 +81,16 @@ export default class CarbonTransactions extends Component {
 						<div className="col-12 bg-dark-secondary text-white py-0">
 							<div className="row">
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Carbon Price: KES {parseFloat(this.state.upperBar.price).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+									Carbon Price: KES {parseFloat(this.state.upperBar ? this.state.upperBar.price : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Energy: {parseFloat(this.state.upperBar.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} KWh
+									Energy: {parseFloat(this.state.upperBar ? this.state.upperBar.energy : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })} KWh
 								</div>
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Credits: {parseFloat(this.state.upperBar.credits).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+									Credits: {parseFloat(this.state.upperBar ? this.state.upperBar.credits : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 								<div className="col-12 col-lg border border-white py-2 font-weight-bold">
-									Amount: KES {parseFloat(this.state.upperBar.net_amount).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+									Amount: KES {parseFloat(this.state.upperBar ? this.state.upperBar.net_amount : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</div>
 							</div> 
 						</div>				

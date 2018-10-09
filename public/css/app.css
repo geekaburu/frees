@@ -10685,6 +10685,11 @@ a.text-dark:focus {
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #28a745 !important;
+}
+
 .side-container {
   z-index: 1;
 }

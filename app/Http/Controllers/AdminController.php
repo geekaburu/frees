@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Hash;
+use Validator;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+use App\Role;
 use App\User;
+use App\Panel;
 use App\County;
 use App\PanelData;
 use App\CarbonPrice;
+use App\PanelControl;
 use App\CarbonTransaction;
 
 class AdminController extends Controller
@@ -297,6 +302,49 @@ class AdminController extends Controller
             'financialYears' => PanelData::orderBy('created_at', 'asc')->select([
                         DB::raw('DATE_FORMAT(panel_data.created_at,"%Y") as year'),
                     ])->groupBy('year')->get(['year']),
+        ], 200);
+    }
+
+    /**
+     *  Register Customer
+     *
+     * @return \Illuminate\Http\JsonResponse
+    */
+    public function registerCustomer(Request $request)
+    {
+         // Validate input
+        $validator = Validator::make(array_merge($request->all(),['phone_number'=> '254'.substr($request->phone_number, -9)]), [
+            'name' => 'required|max:255',
+            'email' => 'required|email|min:5|unique:users',
+            'phone_number' => ['unique:users','required','regex:/^(07|7|[+]2547|2547)[0-9]+$/','size:12'],
+        ], ['size'    => 'The phone number format or type is invalid.',]);
+
+        if ($validator->fails())
+            return response(['errors'=>$validator->errors()->all()], 500);
+
+        // Insert User
+        $user = User::create(array_merge($request->all(), [
+            'location_id' => Role::where('name', 'solar_company')->first()->users->first()->location_id,
+            'avatar' => 'admin.jpg',
+            'password' => Hash::make('secret'),
+        ]));
+
+        // Insert panels belonging to a user
+        for ($i=0; $i < $request->panels; $i++) { 
+            Panel::create(array_merge($request->all(), [
+                'user_id' => $user->id,
+            ]));
+        }
+
+        // Update the current configuration
+        PanelControl::create([
+            'user_id' => $user->id,
+            'angle' => '90',
+        ]);
+
+        return response([
+            'state' => 'success',
+            'message'=>'A customer has been created successfully.',
         ], 200);
     }
 }

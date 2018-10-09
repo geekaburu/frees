@@ -38,6 +38,9 @@ export default class Admin extends Component {
 								title:'My Solar Panels', 
 								link:'/my-solar-panel', 
 								dropdown:[{
+									'title':'New Customer',
+									'link': `/admin/register-customer`,
+								}, {
 									'title':'Financial Statements',
 									'link': `/admin/finance-statement`,
 								}]

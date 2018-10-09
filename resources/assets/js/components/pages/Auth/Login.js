@@ -49,7 +49,7 @@ export default class Login extends Component {
 		    .catch((error) => {
 		    	this.setState({
 	    			loader:false,
-	    			alert: { display:true, type:'error', title:'Error', body:error.response.data.message},
+	    			alert: { display:true, type:'error', title:'Error', body:App.displayErrors(error.response.data.errors)},
 	    		})
 		    }); 
         }); 

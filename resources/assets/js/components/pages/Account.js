@@ -126,7 +126,6 @@ export default class Account extends Component {
 	    			this.props.history.push('/login')
 	    		}
 	    		// Launch the alert box
-	    		var errors = <ul>{collection}</ul>
 	    		this.setState({
 	    			alert:{
 	    				display:true,

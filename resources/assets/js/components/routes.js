@@ -13,6 +13,7 @@ import CarbonTransactions from './pages/CarbonTransactions'
 import AdminDashboard from './pages/Admin/Dashboard'
 import AdminCustomers from './pages/Admin/Customers'
 import AdminEnergyReport from './pages/Admin/EnergyReport'
+import AdminRegisterCustomer from './pages/Admin/RegisterCustomer'
 import AdminCustomerAnalysis from './pages/Admin/CustomerAnalysis'
 import AdminCarbonTransactions from './pages/Admin/CarbonTransactions'
 import AdminFinancialStatement from './pages/Admin/FinancialStatement'
@@ -39,13 +40,13 @@ export class AppRoutes extends Component {
 					? <Redirect to='/admin' />
 					: (
 						<div>
-							<Route exact path='/' name='pages.home' component={Dashboard}></Route>
-					        <Route path='/my-solar-panel' name='pages.solarpanel' component={SolarPanel}></Route>
-					        <Route path='/panel-analysis/panels/:number' name='pages.carbon-report' component={PanelAnalysis}></Route>
-					        <Route path='/energy-reports/panels/:id' name='pages.energy-reports' component={EnergyReport}></Route>
-                            <Route path='/carbon-transactions' name='pages.carbon-transactions' component={CarbonTransactions}></Route>
-					        <Route path='/carbon-pricing' name='global.pricing' component={Pricing}></Route>
-					        <Route path='/account' name='pages.account' component={Account}></Route>
+							<Route exact path='/' name='pages.home' component={ Dashboard }></Route>
+					        <Route path='/my-solar-panel' name='pages.solarpanel' component={ SolarPanel }></Route>
+					        <Route path='/panel-analysis/panels/:number' name='pages.carbon-report' component={ PanelAnalysis }></Route>
+					        <Route path='/energy-reports/panels/:id' name='pages.energy-reports' component={ EnergyReport }></Route>
+                            <Route path='/carbon-transactions' name='pages.carbon-transactions' component={ CarbonTransactions }></Route>
+					        <Route path='/carbon-pricing' name='global.pricing' component={ Pricing }></Route>
+					        <Route path='/account' name='pages.account' component={ Account }></Route>
 					    </div>
 					)
 				}
@@ -79,7 +80,8 @@ export class AdminRoutes extends Component {
 					        <Route path='/admin/energy-reports/customers/:id' name='admin.energy-reports' component={ AdminEnergyReport }></Route>
                             <Route path='/admin/carbon-pricing' name='global.pricing' component={ Pricing }></Route>
                             <Route path='/admin/carbon-transactions' name='admin.carbon-transactions' component={ AdminCarbonTransactions }></Route>
-					        <Route path='/admin/finance-statement' name='admin.finance-statement' component={ AdminFinancialStatement }></Route>
+                            <Route path='/admin/finance-statement' name='admin.finance-statement' component={ AdminFinancialStatement }></Route>
+					        <Route path='/admin/register-customer' name='admin.register-customer' component={ AdminRegisterCustomer }></Route>
 		    			</div>    				
 					)}
 			</div>

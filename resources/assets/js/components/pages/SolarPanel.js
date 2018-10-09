@@ -168,9 +168,9 @@ class SolarPanel extends Component {
     		<ConditionMeter 
     			containerHeight={300} 
     			barHeight={250}
-    			voltage={this.state.conditions.voltage}
-    			power={this.state.conditions.power}
-    			energy={this.state.conditions.energy}
+    			voltage= { parseFloat(this.state.conditions.voltage).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
+    			power= { parseFloat(this.state.conditions.power).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
+    			energy= { parseFloat(this.state.conditions.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
     		/>    	
     	)
 
@@ -222,7 +222,7 @@ class SolarPanel extends Component {
 							columnVisibility = { true } 
 							defs={[{
 				                'render': function ( data, type, row ) {
-				                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+				                    return parseFloat(data).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 				                },
 					                'targets': [ 1, 3, 4, 5, 6]
 					            },{
@@ -270,7 +270,7 @@ class SolarPanel extends Component {
 							<Card header="Location" body={map} />
 						</div>
 						<div className="col-12 col-lg-3 p-0">
-							<Card header="Current Conditions" body={conditions}/>
+							<Card header="Average Panel Readings" body={conditions}/>
 						</div>
 						<div className="col-12">
 							<div className="row">
