@@ -10,7 +10,7 @@ export default class RegisterCustomer extends Component {
         	name: '',
 			email: '', 
 			phone_number: '',
-			role_id: '',
+			role_id: 2,
 			panels: '',
 			voltage: '',
 			power: '',
