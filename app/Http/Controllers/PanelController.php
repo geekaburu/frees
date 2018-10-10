@@ -13,6 +13,11 @@ class PanelController extends Controller
 {
     public function receivePanelData(Request $request)
     {
+        // Check if any of the request parameters is a 0
+        foreach ($request->all() as $item) {
+            if($item == 0) return;
+        }
+
       	// Create a panel data entry
 		$panelData = PanelData::create($request->all());
 
@@ -26,7 +31,7 @@ class PanelController extends Controller
 			$county = County::where('name',$this->getCounty(['latitude'=>$request->latitude, 'longitude'=>$request->longitude]))->first();
 			// Update panel data according to data provided
 			Panel::findOrFail($request->panel_id)->user->location()->update(array_merge($request->all(), [
-				'county_id' => $county ? $county->id : 0
+				'county_id' => $county ? $county->id : 1
 			]));
 		}
     }
