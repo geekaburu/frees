@@ -15,15 +15,13 @@ class PanelController extends Controller
 {
     public function receivePanelData(Request $request)
     {
+        //  Check if request is empty
+        if(!count($request->all())) return;
 
-        Log::info($request->all()); 
-
-        return;
         // Check if any of the request parameters is a 0
         foreach ($request->all() as $item) {
             if($item == 0) return;
-        }
-        
+        }       
 
         // Create a panel data entry
         $panelData = PanelData::create(array_merge($request->all(), [
