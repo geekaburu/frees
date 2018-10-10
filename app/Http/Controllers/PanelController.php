@@ -15,17 +15,21 @@ class PanelController extends Controller
 {
     public function receivePanelData(Request $request)
     {
+
+        Log::info($request->all()); 
+
+        return;
         // Check if any of the request parameters is a 0
         foreach ($request->all() as $item) {
             if($item == 0) return;
         }
+        
 
-      	// Create a panel data entry
-		$panelData = PanelData::create(array_merge($request->all(), [
+        // Create a panel data entry
+        $panelData = PanelData::create(array_merge($request->all(), [
             'created_at' => Carbon::now()->subMinutes(16),
         ]));
 
-        Log::info($panelData); 
 
   //       // Update the current angle of the panels
   //       PanelControl::where('user_id', $panelData->panel()->first()->user()->first()->id)->update([
