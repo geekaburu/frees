@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Panel;
 use App\County;
 use App\PanelData;
+use Carbon\Carbon;
 use App\CarbonPrice;
 use App\PanelControl;
 use Illuminate\Http\Request;
