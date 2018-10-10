@@ -67,7 +67,7 @@ export function setTickValue(filter){
 		source:'data'
 	}
 
-	if(filter != 'today' || filter != 'month'){
+	if(filter == 'live' || filter == 'week' || filter == '3month' || filter == 'year'){
 		ticks.maxRotation = 0
 		ticks.minRotation = 0
 	}
