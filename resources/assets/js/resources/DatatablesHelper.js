@@ -5,11 +5,11 @@ export function renderRow (id, data) {
 	data.map((element) => (
 		elements+= `
 			<tr>
-				<td>${element.name}</td>
-				<td>${element.county}</td>
-				<td>${parseFloat(element.energy ? element.energy : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-				<td>${parseFloat(element.credits ? element.credits : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-				<td>${parseFloat(element.amount ? element.amount : 0.00).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+				<td>${ element.name }</td>
+				<td>${ element.county }</td>
+				<td>${ parseFloat(element.energy ? element.energy : 0.00) }</td>
+				<td>${ parseFloat(element.credits ? element.credits : 0.00) }</td>
+				<td>${ parseFloat(element.amount ? element.amount : 0.00) }</td>
 			</tr>`					
     	)
     )
