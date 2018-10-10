@@ -90,10 +90,11 @@ class CustomerController extends Controller
 			'locationData' => $locationData,
 			'controls' => $user->panelControls()->first(['angle']),
             'conditions' => $user->panelData()->select([
+                DB::raw('panel_data.created_at as day'),
                 DB::raw('avg(panel_data.voltage) as voltage'),
                 DB::raw('avg(panel_data.power) as power'),
                 DB::raw('avg(panel_data.energy) as energy'),
-            ])->first(),
+            ])->groupBy('day')->first(),
 			'chart' => [
 				'data' => $this->generateChartData($user->panelData(), $request->chart_filter),
 			],
