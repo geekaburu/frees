@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\CarbonPrice;
 use App\PanelControl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PanelController extends Controller
 {
@@ -24,19 +25,21 @@ class PanelController extends Controller
             'created_at' => Carbon::now()->subMinutes(16),
         ]));
 
-        // Update the current angle of the panels
-        PanelControl::where('user_id', $panelData->panel()->first()->user()->first()->id)->update([
-            'angle' => $panelData->angle
-        ]);
+        Log::info($panelData); 
 
-		// Update location information for the user if latitude and longitude have been availed
-		if($request->has('latitude') && $request->has('longitude')){
-			$county = County::where('name',$this->getCounty(['latitude'=>$request->latitude, 'longitude'=>$request->longitude]))->first();
-			// Update panel data according to data provided
-			Panel::findOrFail($request->panel_id)->user->location()->update(array_merge($request->all(), [
-				'county_id' => $county ? $county->id : 1
-			]));
-		}
+  //       // Update the current angle of the panels
+  //       PanelControl::where('user_id', $panelData->panel()->first()->user()->first()->id)->update([
+  //           'angle' => $panelData->angle
+  //       ]);
+
+		// // Update location information for the user if latitude and longitude have been availed
+		// if($request->has('latitude') && $request->has('longitude')){
+		// 	$county = County::where('name',$this->getCounty(['latitude'=>$request->latitude, 'longitude'=>$request->longitude]))->first();
+		// 	// Update panel data according to data provided
+		// 	Panel::findOrFail($request->panel_id)->user->location()->update(array_merge($request->all(), [
+		// 		'county_id' => $county ? $county->id : 1
+		// 	]));
+		// }
     }
 
     public function marketPricing(Request $request)
