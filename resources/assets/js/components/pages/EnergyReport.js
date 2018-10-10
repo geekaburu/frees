@@ -36,16 +36,10 @@ export default class EnergyReport extends Component {
     	this.setState({loader:true})
     	// Fetch data
     	this.fetchData()
-    	// Apply fetch duration
-    	this.timerID = setInterval(
-			() => this.fetchData(),
-			App.fetchDuration(),
-    	)      		
     }
 
 	// Tear down the interval 
     componentWillUnmount() {
-	    clearInterval(this.timerID);
 	}
 
 	// On receipt of new props
