@@ -94,7 +94,7 @@ class CustomerController extends Controller
                 DB::raw('avg(panel_data.voltage) as voltage'),
                 DB::raw('avg(panel_data.power) as power'),
                 DB::raw('avg(panel_data.energy) as energy'),
-            ])->groupBy('day')->first(),
+            ])->groupBy('day')->orderBy('day', 'desc')->first(),
 			'chart' => [
 				'data' => $this->generateChartData($user->panelData(), $request->chart_filter),
 			],
