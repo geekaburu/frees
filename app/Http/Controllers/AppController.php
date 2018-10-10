@@ -20,10 +20,6 @@ class AppController extends Controller
 
     public function getPricingData(Request $request)
     {
-    	// Define start date and end date
-    	$startDate = $request->start_date ? Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d') : '';
-        $endDate = $request->end_date ? Carbon::createFromFormat('d/m/Y', $request->end_date) : Carbon::now();
-
         // Return response
     	return response([
 			'prices' => $this->generatePriceChartData(CarbonPrice::orderBy('carbon_prices.created_at', 'asc'), $request->chart_filter),

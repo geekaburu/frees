@@ -10941,7 +10941,7 @@ html::-webkit-scrollbar-thumb {
 
 #content #dashboard .overlay {
   z-index: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #content #dashboard #dashboard-card {
