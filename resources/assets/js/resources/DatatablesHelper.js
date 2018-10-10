@@ -7,9 +7,9 @@ export function renderRow (id, data) {
 			<tr>
 				<td>${element.name}</td>
 				<td>${element.county}</td>
-				<td>${parseFloat(element.energy)}</td>
-				<td>${parseFloat(element.credits)}</td>
-				<td>${parseFloat(element.amount)}</td>
+				<td>${parseFloat(element.energy ? element.energy : 0).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+				<td>${parseFloat(element.credits ? element.credits : 0).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+				<td>${parseFloat(element.amount ? element.amount : 0).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
 			</tr>`					
     	)
     )
