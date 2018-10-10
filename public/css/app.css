@@ -10898,8 +10898,8 @@ html::-webkit-scrollbar-thumb {
 }
 
 .card-shadow {
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.55);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.55);
 }
 
 .form-control:focus {
@@ -10941,12 +10941,12 @@ html::-webkit-scrollbar-thumb {
 
 #content #dashboard .overlay {
   z-index: 0;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 #content #dashboard #dashboard-card {
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   background-image: url("/img/backgrounds/5.jpg");
   background-position: center 0;
   background-repeat: no-repeat;
@@ -10956,8 +10956,8 @@ html::-webkit-scrollbar-thumb {
 
 #content #dashboard #dashboard-card .icon {
   margin-top: -40px;
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 #content #dashboard .dashboard-card-side {
