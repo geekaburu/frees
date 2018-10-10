@@ -66,11 +66,5 @@ export function setTickValue(filter){
 		maxTicksLimit: filter == 'live' ? 5 : 20,
 		source:'data'
 	}
-
-	if(filter == 'live' || filter == 'week' || filter == '3month' || filter == 'year'){
-		ticks.maxRotation = 0
-		ticks.minRotation = 0
-	}
-
 	return ticks
 }
