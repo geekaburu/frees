@@ -8,7 +8,7 @@ class PanelData extends Model
 {
     protected $table = 'panel_data';
     protected $fillable = [
-	  	'panel_id','angle','voltage','power','energy','runtime',
+	  	'panel_id','angle','voltage','power','energy','runtime','created_at',
     ];
     
     // Find the panel that owns a panels data

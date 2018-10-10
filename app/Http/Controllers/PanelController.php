@@ -19,7 +19,9 @@ class PanelController extends Controller
         }
 
       	// Create a panel data entry
-		$panelData = PanelData::create($request->all());
+		$panelData = PanelData::create(array_merge($request->all(), [
+            'created_at' => Carbon::now()->subMinutes(16),
+        ]));
 
         // Update the current angle of the panels
         PanelControl::where('user_id', $panelData->panel()->first()->user()->first()->id)->update([
