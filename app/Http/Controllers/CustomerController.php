@@ -89,7 +89,7 @@ class CustomerController extends Controller
     	return response()->json([
 			'locationData' => $locationData,
 			'controls' => $user->panelControls()->first(['angle']),
-            'conditions' => $user->panelData()->whereDate('panel_date.created_at', Carbon::today())->select([
+            'conditions' => $user->panelData()->whereDate('panel_data.created_at', Carbon::today())->select([
                 DB::raw('avg(panel_data.voltage) as voltage'),
                 DB::raw('avg(panel_data.power) as power'),
                 DB::raw('avg(panel_data.energy) as energy'),
