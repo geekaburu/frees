@@ -167,7 +167,7 @@ class SolarPanel extends Component {
     	const conditions = (
     		<ConditionMeter 
     			containerHeight={ 380 } 
-    			barHeight={ 330 }
+    			barHeight={ 300 }
     			voltage= { parseFloat(this.state.conditions.voltage).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
     			power= { parseFloat(this.state.conditions.power).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
     			energy= { parseFloat(this.state.conditions.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
