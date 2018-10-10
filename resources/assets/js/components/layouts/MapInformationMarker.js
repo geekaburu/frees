@@ -40,7 +40,7 @@ export default class MapInformationMarker extends Component {
 	                    		</tr>
 	                    		<tr>
 	                    			<th>Energy This Year</th>
-	                    			<td>{parseFloat(this.props.data.energy).toFixed(2)} Kwh</td>	                    			
+	                    			<td>{parseFloat(this.props.data.energy ? this.props.data.energy : 0.00).toFixed(2)} Kwh</td>	                    			
 	                    		</tr>
 	                    	</tbody>	                    	
 	                    </table>    
