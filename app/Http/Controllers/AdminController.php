@@ -66,9 +66,6 @@ class AdminController extends Controller
                 DB::raw('DATE_FORMAT(panel_data.created_at,"%M") as month') 
             )->groupBy('month')->orderBy('energy', 'desc')->first();
 
-        // Get chart data
-       $chartData = PanelData::orderBy('panel_data.created_at', 'asc');
-
        // Return response 
         return response()->json([
             'highestCards' => [
@@ -78,7 +75,7 @@ class AdminController extends Controller
                 'monthAmount' => $monthData->energy/$creditRate*$carbonPrice,
             ],
             'cards' => $cardData,
-            'chart' => $this->generateChartData($chartData, 'live'),
+            'chart' => $this->generateChartData(PanelData::where('id','>',0), 'live'),
             'lastDate' => Carbon::now()->endOfYear()->format('d/m/Y H:i:s'),
             'rates' => $record,
             'counties' => $countyData,
@@ -126,7 +123,7 @@ class AdminController extends Controller
 	    return response([
 			'customerData' => $customerData,
             'chart' => [
-                'data' =>  $this->generateChartData(PanelData::orderBy('created_at', 'asc'), $request->chart_filter)
+                'data' =>  $this->generateChartData(PanelData::where('id', '>', 0), $request->chart_filter)
             ],
             'panels' => [
                 'data' => $panelData,
@@ -168,7 +165,7 @@ class AdminController extends Controller
         return response()->json([
             'customers'=> User::ofType('customer')->get(['id','name']),
             'chart'=>[
-                'data'=> $this->generateChartData($data->orderBy('panel_data.created_at', 'asc'), $request->chart_filter),
+                'data'=> $this->generateChartData($data, $request->chart_filter),
             ],
             'activeCustomer' => is_numeric($request->customer) ? User::with('location')->findOrFail($request->customer): $request->customer,
             'stats' => $stats,
