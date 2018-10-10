@@ -62,7 +62,7 @@ export function displayParser(filter){
 
 export function setTickValue(filter){
 	var ticks = {
-		autoSkip:false,
+		autoSkip: false,
 		maxTicksLimit: filter == 'live' ? 5 : 20,
 		source:'data'
 	}
