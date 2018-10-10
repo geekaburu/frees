@@ -107,24 +107,21 @@ trait HelperTrait
 	    $parameters = [
 	    	DB::raw('avg(value) as price'),
 	    	DB::raw('avg(credit_rate) as rate'),
-	    	DB::raw('carbon_prices.created_at as label')
 	    ];
 
 	    // Create filters for the query
 	    if($filter == 'week') {
 	    	$chartData = $data->whereBetween('carbon_prices.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
-	    	array_push($parameters, DB::raw("DATE_FORMAT(carbon_prices.created_at,'%D %M') as label"));
+	    	array_push($parameters, DB::raw('DATE_FORMAT(carbon_prices.created_at,"%D %M") as label'));
 	    } else if($filter == 'month') {
 	    	$chartData = $data->whereYear('carbon_prices.created_at', date('Y'))->whereMonth('carbon_prices.created_at', date('m'));
-	    	array_push($parameters, DB::raw("DATE_FORMAT(carbon_prices.created_at,'%D %M') as label"));
-	    }
-	    else if($filter == '3month'){
+	    	array_push($parameters, DB::raw('DATE_FORMAT(carbon_prices.created_at,"%D %M") as label'));
+	    } else if($filter == '3month'){
 	    	$chartData = $data->whereYear('carbon_prices.created_at', date('Y'))->whereMonth('carbon_prices.created_at', '>=', Carbon::now()->subMonth(3)->month);
-	    	array_push($parameters, DB::raw("DATE_FORMAT(carbon_prices.created_at,'%M %Y') as label"));
-	    }
-	    else if($filter == 'year'){
+	    	array_push($parameters, DB::raw('DATE_FORMAT(carbon_prices.created_at,"%M %Y") as label'));
+	    } else if($filter == 'year'){
 	    	$chartData = $data->whereYear('carbon_prices.created_at', date('Y'));
-	    	array_push($parameters, DB::raw("DATE_FORMAT(carbon_prices.created_at,'%M %Y') as label"));
+	    	array_push($parameters, DB::raw('DATE_FORMAT(carbon_prices.created_at,"%M %Y") as label'));
 	    }
 
 	    // Process results
