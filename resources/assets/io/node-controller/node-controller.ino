@@ -69,15 +69,15 @@ void loop() {
                 // -------------------------------------------------------
                 // Get the logitude and latitude if location is requested
                 // -------------------------------------------------------
-                //if(location % 50 == 0) {
-                  //  response = postRequest(geolocationHost, geolocationPage, geolocationKey, "{\n\n}");
-                    //delay(500);
-                    //JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
-                    //latitude = root["location"]["lat"];
-                    //longitude = root["location"]["lng"];
-                    //buffer += "\"latitude\":" + String(latitude, 7) + ",";
-                    //buffer += "\"longitude\":" + String(longitude, 7) + ",";
-                //}
+                if(location % 10 == 0) {
+                    response = postRequest(geolocationHost, geolocationPage, geolocationKey, "{\n\n}");
+                    delay(500);
+                    JsonObject& root = parseJson(2 * JSON_OBJECT_SIZE(2) + 60, response);
+                    latitude = root["location"]["lat"];
+                    longitude = root["location"]["lng"];
+                    buffer += "\"latitude\":" + String(latitude, 7) + ",";
+                    buffer += "\"longitude\":" + String(longitude, 7) + ",";
+                }
 
                 // -------------------------------------------------------
                 // Append more information

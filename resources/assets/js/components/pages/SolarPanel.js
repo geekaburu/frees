@@ -157,7 +157,7 @@ class SolarPanel extends Component {
 				zoom={ 17 }
 				mapTypeId='hybrid'
 				contentWidth='100%'
-				contentHeight='300px'				
+				contentHeight='380px'				
 				markers={data}
 				link='/panel-analysis/panels/all'
 			/>
@@ -166,8 +166,8 @@ class SolarPanel extends Component {
     	// Creating the condition meter
     	const conditions = (
     		<ConditionMeter 
-    			containerHeight={300} 
-    			barHeight={250}
+    			containerHeight={ 380 } 
+    			barHeight={ 350 }
     			voltage= { parseFloat(this.state.conditions.voltage).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
     			power= { parseFloat(this.state.conditions.power).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
     			energy= { parseFloat(this.state.conditions.energy).toLocaleString('en' , { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
