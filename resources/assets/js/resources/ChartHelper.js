@@ -61,11 +61,16 @@ export function displayParser(filter){
 }
 
 export function setTickValue(filter){
-	return {
-        maxRotation: 0,
-        minRotation: 0,		
+	var ticks = {
 		autoSkip:false,
 		maxTicksLimit: filter == 'live' ? 5 : 20,
 		source:'data'
 	}
+
+	if(filter != 'today' || filter != 'month'){
+		ticks.maxRotation = 0
+		ticks.minRotation = 0
+	}
+
+	return ticks
 }
