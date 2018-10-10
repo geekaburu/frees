@@ -149,7 +149,7 @@ export default class PanelAnalysis extends Component {
 									yAxes:'Energy in kWh',
 									'xAxes': 'Time'
 								}}
-								filters={[{label: 'Live', value:'live'}, {label: 'Today', value:'today'}, , {label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
+								filters={[{label: 'Live', value:'live'}, {label: 'Today', value:'today'}, {label: 'Yesterday', value:'yesterday'}, {label: 'This Week', value:'week'}, {label: 'This Month', value:'month'}, {label: 'Past 3 Months', value:'3month'}, {label: 'This Year', value:'year'}]}
 								activeFilter='month'
 								handleFilterValue={this.handleFilterValue}
 							/>

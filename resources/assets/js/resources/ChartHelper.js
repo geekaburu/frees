@@ -40,6 +40,7 @@ export function displayUnit(filter){
 	const formats = {
 		'live':'second',
 		'today':'minute',
+		'yesterday':'minute',
 		'week':'day',
 		'month':'day',
 		'3month':'month',
@@ -52,6 +53,7 @@ export function displayParser(filter){
 	const formats = {
 		'live':'YYYY-MM-DD HH:mm:ss',
 		'today':'YYYY-MM-DD HH:mm:ss',
+		'yesterday':'YYYY-MM-DD HH:mm:ss',
 		'week':'Do MMMM',
 		'month':'Do MMMM',
 		'3month':'MMMM YYYY',

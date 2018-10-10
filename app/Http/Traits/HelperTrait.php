@@ -28,7 +28,10 @@ trait HelperTrait
 	    } else if($filter == 'today'){
 	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::today());
 	    	array_push($parameters, DB::raw("FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(panel_data.created_at) / (15*60)) * (15*60)) as label"));
-	    } else if($filter == 'week'){
+	    } else if($filter == 'yesterday'){
+	    	$chartData = $data->whereDate('panel_data.created_at', Carbon::yesterday());
+	    	array_push($parameters, DB::raw("FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(panel_data.created_at) / (15*60)) * (15*60)) as label"));
+		} else if($filter == 'week'){
 	    	$chartData = $data->whereBetween('panel_data.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
 	    	array_push($parameters, DB::raw("DATE_FORMAT(panel_data.created_at,'%D %M') as label"));
 	    } else if($filter == 'month'){
